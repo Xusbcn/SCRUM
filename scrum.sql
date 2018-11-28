@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2018 a las 23:57:33
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Servidor: localhost:3306
+-- Tiempo de generación: 28-11-2018 a las 16:24:09
+-- Versión del servidor: 5.7.24-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.10-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -98,7 +96,7 @@ CREATE TABLE `sprints` (
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `user` varchar(20) COLLATE utf8_bin NOT NULL,
-  `password` varchar(20) COLLATE utf8_bin NOT NULL,
+  `password` varchar(512) COLLATE utf8_bin NOT NULL,
   `rol` varchar(20) COLLATE utf8_bin NOT NULL,
   `name` varchar(20) COLLATE utf8_bin NOT NULL,
   `last_name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -158,31 +156,26 @@ ALTER TABLE `users`
 --
 ALTER TABLE `project`
   MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `proj_users`
 --
 ALTER TABLE `proj_users`
   MODIFY `id_proj_user` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `specifications`
 --
 ALTER TABLE `specifications`
   MODIFY `id_specification` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `sprints`
 --
 ALTER TABLE `sprints`
   MODIFY `id_sprint` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -209,8 +202,8 @@ ALTER TABLE `specifications`
 -- Filtros para la tabla `sprints`
 --
 ALTER TABLE `sprints`
-  ADD CONSTRAINT `fk_cod_project_sprints` FOREIGN KEY (`cod_project`) REFERENCES `specifications` (`cod_project`);
-COMMIT;
+  ADD CONSTRAINT `fk_cod_project_sprints` FOREIGN KEY (`cod_project`) REFERENCES `specifications` (`cod_project`),
+  ADD CONSTRAINT `fk_cod_project_sprints_project` FOREIGN KEY (`cod_project`) REFERENCES `project` (`cod_project`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
