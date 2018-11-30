@@ -84,23 +84,38 @@ function validate()
  var error="";
  var error1="";
  var nameInput = document.getElementById('nickUser').value;
- console.log(nameInput);
+ var passInput = document.getElementById('nickPass').value;
+ 
  var namePhp = '<?php echo $errorMsg;?>';
- console.log(namePhp);
+ var passPhp = '<?php echo $errorMsg;?>';
+
 
  if( nameInput== "" )
  {
-  error = "Has de introducir un usuario o email.";
-  document.getElementById( "texto" ).innerHTML = error;
+  errorUser = "Has de introducir un usuario o email.";
+  document.getElementById( "errorMsgs" ).innerHTML = errorUser;
+  return false;
+ }
+ if( passInput== "" )
+ {
+  errorPass = "Has de introducir una contraseña";
+  document.getElementById( "errorMsgs" ).innerHTML = errorPass;
   return false;
  }
  else if(namePhp=true)
  {
  	error1 = '<?php echo $errorMsgLoginUsername;?>';
-  	document.getElementById( "texto" ).innerHTML = error1;
+  	document.getElementById( "errorMsgs" ).innerHTML = error1;
   	return false;
  }
  
+else if(passPhp=true)
+ {
+ 	error1 = '<?php echo $errorMsgLoginUsername;?>';
+  	document.getElementById( "errorMsgs" ).innerHTML = error1;
+  	return false;
+ }
+
 }
 
 </script>
@@ -109,8 +124,8 @@ function validate()
 </head>
 <body>
 
-<div class="errorMsgs">
-	<p id="texto"></p>
+<div id="errorMsgs">
+	
 </div>
 
 <div id="login">
@@ -119,7 +134,7 @@ function validate()
 <label>Username or Email</label>
 <input type="text" id="nickUser" name="usernameEmail" autocomplete="off" />
 <label>Password</label>
-<input type="password" name="password" autocomplete="off"/>
+<input type="password" id="nickPass" name="password" autocomplete="off"/>
 <input type="submit" class="button" name="loginSubmit" value="Login" onclick="validate()">
 </form>
 </div>
