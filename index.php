@@ -54,7 +54,7 @@ if($username_check && $email_check && $password_check && strlen(trim($name))>0)
 $uid=$userClass->userRegistration($username,$password,$email,$name);
 if($uid)
 {
-$url=BASE_URL.'home.php';
+$url=BASE_URL.'listaproyectos.php';
 header("Location: $url"); // Page redirecting to home.php 
 }
 else
@@ -117,11 +117,12 @@ $errorMsgReg="Username or Email already exists.";
 </body>
 <script type="text/javascript">
 
+
 document.getElementById("errorMsgs").style.display="none";	
 
 function validate()
 {
-
+//cambiar();
  var error="";
  var error1="";
  var nameInput = document.getElementById('nickUser').value;
@@ -153,7 +154,7 @@ function validate()
 //error en al introducir usuario o mail.
 	var parrafoUser=document.createElement('p');
 	divParrafoUser.appendChild(parrafoUser);
-	divParrafoUser.classList.add("parpadea");
+	//divParrafoUser.classList.add("parpadea");
 	divParrafoUser.classList.add("text");
 	divImageErrorUser.appendChild(imageErrorUser);
  	divImageErrorUser.classList.add("parpadea");
@@ -166,7 +167,7 @@ function validate()
 //error en al introducir la contraseña..
 	var parrafoPass=document.createElement('p');
 	divParrafoPass.appendChild(parrafoPass);
-	divParrafoPass.classList.add("parpadea");
+	//divParrafoPass.classList.add("parpadea");
 	divParrafoPass.classList.add("text");
 	divImageErrorPass.appendChild(imageErrorPass);
 	divImageErrorPass.classList.add("parpadea");
