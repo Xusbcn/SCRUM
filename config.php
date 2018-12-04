@@ -4,7 +4,7 @@ session_start();
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'xus');
 define('DB_PASSWORD', 'xus123');
-define('DB_DATABASE', 'prueba1');
+define('DB_DATABASE', 'scrum2');
 define("BASE_URL", "http://localhost/scrum/"); // Eg. http://yourwebsite.com
 
 

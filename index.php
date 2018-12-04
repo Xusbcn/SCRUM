@@ -15,18 +15,8 @@ if (!empty($_POST['loginSubmit']))
 	$usernameEmail=$_POST['usernameEmail'];
 	$password=$_POST['password'];
 
-	if(strlen(trim($usernameEmail))<1)
-	{ 	
-		$errorMsg='true';
-		$errorMsgLoginUsername="El usurio o mail introducidos no se encuentra en nuestar bases de datos.";
-		echo $errorMsgLoginUsername;
-	}
-	 if(strlen(trim($password))<1 )
-	{	
-		$errorMsg='true';
-		$errorMsgLoginPass="La contraseña introducida no se encuentra en la bases de datos.";
-		echo $errorMsgLoginPass;
-	}
+	
+	
 	if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
 	{
 		$uid=$userClass->userLogin($usernameEmail,$password);
@@ -35,8 +25,16 @@ if (!empty($_POST['loginSubmit']))
 		$url=BASE_URL.'home.php';
 		header("Location: $url"); // Page redirecting to home.php 
 		}
+		else
+		{
+		 $errorMsg='true';	
+		 $errorMsgLoginUsername="El usurio o mail introducidos no se encuentra en nuestar bases de datos.";
+		 $errorMsgLoginPass="La contraseña introducida no se encuentra en la bases de datos.";
+		}
 	}
+	
 }
+
 
 /* Signup Form */
 if (!empty($_POST['signupSubmit'])) 
@@ -85,10 +83,10 @@ $errorMsgReg="Username or Email already exists.";
 <body>
 
 <div id="errorMsgs"></div>
-
+ 
 <div id="login">
 <h3>Login</h3>
-<form method="post" action=""name="login">
+<form method="post" action="" onsubmit="return validate()" name="login">
 <label>Username or Email</label>
 <input type="text" id="nickUser" name="usernameEmail" autocomplete="off" />
 <label>Password</label>
@@ -196,7 +194,7 @@ function validate()
   document.getElementById("errorMsgs").style.display="block";
  // return false;
  }
- if(namePhp=='true' && nameInput!= "")
+ if(namePhp=='true' && nameInput!= "" )
  {
  	errorUser = document.createTextNode("'<?php echo $errorMsgLoginUsername;?>'");
   	parrafoUser.appendChild(errorUser);
@@ -204,7 +202,7 @@ function validate()
   	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
   	document.getElementById("errorMsgs").style.display="block";
  }
- if(passPhp=='true' && passInput!= "")
+ if(passPhp=='true' && passInput!= "" )
  {
 
   errorPass = document.createTextNode("'<?php echo $errorMsgLoginPass;?>'");
