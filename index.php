@@ -17,13 +17,15 @@ if (!empty($_POST['loginSubmit']))
 
 	if(strlen(trim($usernameEmail))<1)
 	{ 	
-		$errorMsg=true;
+		$errorMsg='true';
 		$errorMsgLoginUsername="El usurio o mail introducidos no se encuentra en nuestar bases de datos.";
+		echo $errorMsgLoginUsername;
 	}
 	 if(strlen(trim($password))<1 )
 	{	
-		$errorMsg=true;
+		$errorMsg='true';
 		$errorMsgLoginPass="La contraseña introducida no se encuentra en la bases de datos.";
+		echo $errorMsgLoginPass;
 	}
 	if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
 	{
@@ -54,7 +56,7 @@ if($username_check && $email_check && $password_check && strlen(trim($name))>0)
 $uid=$userClass->userRegistration($username,$password,$email,$name);
 if($uid)
 {
-$url=BASE_URL.'listaproyectos.php';
+$url=BASE_URL.'proyectos.html';
 header("Location: $url"); // Page redirecting to home.php 
 }
 else
@@ -86,7 +88,7 @@ $errorMsgReg="Username or Email already exists.";
 
 <div id="login">
 <h3>Login</h3>
-<form method="post" action="" onsubmit="return validate()" name="login">
+<form method="post" action=""name="login">
 <label>Username or Email</label>
 <input type="text" id="nickUser" name="usernameEmail" autocomplete="off" />
 <label>Password</label>
@@ -194,7 +196,7 @@ function validate()
   document.getElementById("errorMsgs").style.display="block";
  // return false;
  }
- if(namePhp=true && nameInput!= "")
+ if(namePhp=='true' && nameInput!= "")
  {
  	errorUser = document.createTextNode("'<?php echo $errorMsgLoginUsername;?>'");
   	parrafoUser.appendChild(errorUser);
@@ -202,7 +204,7 @@ function validate()
   	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
   	document.getElementById("errorMsgs").style.display="block";
  }
- else if(passPhp=true && passInput!= "")
+ if(passPhp=='true' && passInput!= "")
  {
 
   errorPass = document.createTextNode("'<?php echo $errorMsgLoginPass;?>'");
