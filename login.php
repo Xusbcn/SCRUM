@@ -118,7 +118,7 @@ $errorMsgReg="Username or Email already exists.";
 <script type="text/javascript">
 
 
-document.getElementById("errorMsgs").style.display="none";	
+//document.getElementById("errorMsgs").style.display="none";	
 
 function validate()
 {
@@ -145,7 +145,6 @@ function validate()
  var imageErrorUser=document.createElement('IMG');
  imageErrorUser.setAttribute("src", "css/images/cancelar.png");
  imageErrorUser.setAttribute("width", "20px");
-
  var imageErrorPass=document.createElement('IMG');
  imageErrorPass.setAttribute("src", "css/images/cancelar.png");
  imageErrorPass.setAttribute("width", "20px");
@@ -154,7 +153,7 @@ function validate()
 //error en al introducir usuario o mail.
 	var parrafoUser=document.createElement('p');
 	divParrafoUser.appendChild(parrafoUser);
-	//divParrafoUser.classList.add("parpadea");
+	
 	divParrafoUser.classList.add("text");
 	divImageErrorUser.appendChild(imageErrorUser);
  	divImageErrorUser.classList.add("parpadea");
@@ -167,7 +166,6 @@ function validate()
 //error en al introducir la contraseña..
 	var parrafoPass=document.createElement('p');
 	divParrafoPass.appendChild(parrafoPass);
-	//divParrafoPass.classList.add("parpadea");
 	divParrafoPass.classList.add("text");
 	divImageErrorPass.appendChild(imageErrorPass);
 	divImageErrorPass.classList.add("parpadea");
@@ -176,13 +174,6 @@ function validate()
 	divImageParrafoPass.appendChild(divParrafoPass);
 	divImageParrafoPass.classList.add("contenedor");
 	
-
-
-
-
- 
- divErrorPass.classList.add("parpadea");
- divErrorPass.classList.add("text");
  
 
  if( nameInput== "" )
