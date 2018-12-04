@@ -110,3 +110,49 @@ body{
    50% { opacity: 0.0; }
   100% { opacity: 1.0; }
 }
+
+/*pagina proyectos*/
+
+.contenedor_proyectos{
+  
+}
+
+
+#error_proyecto{
+  float: left;
+  color: #FA2A00;
+  box-shadow: 0 0 0 10px #FA2A00;
+  animation: 4s animateBordererror ease infinite;
+  margin-left: 1.5%;
+}
+
+.contenedor_usurio{
+  border: 2px solid red;
+  float: right;
+}
+
+#nombre_usuario{
+  border: 1px solid black;
+  float: left;
+}
+
+#icono_logout{
+  
+  float: right;
+
+}
+
+#lista_proyectos{
+  width: 100%;
+  border: 1px solid black;
+  float: left;
+  clear: left;
+  background-color: #cdd6d0b8;
+  border-radius: 1em;
+}
+
+
+#label_proyecto{
+  border: 1px solid black;
+  float: right;
+}
