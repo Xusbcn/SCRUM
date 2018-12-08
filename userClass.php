@@ -82,5 +82,27 @@ catch(PDOException $e) {
 echo '{"error":{"text":'. $e->getMessage() .'}}';
 }
 }
+
+public function projectsDetails($uid)
+{
+try{
+$db = getDB();
+$stmt = $db->prepare("SELECT name_proj FROM proj_users WHERE username IN (SELECT username FROM users where uid=:uid)"); 
+$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
+$stmt->execute();
+$data = $stmt->fetch(PDO::FETCH_OBJ); //User data
+return $data;
+}
+catch(PDOException $e) {
+echo '{"error":{"text":'. $e->getMessage() .'}}';
+}
+}
+
+
 }
 ?>
+
+
+
+
+

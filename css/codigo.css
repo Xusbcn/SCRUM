@@ -124,16 +124,19 @@ body{
   box-shadow: 0 0 0 10px #FA2A00;
   animation: 4s animateBordererror ease infinite;
   margin-left: 1.5%;
+  display: none;
 }
 
 .contenedor_usurio{
-  border: 2px solid red;
+  
   float: right;
-}
+  font-size: 35px;
+ }
 
 #nombre_usuario{
-  border: 1px solid black;
+  
   float: left;
+  margin-right: 30px;
 }
 
 #icono_logout{
@@ -153,6 +156,19 @@ body{
 
 
 #label_proyecto{
-  border: 1px solid black;
+  margin-right: 10px;
   float: right;
 }
+
+#listaID{
+  font-size: 20px; 
+  margin-top: 10px;
+  color: #936543;
+}
+
+#nombeUsuario{
+  margin-top: 10px;
+color: #262123;
+}
+
+/*LISTAR PROYECTOS*/
