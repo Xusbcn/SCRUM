@@ -100,3 +100,43 @@ function validate()
 }
 
 </script>
+
+
+
+public function projectsDetails($uid)
+{
+$sql="SELECT name_proj FROM proj_users WHERE username IN (SELECT username FROM users where uid=:uid)";
+try{
+$db = getDB();
+$stmt = $db->prepare( $sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL)); 
+$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
+$stmt->execute();
+while ($fila = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+      $datos = $fila[0] ."\n";
+      var_dump($datos);
+    }
+    $stmt = null;
+}
+catch(PDOException $e) {
+echo '{"error":{"text":'. $e->getMessage() .'}}';
+}
+
+
+
+
+
+
+public function projectsDetails($uid)
+{
+try{
+$db = getDB();
+$stmt = $db->prepare("SELECT name_proj FROM proj_users WHERE username IN (SELECT username FROM users where uid=:uid)"); 
+$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
+$stmt->execute();
+$data = $stmt->fetch(PDO::FETCH_OBJ); //User data
+return $data;
+}
+catch(PDOException $e) {
+echo '{"error":{"text":'. $e->getMessage() .'}}';
+}
+}

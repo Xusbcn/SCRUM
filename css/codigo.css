@@ -113,9 +113,6 @@ body{
 
 /*pagina proyectos*/
 
-.contenedor_proyectos{
-  
-}
 
 
 #error_proyecto{
@@ -154,9 +151,6 @@ body{
   border-radius: 1em;
 }
 
-#lista_proyectos a{
-  display: block;
-}
 
 #label_proyecto{
   margin-right: 10px;
@@ -174,4 +168,7 @@ body{
 color: #262123;
 }
 
+#lista_proyectos a{
+  display: block;
+}
 /*LISTAR PROYECTOS*/

@@ -27,17 +27,17 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 
 	<div id="lista_proyectos">
 		<div id="label_proyecto"><h3 id="listaID">PROYECTOS</h3></div>
-		<?php for ($i=0; $i<count($nombres_de_proyectos);$i++)
-			{
-				$text = $nombres_de_proyectos[$i];
-				echo "<a href='proyectos.php?nom=$text'>" .$nombres_de_proyectos[$i]. "</a>";
-			}?>;
 		
 	</div>
 </div>
 </body>
 </html>
 
+<?php for ($i=0; $i<count($nombres_de_proyectos);$i++)
+			{
+				
+				echo "<p style='display:none' class='proyectosnombres'>" . $nombres_de_proyectos[$i]. "</p>";
+			}?>;
 
 
 
@@ -46,7 +46,9 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 
 <script type="text/javascript">
 	var listaProyectos= [];
-	var jsvarnombreProyectos=document.getElementsByClassName('proyectosnombres');
+	var jsvarnombreProyectos=document.getElementsByClassName('proyectosnombres').text;
+
+	console.log(jsvarnombreProyectos);
 
 	for (var i=0; i<jsvarnombreProyectos.length; i++){
 
