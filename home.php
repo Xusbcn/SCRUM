@@ -4,8 +4,12 @@ include('session.php');
 //include('proyecjSessions');
 $userDetails=$userClass->userDetails($session_uid);
 $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid);
-
+$rolDetails=$userClass->rolDetails($session_uid);
+$rol=$rolDetails->rol;
+//echo $rol;
+echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +87,25 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 		
 </body>
 </html>
+
+
 <script type="text/javascript">
+
+			var jsvarbutton=document.getElementById('roles').innerHTML;
+			console.log(jsvarbutton);
+
+			function mostrarBoton(){
+				if (jsvarbutton!="ScrumMaster"){
+					document.getElementById('id_boton').style.display="none";
+				}
+				else{
+					document.getElementById('id_boton').style.display="bock";
+				}
+
+			}
+
+			mostrarBoton();
+
 			
 			//combobox scrum_master
 			var select_combobox_scrum = document.createElement("select");
