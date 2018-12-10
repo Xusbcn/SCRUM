@@ -4,8 +4,12 @@ include('session.php');
 //include('proyecjSessions');
 $userDetails=$userClass->userDetails($session_uid);
 $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid);
-
+$rolDetails=$userClass->rolDetails($session_uid);
+$rol=$rolDetails->rol;
+//echo $rol;
+echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,9 +66,9 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 <?php 
 	   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","xus","xus123");		 
 			// Prepare
-			$consulta = $pdo->prepare("SELECT username FROM users where rol = 'ScrumMaster'");
-			$consulta2 = $pdo->prepare("SELECT username FROM users where rol = 'ProductOwner'");
-			$consulta3 = $pdo->prepare("SELECT username FROM users where rol = 'Developer'");
+			$consulta = $pdo->prepare("SELECT name FROM users where rol = 'ScrumMaster'");
+			$consulta2 = $pdo->prepare("SELECT name FROM users where rol = 'ProductOwner'");
+			$consulta3 = $pdo->prepare("SELECT name FROM users where rol = 'Developer'");
 			// Excecute
 			$consulta->execute();
 			$consulta2->execute();
@@ -83,7 +87,25 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 		
 </body>
 </html>
+
+
 <script type="text/javascript">
+
+			var jsvarbutton=document.getElementById('roles').innerHTML;
+			console.log(jsvarbutton);
+
+			function mostrarBoton(){
+				if (jsvarbutton!="ScrumMaster"){
+					document.getElementById('id_boton').style.display="none";
+				}
+				else{
+					document.getElementById('id_boton').style.display="bock";
+				}
+
+			}
+
+			mostrarBoton();
+
 			
 			//combobox scrum_master
 			var select_combobox_scrum = document.createElement("select");
@@ -100,8 +122,8 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 			while ($respuesta) {
 				?>
 				var opcion_combobox_scrum = document.createElement("option");
-				opcion_combobox_scrum.setAttribute("value",'<?php echo "$respuesta[username]" ?>');
-				var texto_opcion = document.createTextNode('<?php echo "$respuesta[username]" ?>');
+				opcion_combobox_scrum.setAttribute("value",'<?php echo "$respuesta[name]" ?>');
+				var texto_opcion = document.createTextNode('<?php echo "$respuesta[name]" ?>');
 				opcion_combobox_scrum.appendChild(texto_opcion);
 				select_combobox_scrum.appendChild(opcion_combobox_scrum);
 				<?php
@@ -125,8 +147,8 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 			while ($respuesta2) {
 				?>
 				var opcion_combobox_product = document.createElement("option");
-				opcion_combobox_product.setAttribute("value",'<?php echo "$respuesta2[username]" ?>');
-				var texto_opcion = document.createTextNode('<?php echo "$respuesta2[username]" ?>');
+				opcion_combobox_product.setAttribute("value",'<?php echo "$respuesta2[name]" ?>');
+				var texto_opcion = document.createTextNode('<?php echo "$respuesta2[name]" ?>');
 				opcion_combobox_product.appendChild(texto_opcion);
 				select_combobox_product.appendChild(opcion_combobox_product);
 				<?php
@@ -144,11 +166,11 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 				var checkbox = document.createElement("input");
 				checkbox.setAttribute("type","checkbox");
 				checkbox.setAttribute("class","checkboxes");
-				checkbox.setAttribute("value",'<?php echo "$respuesta3[username]" ?>');
-				checkbox.setAttribute("username",'checkbox[]');
+				checkbox.setAttribute("value",'<?php echo "$respuesta3[name]" ?>');
+				checkbox.setAttribute("name",'checkbox[]');
 				document.getElementById("formulario_derecha").appendChild(checkbox);
 				var checkbox_label = document.createElement("label");
-				var texto_label = document.createTextNode('<?php echo "$respuesta3[username]" ?>')
+				var texto_label = document.createTextNode('<?php echo "$respuesta3[name]" ?>')
 				checkbox_label.appendChild(texto_label);
 				document.getElementById("formulario_derecha").appendChild(checkbox_label);
 				document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
