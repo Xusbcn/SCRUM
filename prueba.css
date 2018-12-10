@@ -1,0 +1,31 @@
+
+#formulario {
+  background-color: #fafafa;
+  margin: 1em;
+  margin-left: 14em;
+  margin-right: 14em;
+  padding: 1em;
+  border: 2px solid #ccc;
+}
+#titulo {
+	text-align: center;
+}
+#formulario_izquierda {
+	position: relative;
+	top: 1em;
+	left: 5em;
+}
+#formulario_derecha {
+	position: relative;
+	top: -6em;
+	left: 32em;
+}
+
+#boton_crear_dentro{
+	position: relative;
+	left: 25em;
+	bottom: 3em;
+}
+#id_boton{
+	    margin-top: 40px;
+}
