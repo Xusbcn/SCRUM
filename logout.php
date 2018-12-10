@@ -1,4 +1,5 @@
 <?php
+session_destroy();
 include('config.php');
 $session_uid='';
 $_SESSION['uid']=''; 

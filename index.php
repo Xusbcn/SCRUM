@@ -1,5 +1,6 @@
 
 <?php
+
 include("config.php");
 include('userClass.php');
 $userClass = new userClass();

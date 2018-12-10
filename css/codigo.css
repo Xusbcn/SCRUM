@@ -149,6 +149,7 @@ body{
   clear: left;
   background-color: #cdd6d0b8;
   border-radius: 1em;
+  height: 90px;
 }
 
 
@@ -170,5 +171,22 @@ color: #262123;
 
 #lista_proyectos a{
   display: block;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#proyectoDetails{
+  width: 100%;
+  border: 1px solid black;
+  float: left;
+  clear: left;
+  background-color: #cdd6d0b8;
+  border-radius: 1em;
+  height: 60px;
+  text-align: -webkit-center;
+  -webkit-text-fill-color: blueviolet;
+  text-transform: uppercase;
+  font-size: 40px;
+
 }
 /*LISTAR PROYECTOS*/

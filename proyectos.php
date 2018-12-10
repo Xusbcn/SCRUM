@@ -26,8 +26,8 @@ $userDetails=$userClass->userDetails($session_uid);
 	</div>
 
 	<div id="proyectoDetails">
-		<div id="label_proyecto"><h3 id="listaID">PROYECTOS</h3></div>
-		<?php $v1= $_GET['nom']; ?>
+		
+		<?php echo $v1= $_GET['nom']; ?>
 
 	</div>
 </div>
