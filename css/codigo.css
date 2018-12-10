@@ -154,6 +154,9 @@ body{
   border-radius: 1em;
 }
 
+#lista_proyectos a{
+  display: block;
+}
 
 #label_proyecto{
   margin-right: 10px;

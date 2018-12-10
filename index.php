@@ -16,7 +16,7 @@ if (!empty($_POST['loginSubmit']))
 	$usernameEmail=$_POST['usernameEmail'];
 	$password=$_POST['password'];
 
-	echo $usernameEmail;
+	//echo $usernameEmail;
 	
 	
 	if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
