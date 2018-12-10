@@ -25,7 +25,9 @@
 	position: relative;
 	left: 25em;
 	bottom: 3em;
+	width: 20%;
 }
 #id_boton{
-	    margin-top: 40px;
+	 margin-top: 70px;
+	 margin-left: 10px;
 }

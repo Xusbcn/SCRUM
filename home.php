@@ -40,6 +40,19 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 			
 		</div>
 		
+
+		<div id="contenedor-formulario">
+		
+		<div id="div_formulario" hidden>
+			<form id="formulario" method="post" action="prueba2.php">
+				<div id="formulario_izquierda">
+				</div>
+				<div id="formulario_derecha">
+				</div>
+			</form>
+		</div>
+			
+</div>
 	</div>
 </div>
 
@@ -63,18 +76,7 @@ $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid)
 
 
 
-<div id="contenedor-formulario">
-		
-		<div id="div_formulario" hidden>
-			<form id="formulario" method="post" action="prueba2.php">
-				<div id="formulario_izquierda">
-				</div>
-				<div id="formulario_derecha">
-				</div>
-			</form>
-		</div>
-			
-</div>
+
 
 </div>
 
