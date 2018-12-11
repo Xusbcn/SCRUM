@@ -100,6 +100,7 @@ echo '{"error":{"text":'. $e->getMessage() .'}}';
 }
 
 
+
 public function projectsDetails($uid)
 
 {
@@ -117,6 +118,7 @@ while ($fila = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
       //print_r($datos);
       //print_r($nombre_proyectos);
     }
+    
     return $nombre_proyectos;
       
     $stmt = null;

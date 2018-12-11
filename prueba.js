@@ -7,6 +7,7 @@ var comboScrumMaster = false;
 
 
 
+
 function crearFormulario(){
 
 	
@@ -74,6 +75,7 @@ function crearFormulario(){
 
 	//text descripcion
 	var numero_number = document.createElement("input");
+	numero_number.setAttribute("id", "codigo_proyecto");
 	numero_number.setAttribute("type","number");
 	numero_number.setAttribute("name", "numero_proyecto");
 	document.getElementById("formulario_izquierda").appendChild(numero_number);
@@ -138,7 +140,23 @@ function crearFormulario(){
 	crear_boton.setAttribute("value","Crear");
 	crear_boton.setAttribute("id","boton_crear_dentro");
 	document.getElementById("formulario").appendChild(crear_boton);
+
+
+
+	document.getElementById('botonCrearProyecto').disabled=true;
+	document.getElementById('botonCrearProyecto').classList.add("deshabilitar");
+
+	var reload_boton=document.createElement("input");
+	reload_boton.setAttribute("type","button");
+	reload_boton.setAttribute("onclick", "location.reload();");
+	reload_boton.setAttribute("value","Try Again");
+	reload_boton.setAttribute("id","boton_reload");
+	document.getElementById("formulario").appendChild(reload_boton);
 }
+
+
+
+
 
 function comprobacionesFormulario(){
 	comprobarNombreFormularioRelleno();
@@ -146,6 +164,9 @@ function comprobacionesFormulario(){
 	comprobarComboboxSeleccionadoOwner();
 	comprobarCheck();
 	respuestaFormulario();
+	//document.getElementById('botonCrearProyecto').disabled=false;
+	//document.getElementById('botonCrearProyecto').classList.remove("deshabilitar");
+
 }
 function comprobarCheck() {
 	for (i = 0; i < document.getElementsByClassName("checkboxes").length; i++) {
@@ -185,16 +206,18 @@ function comprobarComboboxSeleccionadoOwner(){
 }
 function respuestaFormulario(){
 	if (nombreFormularioRelleno == false) {
-		alert("Escribe un nombre al proyecto");
+		erroresFormulario();
+		document.getElementById('boton_crear_dentro').style.display="none";
+		document.getElementById('boton_reload').style.display="block";
 	}
 	else if (comboScrumMaster == false) {
-		alert("Selecciona un Scrum Master");
+		erroresFormulario();
 	}
 	else if (comboProductOwner == false) {
-		alert("Selecciona un Product owner");
+		erroresFormulario();
 	}
 	else if (checkboxMarcado == false) {
-		alert("Marca como minimo un developer");
+		erroresFormulario();
 	}
 	else if (checkboxMarcado == true && nombreFormularioRelleno == true 
 	&& comboScrumMaster == true && comboProductOwner == true) {
@@ -212,3 +235,17 @@ document.addEventListener('DOMContentLoaded', function(){
 	document.getElementById("id_boton").appendChild(crear_boton_creacion);
 
 });
+
+
+function erroresFormulario(){
+	var imageErrorfortmulario=document.createElement('IMG');
+ 	imageErrorfortmulario.setAttribute("src", "css/images/cancelar.png");
+ 	imageErrorfortmulario.setAttribute("width", "20px");
+	var parrafoerror=document.createElement('p');
+	var textoerror=document.createTextNode("No pueden existir campos vacios");
+	parrafoerror.appendChild(textoerror);
+	document.getElementById("error_proyecto").appendChild(parrafoerror);
+  	document.getElementById("error_proyecto").style.display="block";
+}
+
+

@@ -25,7 +25,7 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 <div class="content">
 <div id=contenedor-listado_proyectos>	
 
-	<div id="error_proyecto"><h3>ERRORES</h3></div>
+	<div id="error_proyecto"></div>
 
 	<div class="contenedor_usurio">
 		<div id="nombre_usuario"><h3 id="nombeUsuario"><?php echo $userDetails->name; ?></h3></div>
@@ -34,12 +34,13 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 
 	<div id="lista_proyectos">
 		<div id="label_proyecto"><h3 id="listaID">PROYECTOS</h3></div>
+		<div id=proyectos_creados>
 		<?php for ($i=0; $i<count($nombres_de_proyectos);$i++)
 			{
 				$text = $nombres_de_proyectos[$i];
 				echo "<a href='proyectos.php?nom=$text'>" .$nombres_de_proyectos[$i]. "</a>";
 			}?>
-
+		</div>
 		<div id="id_boton" >
 			
 		</div>
@@ -48,7 +49,7 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 		<div id="contenedor-formulario">
 		
 		<div id="div_formulario" hidden>
-			<form id="formulario" method="post" action="prueba2.php">
+			<form id="formulario" style="background: #8a2b0fd4;" method="post" action="prueba2.php">
 				<div id="formulario_izquierda">
 				</div>
 				<div id="formulario_derecha">
@@ -163,6 +164,8 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			while ($respuesta3) {
 				?>
 				var i=0;
+				var checkboxDiv=document.createElement("div");
+				checkboxDiv.setAttribute("id","checkboxDiv");
 				var checkbox = document.createElement("input");
 				checkbox.setAttribute("type","checkbox");
 				checkbox.setAttribute("class","checkboxes");
@@ -172,6 +175,7 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 				var checkbox_label = document.createElement("label");
 				var texto_label = document.createTextNode('<?php echo "$respuesta3[username]" ?>')
 				checkbox_label.appendChild(texto_label);
+				checkbox_label.setAttribute("class","labels");
 				document.getElementById("formulario_derecha").appendChild(checkbox_label);
 				document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 				<?php

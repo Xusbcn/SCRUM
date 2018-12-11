@@ -116,12 +116,16 @@ body{
 
 
 #error_proyecto{
+  position: fixed;
   float: left;
   color: #FA2A00;
   box-shadow: 0 0 0 10px #FA2A00;
   animation: 4s animateBordererror ease infinite;
   margin-left: 1.5%;
   display: none;
+  width: fit-content;
+  background: #f0f8ffde;
+  padding: 8px;
 }
 
 .contenedor_usurio{
@@ -149,7 +153,8 @@ body{
   clear: left;
   background-color: #cdd6d0b8;
   border-radius: 1em;
-  height: 90px;
+  height: 20%;
+  text-transform: uppercase;
 }
 
 
@@ -195,13 +200,15 @@ color: #262123;
 /*  Jordi  */
 
 #formulario {
-  background-color: #fafafa;
+  background: #8a2b0fd4;
+  background-color: #8a2b0fd4;
   margin: 1em;
   margin-left: 14em;
   margin-right: 14em;
   padding: 1em;
   border: 2px solid #ccc;
 }
+
 #titulo {
   text-align: center;
 }
@@ -216,22 +223,117 @@ color: #262123;
   left: 32em;
 }
 
+#botonCrearProyecto{
+  background-color: #4CAF50; /* Green */
+  border-radius: 12px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-transform: unset;
+
+}
+
+#botonCrearProyecto:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: #4CAF50;
+  color:white;
+}
+
+
 #boton_crear_dentro{
   position: relative;
-  left: 25em;
+  left: 22em;
   bottom: 3em;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50
   
 }
+#boton_crear_dentro:hover{
+  background-color: #4CAF50;
+  color: white;
+}
 
-#id_boton{
+#boton_reload{
+  position: relative;
+  left: 22em;
+  bottom: 3em;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+  width: 20%;
 
 }
 
+#boton_reload:hover{
+  background-color: #4CAF50;
+  color: white;
+}
+
+
 #nombre_proyecto{
-  width: 60%;
+  width: 40%;
+  margin-bottom: -5%;
 }
 
 .checkboxes{
   width: 20%;
+  margin-top: -6%;
+  margin-left: 5%;
+}
+}
+
+#proyectos_creados{
+      margin-top: 20PX;
+}
+
+#codigo_proyecto{
+  width: 50px;
+}
+#campo_scrum_master{
+  margin-top: -20%;
+}
+#campo_product_owner{
+  margin-top: -15%;
+}
+
+.labels{
+ margin-top: -55px;
+}
+
+.deshabilitar{
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 /*  Jordi  */
