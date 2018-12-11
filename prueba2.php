@@ -32,7 +32,7 @@
 		<?php
 			
 		   	try {
-		   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","xus","xus123");
+		   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","root","");
 		   		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 				$sentencia = $pdo->prepare("INSERT INTO proj_users (id_proj_username, username,cod_project, name_proj) VALUES (:id_proj_username, :username, :cod_project, :name_proj)");

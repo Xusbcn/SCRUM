@@ -64,7 +64,7 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 
 
 <?php 
-	   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","xus","xus123");		 
+	   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","root","");		 
 			// Prepare
 			$consulta = $pdo->prepare("SELECT username FROM users where rol = 'ScrumMaster'");
 			$consulta2 = $pdo->prepare("SELECT username FROM users where rol = 'ProductOwner'");
