@@ -12,6 +12,7 @@
 			$campo_scrum_master = $_POST["campo_scrum_master"];
 			$campo_product_owner = $_POST["campo_product_owner"];
 			$numero_proyecto = $_POST["numero_proyecto"];
+			$descripcion_proj = $_POST["descripcion_proj"];
 
 			echo $nombre_proyecto;
 			echo "<br>";
@@ -48,7 +49,7 @@
 				$sentencia->bindParam(':id_project', $id_incremental);
 				$sentencia->bindParam(':cod_project',$numero_proyecto);
 				$sentencia->bindParam(':name_project',$nombre_proyecto);
-				$sentencia->bindParam(':description', $vacio);
+				$sentencia->bindParam(':description', $descripcion_proj);
 				$sentencia->bindParam(':product_owner', $campo_product_owner);
 				$sentencia->bindParam(':scrum_master', $campo_scrum_master);
 				$sentencia->bindParam(':date_start', $vacio);
