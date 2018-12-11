@@ -51,6 +51,7 @@ function crearFormulario(){
 	//label descripcion
 	var label_descripcion = document.createElement("label");
 	label_descripcion.setAttribute("for", "descripcion");
+	label_descripcion.setAttribute("name", "descripcion_proj");
 	var texto_formulario = document.createTextNode("Descripcion");
 	label_descripcion.appendChild(texto_formulario);
 	document.getElementById("formulario_izquierda").appendChild(label_descripcion);
