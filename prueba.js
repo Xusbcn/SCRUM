@@ -143,7 +143,7 @@ function crearFormulario(){
 
 
 
-	document.getElementById('botonCrearProyecto').disabled=true;
+	document.getElementById('botonCrearProyecto').style.display="none";
 	document.getElementById('botonCrearProyecto').classList.add("deshabilitar");
 
 	var reload_boton=document.createElement("input");

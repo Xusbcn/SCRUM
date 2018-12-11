@@ -68,7 +68,7 @@
 		else{
 			echo "no has introducido datos";
 		}
-		//header("Location:home.php");
+		header("Location:home.php");
 	?>
 
 </body>

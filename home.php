@@ -1,6 +1,8 @@
 <?php
+session_start();
 include('config.php');
 include('session.php');
+
 //include('proyecjSessions');
 $userDetails=$userClass->userDetails($session_uid);
 $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid);
