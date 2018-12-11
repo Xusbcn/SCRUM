@@ -49,6 +49,13 @@ form input{
 border: solid 1px #666666;padding: 10px;
 border: solid 1px #BDC7D8; margin-bottom: 20px
 }
+
+.botones{
+  display: flex;
+  justify-content: space-between;
+
+}
+
 .button {
 background-color: #5fcf80 ;
 border-color: #3ac162;

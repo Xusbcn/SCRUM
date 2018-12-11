@@ -94,7 +94,10 @@ $errorMsgReg="Username or Email already exists.";
 <input type="text" id="nickUser" name="usernameEmail" autocomplete="off" />
 <label>Password</label>
 <input type="password" id="nickPass" name="password" autocomplete="off"/>
+<div class="botones">
 <input type="submit" class="button" name="loginSubmit" value="Login"/>
+<input type="submit" class="button" name="reload" value="Try Again" onClick="location.reload();"/>
+</div>
 </form>
 </div>
 
@@ -138,6 +141,7 @@ function validate()
  var divErrorPass=document.createElement('div');//contendrá errores de password.
 
  var divImageErrorUser=document.createElement('div');//contendrá el icono de error.
+ 
  var divImageErrorPass=document.createElement('div');//contendrá el icono de error.
  var divParrafoUser=document.createElement('div');//contendrá el parrafo de error usuario.
  var divParrafoPass=document.createElement('div');//contendrá el parrafo de error password
