@@ -31,8 +31,9 @@ if (!empty($_POST['loginSubmit']))
 		else
 		{
 		 $errorMsg='true';	
-		 $errorMsgLoginUsername="El usurio o mail introducidos no se encuentra en nuestar bases de datos.";
-		 $errorMsgLoginPass="La contraseña introducida no se encuentra en la bases de datos.";
+		 echo $errorMsgLoginUsername="El usurio o mail introducidos no se encuentra en nuestar bases de datos.";
+
+		 echo $errorMsgLoginPass="La contraseña introducida no se encuentra en la bases de datos.";
 		 
 		}
 	}
@@ -44,9 +45,11 @@ if (!empty($_POST['loginSubmit']))
 if (!empty($_POST['signupSubmit'])) 
 {
 $username=$_POST['usernameReg'];
+echo $username;
 $email=$_POST['emailReg'];
-
+echo $email;
 $password=$_POST['passwordReg'];
+echo $password;
 $name=$_POST['nameReg'];
 /* Regular expression check */
 $username_check = preg_match('~^[A-Za-z0-9_]{3,20}$~i', $username);
@@ -55,6 +58,7 @@ $password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);// 
 
 if($username_check && $email_check && $password_check && strlen(trim($name))>0) 
 { 
+	
 $uid=$userClass->userRegistration($username,$password,$email,$name);
 if($uid)
 {
@@ -201,15 +205,16 @@ function validate()
   document.getElementById("errorMsgs").style.display="block";
  // return false;
  }
- if(namePhp=='true' && nameInput!= "" )
+ if(namePhp== "true" )
  {
+ 	console.log("hola");
  	errorUser = document.createTextNode("'<?php echo $errorMsgLoginUsername;?>'");
   	parrafoUser.appendChild(errorUser);
  // divErrorUser.appendChild(divImageParrafoUser);
   	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
   	document.getElementById("errorMsgs").style.display="block";
  }
- if(passPhp=='true' && passInput!= "" )
+ if(passPhp== "true" )
  {
 
   errorPass = document.createTextNode("'<?php echo $errorMsgLoginPass;?>'");
@@ -220,7 +225,6 @@ function validate()
  // return false;
   	//return false;
  }
- 	return false;
 }
 
 </script>
