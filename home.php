@@ -19,6 +19,9 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
 	<script type="text/javascript" src="prueba.js"></script>
 	<link rel="stylesheet" type="text/css" href="prueba.css">
+	<link rel="stylesheet" href="css/materialize.min.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/materialize.min.js"></script>
 	<title></title>
 
 
@@ -47,10 +50,13 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			
 		</div>
 		
-
+		<div class="container" id="div_contenedor_form" hidden>
+			<div class="row">
+				<div class="col s4 m8 l12">
+					<div class="card-panel light-blue lighten-5">
 		<div id="contenedor-formulario">
 		
-		<div id="div_formulario" hidden>
+		<div id="div_formulario">
 			<form id="formulario" style="background: #8a2b0fd4;" method="post" action="prueba2.php">
 				<div id="formulario_izquierda">
 				</div>
@@ -59,6 +65,10 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			</form>
 		</div>
 			
+</div>
+</div>
+</div>
+</div>
 </div>
 	</div>
 </div>

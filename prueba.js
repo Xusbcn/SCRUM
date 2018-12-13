@@ -14,7 +14,7 @@ function crearFormulario(){
 
 
 	//marco habilitado
-	var elementDiv = document.getElementById("div_formulario");
+	var elementDiv = document.getElementById("div_contenedor_form");
     elementDiv.hidden = false;
 
 	//h1 formulario

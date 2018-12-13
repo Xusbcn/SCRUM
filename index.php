@@ -89,7 +89,7 @@ $errorMsgReg="Username or Email already exists.";
  
 <div id="login">
 <h3>Login</h3>
-<form method="post" action="" onsubmit="return validate()" name="login">
+<form method="post" action="" onsubmit="validate()" name="login">
 <label>Username or Email</label>
 <input type="text" id="nickUser" name="usernameEmail" autocomplete="off" />
 <label>Password</label>
