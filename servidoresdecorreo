@@ -1,0 +1,20 @@
+postfix instalar:
+sudo apt-get install postfix mailutils  aws2.com
+
+enviar un correo:
+
+mail marcos118118@gmail.com
+
+
+
+correo servidor: infogestorscrum@gmail.com
+password: scrum123.
+
+
+
+
+
+
+
+exim
+sendmail

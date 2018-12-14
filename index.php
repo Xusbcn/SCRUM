@@ -103,6 +103,7 @@ $errorMsgReg="Username or Email already exists.";
 <input type="submit" class="button" name="reload" value="Try Again" onClick="location.reload();"/>
 </div>
 </form>
+<a class="linkmail"  href="formcorreo.php">Recuperar contraseña</a>
 </div>
 
 
@@ -122,6 +123,8 @@ $errorMsgReg="Username or Email already exists.";
 <input type="submit" class="button" name="signupSubmit" value="Signup">
 </form>
 </div>
+
+
 
 
 </body>

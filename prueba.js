@@ -81,7 +81,7 @@ function crearFormulario(){
 	document.getElementById("formulario_izquierda").appendChild(numero_number);
 
 	//combobox scrum
-	/*
+	
 	var select_combobox_scrum = document.createElement("select");
 	var opcion1_combobox_scrum = document.createElement("option");
 	var opcion2_combobox_scrum = document.createElement("option");
@@ -93,10 +93,10 @@ function crearFormulario(){
 	select_combobox_scrum.appendChild(opcion2_combobox_scrum);
 	document.getElementById("formulario_derecha").appendChild(select_combobox_scrum);
 	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-	*/
+	
 
 	//combobox product_owner
-	/*
+
 	var select_combobox_product = document.createElement("select");
 	var opcion1_combobox_product = document.createElement("option");
 	var opcion2_combobox_product = document.createElement("option");
@@ -109,8 +109,7 @@ function crearFormulario(){
 	document.getElementById("formulario_derecha").appendChild(select_combobox_product);
 	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-	*/
-/*
+
 	//radio button 1
 	var radio_button1 = document.createElement("input");
 	radio_button1.setAttribute("type","radio");
@@ -131,7 +130,7 @@ function crearFormulario(){
 	var texto_label = document.createTextNode("developer2")
 	radio_label2.appendChild(texto_label);
 	document.getElementById("formulario_derecha").appendChild(radio_label2);
-*/
+
 	//boton crear
 	var crear_boton = document.createElement("input");
 	crear_boton.setAttribute("onclick", "comprobacionesFormulario();");
@@ -140,6 +139,8 @@ function crearFormulario(){
 	crear_boton.setAttribute("value","Crear");
 	crear_boton.setAttribute("id","boton_crear_dentro");
 	document.getElementById("formulario").appendChild(crear_boton);
+
+	mostrarBoton();
 
 
 
@@ -235,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	document.getElementById("id_boton").appendChild(crear_boton_creacion);
 
 });
+
 
 
 function erroresFormulario(){

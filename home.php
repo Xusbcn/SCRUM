@@ -8,7 +8,7 @@ $userDetails=$userClass->userDetails($session_uid);
 $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid);
 $rolDetails=$userClass->rolDetails($session_uid);
 $rol=$rolDetails->rol;
-//echo $rol;
+echo $rol;
 echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 ?>
 
@@ -17,13 +17,12 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 <head>
 	<!--<link  href="http://fonts.googleapis.com/css? family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">-->
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
-	<script type="text/javascript" src="prueba.js"></script>
 	<link rel="stylesheet" type="text/css" href="prueba.css">
-	<title></title>
-
+	<script type="text/javascript"  src="prueba.js"></script>
 
 </head>
-<body>
+<body >
+
 <div class="content">
 <div id=contenedor-listado_proyectos>	
 
@@ -87,18 +86,21 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 
 </div>
 
+
 		
 </body>
 </html>
 
 
-<script type="text/javascript">
+	
+	<script type="text/javascript">
 
-			var jsvarbutton=document.getElementById('roles').innerHTML;
-			console.log(jsvarbutton);
+			script type="text/javascript">
+	var jsvarbutton=document.getElementById('roles').innerHTML;
 
 			function mostrarBoton(){
 				if (jsvarbutton!="ScrumMaster"){
+
 					document.getElementById('id_boton').style.display="none";
 				}
 				else{
@@ -107,9 +109,9 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 
 			}
 
-			mostrarBoton();
 
-			
+	mostrarBoton();
+
 			//combobox scrum_master
 			var select_combobox_scrum = document.createElement("select");
 			select_combobox_scrum.setAttribute("id", "campo_scrum_master");
@@ -185,3 +187,6 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			}
 			?>
 		</script>
+
+
+
