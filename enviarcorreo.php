@@ -4,11 +4,20 @@
 	<title></title>
 </head>
 <body>
-	<?php
-	$correo=$_POST["mail"];
-	echo $correo;
-	mail($correo,)
+	<?php 
+	echo "<button onclick='enviarcorreo' >enviar correo</button>";
+
+
+	function enviarcorreo(){
+	$correo = "marcosav1996@gmail.com";
+	$titulo = "Recuperacion de contraseña";
+	$mensaje =  "hola" 
+	mail($correo, $titulo);
+	header("Location:index.php");
+	}
+	
 	?>
-	holaaa
+	dasda
+
 </body>
 </html>
