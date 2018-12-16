@@ -6,7 +6,9 @@ include('session.php');
 //include('proyecjSessions');
 $userDetails=$userClass->userDetails($session_uid);
 $nombres_de_proyectos=$projectsDetails=$userClass->projectsDetails($session_uid);
+
 $rolDetails=$userClass->rolDetails($session_uid);
+
 $rol=$rolDetails->rol;
 //echo $rol;
 echo "<p style='display:none' id='roles'>" . $rol. "</p>";

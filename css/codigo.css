@@ -165,6 +165,42 @@ body{
 }
 
 
+#marco_proyecto{
+  width: 100%;
+  border: 1px solid black;
+  float: left;
+  clear: left;
+  background-color: #cdd6d0b8;
+  border-radius: 1em;
+  height: 20%;
+  text-transform: uppercase;
+}
+
+
+#marco_sprints{
+  width: 100%;
+  border: 1px solid black;
+  float: left;
+  clear: left;
+  background-color: #cdd6d0b8;
+  border-radius: 1em;
+  height: 20%;
+  text-transform: uppercase;
+
+}
+
+#marco_specifications{
+  width: 100%;
+  border: 1px solid black;
+  float: left;
+  clear: left;
+  background-color: #cdd6d0b8;
+  border-radius: 1em;
+  height: 20%;
+  text-transform: uppercase;
+
+}
+
 #label_proyecto{
   margin-right: 10px;
   float: right;

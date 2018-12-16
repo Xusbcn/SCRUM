@@ -18,6 +18,8 @@ Marcos
 -Destruir sesión para el login.
 
 
+
+
 XUS
 ---------------------------------------------------------
 17).Pantalla Administració de projecte:(Developer View) Un marc per tota la informació general (la introduida quan es crea el projecte) (información que introdujo el scruma). 2h
@@ -30,8 +32,14 @@ XUS
 
 24) 24.Pantalla Administració de projecte:(Product Owner View) Al marc de les especificacions al costat dret de cada especificació heu de crear els botons (cap avall) que han de permetre moure cap amunt, moure cap avall o eliminar una especificació 4h 
 
-Quitar codigo de proyecto del formulario
+-Quitar codigo de proyecto del formulario
+
+
 -Errores en el formulario.
+
+
+
+
 
 
 KEVIN
@@ -44,3 +52,13 @@ KEVIN
 24) 24.Pantalla Administració de projecte:(Product Owner View) Al marc de les especificacions al costat dret de cada especificació heu de crear els botons (eliminar) que han de permetre moure cap amunt, moure cap avall o eliminar una especificació 4h 
 
 -usar framework para css.
+
+
+
+README
+
+-listado de participantes
+-archivo sql
+-ussers/pass.
+
+
