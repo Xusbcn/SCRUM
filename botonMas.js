@@ -19,10 +19,7 @@ function inputsNombreProyecto(){
 
 	insertarDespuesde(elementopadre,inputNombre);
 	insertarDespuesde(inputNombre,inputBoton);
-	
-
-
-	
+		
 }
 
 
