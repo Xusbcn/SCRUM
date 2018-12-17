@@ -4,12 +4,14 @@ include('session.php');
 $userDetails=$userClass->userDetails($session_uid);
 $projectDeveloper=$userClass->projectDeveloper($session_uid);
 $nombre_usuario_proyecto=$userDetails->name;
+$userRol=$userDetails->rol;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<!--<link  href="http://fonts.googleapis.com/css? family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">-->
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
+	<script type="text/javascript" defer src="botonMas.js"></script>
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<meta charset="utf-8">
 	<title></title>
@@ -103,8 +105,8 @@ $nombre_usuario_proyecto=$userDetails->name;
 
 			
 
-			<div class="col m12">
-				<div class="card-panel blue-grey lighten-4">
+			<div id="ultimoDiv" class="col m12">
+				<div id="divEspe" class="card-panel blue-grey lighten-4">
 					<?php 
 					$pdo=getDB();
 					$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
@@ -127,6 +129,7 @@ $nombre_usuario_proyecto=$userDetails->name;
 
 </body>
 </html>
+<script type="text/javascript">var typeUser = '<?php echo $userRol ?>' </script>
 <script type="text/javascript">
 		var acc= document.getElementsByClassName('acordeon');
 		var i;
