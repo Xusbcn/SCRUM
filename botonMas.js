@@ -1,5 +1,4 @@
-
-if (typeUser=="ProductOwner") {
+if(typeUser=="ProductOwner") {
 	inputsNombreProyecto();
 }
 
