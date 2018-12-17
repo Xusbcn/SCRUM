@@ -72,11 +72,11 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 	</div>
 
 		<?php 
-	   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","root","");		 
+	   		$pdo = new PDO("mysql:host=localhost;dbname=scrum2","xus","xus123");		 
 			// Prepare
 			$consulta = $pdo->prepare("SELECT username FROM users where rol = 'ScrumMaster'");
 			$consulta2 = $pdo->prepare("SELECT username FROM users where rol = 'ProductOwner'");
-			$consulta3 = $pdo->prepare("SELECT group FROM users");
+			$consulta3 = $pdo->prepare("SELECT group_name FROM groups");
 			// Excecute
 			$consulta->execute();
 			$consulta2->execute();
@@ -177,8 +177,8 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			while ($respuesta3) {
 				?>
 				var opcion_combobox_dev = document.createElement("option");
-				opcion_combobox_dev.setAttribute("value",'<?php echo "$respuesta3[group]" ?>');
-				var texto_opcion = document.createTextNode('<?php echo "$respuesta3[group]" ?>');
+				opcion_combobox_dev.setAttribute("value",'<?php echo "$respuesta3[group_name]" ?>');
+				var texto_opcion = document.createTextNode('<?php echo "$respuesta3[group_name]" ?>');
 				opcion_combobox_dev.appendChild(texto_opcion);
 				select_combobox_dev.appendChild(opcion_combobox_dev);
 				<?php
