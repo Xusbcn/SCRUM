@@ -107,10 +107,12 @@ $userRol=$userDetails->rol;
 
 			<div id="ultimoDiv" class="col m12">
 				<div id="divEspe" class="card-panel blue-grey lighten-4">
+					
 					<?php 
 					$pdo=getDB();
 					$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 					foreach ($pdo->query($sql) as $row) {
+					echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
 			        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 			        echo $row['description'] . "\t";
 			        echo "<b style='float:right'>";
@@ -118,8 +120,11 @@ $userRol=$userDetails->rol;
 			        echo $row['date'] . "\t ";
 			        echo "</b>";
 			        echo '<br><br>';
+			       	echo '</div>';
 			    	}
+
 					?>
+			
 				</div>
 			</div>
 		</div>
