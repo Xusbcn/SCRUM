@@ -62,3 +62,7 @@ README
 -ussers/pass.
 
 
+
+-------------------------------------------------------------------------------------------------------
+apuntes:
+https://www.youtube.com/watch?v=C4vQ-nSNAgA(mover objetos con el puntero).
