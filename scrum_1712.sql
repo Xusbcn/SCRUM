@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 13-12-2018 a las 18:53:44
--- Versión del servidor: 5.7.24-0ubuntu0.18.04.1
--- Versión de PHP: 7.2.10-0ubuntu0.18.04.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 17-12-2018 a las 01:44:26
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -142,6 +144,18 @@ CREATE TABLE `sprints` (
   `hours_left` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `sprints`
+--
+
+INSERT INTO `sprints` (`id_sprint`, `cod_project`, `number_sprint`, `name_sprint`, `date_start`, `date_finish`, `total_hours`, `hours_left`) VALUES
+(1, 10, 1, 'Sprint 1', '2018-12-03', '2018-12-10', 6, 6),
+(2, 10, 2, 'Sprint 2', '2018-12-10', '2018-12-17', 0, 0),
+(3, 10, 3, 'Sprint 3', '2018-12-17', '2018-12-24', 0, 0),
+(4, 20, 1, 'Sprint 1', '2018-12-03', '2018-12-10', 11, 11),
+(5, 20, 2, 'Sprint 2', '2018-12-10', '2018-12-17', 0, 0),
+(6, 20, 3, 'Sprint 3', '2018-12-17', '2018-12-24', 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -229,26 +243,31 @@ ALTER TABLE `users`
 --
 ALTER TABLE `project`
   MODIFY `id_project` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `proj_users`
 --
 ALTER TABLE `proj_users`
   MODIFY `id_proj_username` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT de la tabla `specifications`
 --
 ALTER TABLE `specifications`
   MODIFY `id_specification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `sprints`
 --
 ALTER TABLE `sprints`
-  MODIFY `id_sprint` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sprint` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -283,6 +302,7 @@ ALTER TABLE `specifications`
 ALTER TABLE `sprints`
   ADD CONSTRAINT `fk_cod_project_sprints` FOREIGN KEY (`cod_project`) REFERENCES `specifications` (`cod_project`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_cod_project_sprints_project` FOREIGN KEY (`cod_project`) REFERENCES `project` (`cod_project`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
