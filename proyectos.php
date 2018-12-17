@@ -56,9 +56,12 @@ $nombre_usuario_proyecto=$userDetails->name;
 					?>
 				</div>
 			</div>
+
+			
 			<div class="col m12">
 				<div class="card-panel blue-grey lighten-4">
 					<?php 
+					$contar=0;
 					$pdo=getDB();
 					$sql="SELECT * from sprints WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 					foreach ($pdo->query($sql) as $row) {
@@ -75,29 +78,43 @@ $nombre_usuario_proyecto=$userDetails->name;
 					echo "</b>";
 					echo '<br><br>';
 					echo "</p>";
-					echo"</div>";
+					$contar=$contar+1;
 
+					$sql1="SELECT * from specifications WHERE number_sprint=".$contar." AND cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
+					foreach ($pdo->query($sql1) as $row1) {
+			        echo "<b><font size='4'>",$row1['name_specification'] . "\t</font></b><br>";
+			        echo $row1['description'] . "\t";
+			        echo "<b style='float:right'>";
+			        echo $row1['hours'] . " hours\t <br>";
+			        echo $row1['date'] . "\t ";
+			        echo "</b>";
+			        echo '<br><br>';
+			   		 }	
+			   		 echo"</div>";			
 					}
 					?>
+					
+						</div>
+
 				</div>
+
 			</div>
+
+
+			
+
 			<div class="col m12">
 				<div class="card-panel blue-grey lighten-4">
 					<?php 
 					$pdo=getDB();
 					$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 					foreach ($pdo->query($sql) as $row) {
-			        //echo $row['id_specification'] . "\t";
-			        //echo $row['cod_specification'] . "\t";
-			        //echo $row['cod_project'] . "\t";
 			        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 			        echo $row['description'] . "\t";
-			        //echo $row['comments'] . "\t";
 			        echo "<b style='float:right'>";
 			        echo $row['hours'] . " hours\t <br>";
 			        echo $row['date'] . "\t ";
 			        echo "</b>";
-			        //echo $row['completed'] . "\t";
 			        echo '<br><br>';
 			    	}
 					?>
@@ -107,6 +124,7 @@ $nombre_usuario_proyecto=$userDetails->name;
 	</div>
 
 </div>
+
 </body>
 </html>
 <script type="text/javascript">
