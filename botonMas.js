@@ -41,7 +41,7 @@ function inputsNombreProyecto(){
 
 	
 	inputBoton.addEventListener("click",añadirEspecificacion);
-	//inputEliminar.addEventListener("click",elminarDiv);
+	inputEliminar.addEventListener("click",elminarDiv);
 	inputSubir.addEventListener("click",subirElemento);
 	inputBajar.addEventListener("click",bajarElemento);
 	inputNombre.setAttribute("name","nombreProyecto");
