@@ -1,6 +1,6 @@
 
 <?php
-session_start();
+
 include("config.php");
 include('userClass.php');
 $userClass = new userClass();
@@ -138,8 +138,8 @@ function validate()
  var nameInput = document.getElementById('nickUser').value;
  var passInput = document.getElementById('nickPass').value;
  
-
-
+ var namePhp = '<?php echo $errorMsg;?>';
+ var passPhp = '<?php echo $errorMsg;?>';
 
  var divErrorUser=document.createElement('div');//contendra errores de usuario.
  var divErrorPass=document.createElement('div');//contendrá errores de password.
@@ -205,7 +205,26 @@ function validate()
   document.getElementById("errorMsgs").style.display="block";
  // return false;
  }
- 
+ if(namePhp== "true" )
+ {
+ 	console.log("hola");
+ 	errorUser = document.createTextNode("'<?php echo $errorMsgLoginUsername;?>'");
+  	parrafoUser.appendChild(errorUser);
+ // divErrorUser.appendChild(divImageParrafoUser);
+  	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
+  	document.getElementById("errorMsgs").style.display="block";
+ }
+ if(passPhp== "true" )
+ {
+
+  errorPass = document.createTextNode("'<?php echo $errorMsgLoginPass;?>'");
+  parrafoPass.appendChild(errorPass);
+  //divErrorPass.appendChild(divImageParrafoPass);
+  document.getElementById( "errorMsgs" ).appendChild(divImageParrafoPass);
+  document.getElementById("errorMsgs").style.display="block";
+ // return false;
+  	//return false;
+ }
 }
 
 </script>

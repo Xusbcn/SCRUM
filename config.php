@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /* DATABASE CONFIGURATION */
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'xus');
