@@ -14,7 +14,7 @@ function crearFormulario(){
 
 
 	//marco habilitado
-	var elementDiv = document.getElementById("div_contenedor_form");
+	var elementDiv = document.getElementById("div_formulario");
     elementDiv.hidden = false;
 
 	//h1 formulario
@@ -45,7 +45,6 @@ function crearFormulario(){
 	label_nombre.setAttribute("name", "nombre");
 	label_nombre.setAttribute("required", "true");
 	document.getElementById("formulario_izquierda").appendChild(label_nombre);
-	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 
@@ -154,8 +153,105 @@ function crearFormulario(){
 	document.getElementById("formulario").appendChild(reload_boton);
 }
 
+function formatDate(date) {
+    var d = new Date(date),
+        day = '' + d.getDate(),
+        month = '' + (d.getMonth()+1),
+        year = d.getFullYear();
 
+    if (day.length < 2) day = '0' + day;
+    if (month.length < 2) month = '0' + month;
 
+    return [year, day, month].join('-');
+}
+
+//alert(formatDate('03/01/2019'));
+
+function crearSprint(){
+
+	//marco habilitado
+	var elementDiv = document.getElementById("div_formulario");
+    elementDiv.hidden = false;
+    var numSprint=document.getElementById('numero_sprint').innerHTML;
+	//h1 formulario
+	//crea el h1
+	var titulo_sprint = document.createElement("h1");
+	//pone los atributos del h1
+	titulo_sprint.setAttribute("id", "titulo");
+	//es el texto del h1
+	Numero_Sprint=parseInt(numSprint);
+	Numero_Sprint+=1;
+	var texto_sprint = document.createTextNode("Sprint "+Numero_Sprint);
+	//inserta el texto en el h1
+	titulo_sprint.appendChild(texto_sprint);
+	//hace un insert al principio del todo
+	document.getElementById("div_formulario").insertBefore(titulo_sprint, document.getElementById("div_formulario").firstChild);
+
+	//label Fecha Inicio
+	var label_inicio = document.createElement("label");
+	label_inicio.setAttribute("for", "FechaInicio");
+	var texto_inicio = document.createTextNode("Fecha de Inicio");
+	label_inicio.appendChild(texto_inicio);
+	document.getElementById("formulario_izquierda").appendChild(label_inicio);
+
+	//text Fecha Inicio
+	var label_inicio = document.createElement("input");
+	label_inicio.setAttribute("id", "FechaInicio");
+	label_inicio.setAttribute("type", "date");
+	label_inicio.setAttribute("name", "FechaInicio");
+	label_inicio.setAttribute("required", "true");
+	document.getElementById("formulario_izquierda").appendChild(label_inicio);
+	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
+
+	//label Fecha Final
+	var label_final = document.createElement("label");
+	label_final.setAttribute("for", "FechaFinal");
+	label_final.setAttribute("name", "FechaFinal");
+	var texto_final = document.createTextNode("Fecha de Finalización");
+	label_final.appendChild(texto_final);
+	document.getElementById("formulario_izquierda").appendChild(label_final);
+
+	//text Fecha Final
+	var label_final = document.createElement("input");
+	label_final.setAttribute("id", "FechaFinal");
+	label_final.setAttribute("type", "date");
+	label_final.setAttribute("name", "FechaFinal");
+	label_final.setAttribute("required", "true");
+	document.getElementById("formulario_izquierda").appendChild(label_final);
+	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
+
+	//label descripcion
+	var label_horas = document.createElement("label");
+	var texto_horas = document.createTextNode("Horas totales");
+	label_horas.appendChild(texto_horas);
+	document.getElementById("formulario_izquierda").appendChild(label_horas);
+
+	//text descripcion
+	var numero_horas = document.createElement("input");
+	numero_horas.setAttribute("id", "horasTotales");
+	numero_horas.setAttribute("type","number");
+	numero_horas.setAttribute("name", "horasTotales");
+	document.getElementById("formulario_izquierda").appendChild(numero_horas);
+
+	//boton crear
+	var crear_boton = document.createElement("input");
+	crear_boton.setAttribute("onclick", "comprobacionesFormulario();");
+	crear_boton.setAttribute("type","button");
+	crear_boton.setAttribute("name","crear");
+	crear_boton.setAttribute("value","Crear");
+	crear_boton.setAttribute("id","boton_crear_dentro");
+	document.getElementById("formulario").appendChild(crear_boton);
+
+	document.getElementById('botonCrearProyecto').style.display="none";
+	document.getElementById('botonCrearProyecto').classList.add("deshabilitar");
+
+	var reload_boton=document.createElement("input");
+	reload_boton.setAttribute("type","button");
+	reload_boton.setAttribute("onclick", "location.reload();");
+	reload_boton.setAttribute("value","Try Again");
+	reload_boton.setAttribute("id","boton_reload");
+	document.getElementById("formulario").appendChild(reload_boton);
+}
 
 
 function comprobacionesFormulario(){
@@ -236,6 +332,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
+document.addEventListener('DOMContentLoaded', function(){
+	var boton_crear_sprint = document.createElement("input");
+	boton_crear_sprint.setAttribute("onclick", "crearSprint()");
+	boton_crear_sprint.setAttribute("type","button");
+	boton_crear_sprint.setAttribute("name","crearSprint");
+	boton_crear_sprint.setAttribute("value","Crear nuevo Sprint");
+	boton_crear_sprint.setAttribute("id","botonCrearSprint");
+	document.getElementById("boton_sprint").appendChild(boton_crear_sprint);
+});
 
 function erroresFormulario(){
 	var imageErrorfortmulario=document.createElement('IMG');

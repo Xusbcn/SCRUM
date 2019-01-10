@@ -72,7 +72,7 @@ public function userDetails($uid)
 {
 try{
 $db = getDB();
-$stmt = $db->prepare("SELECT email,username,name FROM users WHERE uid=:uid"); 
+$stmt = $db->prepare("SELECT email,username,name,rol FROM users WHERE uid=:uid"); 
 $stmt->bindParam("uid", $uid,PDO::PARAM_INT);
 $stmt->execute();
 $data = $stmt->fetch(PDO::FETCH_OBJ); //User data
@@ -82,6 +82,41 @@ catch(PDOException $e) {
 echo '{"error":{"text":'. $e->getMessage() .'}}';
 }
 }
+
+
+
+
+
+
+/* información del proyecto */
+public function projectDeveloper($uid)
+{
+$arrayproyectos2=array();
+$sql="SELECT * from project WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='Gestor de Proyectos SCRUM' AND username IN (SELECT username FROM users WHERE uid=:uid))";
+try{
+$db = getDB();
+$stmt = $db->prepare( $sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL)); 
+$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
+$stmt->execute();
+while ($fila = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+      //$datos = $fila;
+      $nombre_proyectos[]=$fila;
+      
+      //print_r($datos);
+      //print_r($nombre_proyectos);
+    }
+    
+    print_r($fila);
+      
+    $stmt = null;
+}
+catch(PDOException $e) {
+echo '{"error":{"text":'. $e->getMessage() .'}}';
+}
+}
+
+
+
 
 
 public function rolDetails($uid)
