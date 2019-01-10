@@ -7,7 +7,7 @@
 	<?php 
 	echo "<button onclick='enviarcorreo' >enviar correo</button>";
 	function enviarcorreo(){
-	$correo = "marcosav1996@gmail.com";
+	$correo = "marcosarteaga@iesesteveterradas.cat";
 	$titulo = "Recuperacion de contraseña";
 	$mensaje = "<a href='restablecerpss.php'></a>"
 	mail($correo, $titulo);
@@ -15,6 +15,6 @@
 	}
 	
 	?>
-	<a href=""></a>
+	
 </body>
 </html>
