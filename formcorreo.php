@@ -8,7 +8,7 @@
 	<?php
 	include("config.php");
 	include('userClass.php');
-	echo "<form action='enviarcorreo.php' method='POST' >";
+	echo "<form action='formcorreo.php' method='POST' >";
 	echo "<p>Introduce tu correo electronico: </p>";
 	echo "<input type='text' name='mail'><br><br>";
 	echo "<input type='submit'value='Enviar' name='send'>";
