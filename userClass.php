@@ -128,6 +128,15 @@ echo '{"error":{"text":'. $e->getMessage() .'}}';
 }
 }
 }
+
+
+
+
+#select del mail para comprovar a la hora de introducir un correo para restablecer la password
+
+
+
+
 ?>
 
 

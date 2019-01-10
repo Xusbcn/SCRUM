@@ -6,18 +6,15 @@
 <body>
 	<?php 
 	echo "<button onclick='enviarcorreo' >enviar correo</button>";
-
-
 	function enviarcorreo(){
 	$correo = "marcosav1996@gmail.com";
 	$titulo = "Recuperacion de contraseña";
-	$mensaje =  "hola" 
+	$mensaje = "<a href='restablecerpss.php'></a>"
 	mail($correo, $titulo);
 	header("Location:index.php");
 	}
 	
 	?>
-	dasda
-
+	<a href=""></a>
 </body>
 </html>

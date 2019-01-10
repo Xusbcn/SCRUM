@@ -6,19 +6,45 @@
 <body>
 
 	<?php
-	echo "<form action='enviarcorreo.php' method='POST' target='_blank'>";
+	include("config.php");
+	include('userClass.php');
+	echo "<form action='enviarcorreo.php' method='POST' >";
 	echo "<p>Introduce tu correo electronico: </p>";
 	echo "<input type='text' name='mail'><br><br>";
-	echo "<input type='submit' name='enviar' value='Enviar'>";
+	echo "<input type='submit'value='Enviar' name='send'>";
 	echo "</form>";
+	$error=0;
+	$conn = mysqli_connect('localhost','xus','xus123');
+	mysqli_select_db($conn, 'scrum2');
+	$consulta = ("SELECT * FROM users;");
+	$resultat = mysqli_query($conn, $consulta);
+	$arrayMail=[];
+	while( $emails = mysqli_fetch_assoc($resultat)){
+		//print_r($emails["email"]);
+		array_push($arrayMail,$emails["email"] );
+
+	}
+	if(isset($_POST["send"])){
+		foreach ($arrayMail as $m) {
+			if ($m==$_POST["mail"]) {
+				echo "correcto";
+				header("Location:enviarcorreo.php");
+			}else{
+				$error=1;
+			}
+	}
+	}
+
+	if ($error==1) {
+		echo "Correo introducido no valido";
+	}
+	
+
+
+	
+
 	?>
 
-
-	<!--<form action='enviarcorreo.php' method='POST' target='_blank'>
-	<p>Introduce tu correo electronico: </p>
-	<input type='text' name='mail'><br><br>
-	<input type='submit' name='enviar' value='Enviar'>
-	</form> -->
 
 </body>
 </html>
