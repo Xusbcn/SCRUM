@@ -5,15 +5,14 @@
 </head>
 <body>
 	<?php 
-	echo "<button onclick='enviarcorreo' >enviar correo</button>";
 	function enviarcorreo(){
 	$correo = "marcosarteaga@iesesteveterradas.cat";
 	$titulo = "Recuperacion de contraseña";
-	$mensaje = "<a href='restablecerpss.php'></a>"
-	mail($correo, $titulo);
+	$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php ";
+	mail($correo, $titulo,$mensaje);
 	header("Location:index.php");
 	}
-	
+	enviarcorreo();
 	?>
 	
 </body>
