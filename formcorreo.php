@@ -29,7 +29,7 @@
 			if ($m==$_POST["mail"]) {
 				session_start();
 				$_SESSION["correo"] =$_POST["mail"];
-				header("Location:restablecerpss.php");
+				header("Location:enviarcorreo.php");
 				
 			}else{
 				$error=1;
