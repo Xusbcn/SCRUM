@@ -40,9 +40,11 @@
 	}
 	
 	function enviarcorreo(){
+		$consultaem = ("SELECT uid FROM users WHERE email = $_POST["mail"];");
+		$resultatem = mysqli_query($conn, $consulta);
 		$correo = $_POST["mail"];
 		$titulo = "Recuperacion de contraseña";
-		$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php ";
+		$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php?userID=".$resultatem;
 		mail($correo, $titulo,$mensaje);
 		header("Location:index.php");
 	}
