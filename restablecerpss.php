@@ -5,7 +5,7 @@
 </head>
 <body>
 	<?php
-	$uidn=$_GET["userID"];
+	$userID=$_GET["userID"];
 	echo $userID;
 	echo "<form method='post' >";
 	echo "Introduce la nueva contraseña:<br>";
@@ -22,7 +22,7 @@
 			$pass=$_POST["pass1"];
 			$conn = mysqli_connect('localhost','xus','xus123');
 			mysqli_select_db($conn, 'scrum2');
-			$update=("UPDATE users SET password = SHA2('$pass',512) WHERE uid='$uidn';");
+			$update=("UPDATE users SET password = SHA2('$pass',512) WHERE uid='$userID';");
 		}
 	}
 
