@@ -12,9 +12,6 @@
 		<input type="submit" name="btsubmit" value="enviar">
 
 	</form>
-	<?php 
-		print_r($_SESSION["correo"]);
-	 ?>
 
 </body>
 </html>

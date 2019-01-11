@@ -37,17 +37,23 @@
 	}
 
 	if ($error==1) {
-		echo "Correo introducido no valido";
+		echo "no valido";
 	}
 	
 	function enviarcorreo($mailUser){
+		$conn2 = mysqli_connect('localhost','xus','xus123');
+		mysqli_select_db($conn2, 'scrum2');
 		$consultaem = ("SELECT uid FROM users WHERE email = '$mailUser';");
-		$resultatem = mysqli_query($conn, $consulta);
+		$resultatem = mysqli_query($conn2, $consultaem);
+		while( $ema = mysqli_fetch_assoc($resultatem)){
+			$uidNumber=$ema["uid"];
+		};
 		$correo = $mailUser;
 		$titulo = "Recuperacion de contraseña";
-		$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php?userID=".$resultatem;
+		$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php?userID=".$uidNumber;
 		mail($correo, $titulo,$mensaje);
 		header("Location:index.php");
+			
 	}
 
 	

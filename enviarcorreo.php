@@ -5,14 +5,15 @@
 </head>
 <body>
 	<?php 
-	function enviarcorreo(){
-	$correo = $_SESSION["correo"];
-	$titulo = "Recuperacion de contraseña";
-	$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php ";
-	mail($correo, $titulo,$mensaje);
-	header("Location:index.php");
-	}
-	enviarcorreo();
+	$mailUser="marcosarteaga@iesesteveterradas.cat";
+	$conn = mysqli_connect('localhost','xus','xus123');
+	mysqli_select_db($conn, 'scrum2');
+	$consultaem = ("SELECT uid FROM users WHERE email = '$mailUser';");
+	$resultatem = mysqli_query($conn, $consultaem);
+	while( $ema = mysqli_fetch_assoc($resultatem)){
+		echo $ema["uid"];
+	};
+	echo "hola";
 	?>
 	
 </body>
