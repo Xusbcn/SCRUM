@@ -24,6 +24,7 @@
 		array_push($arrayMail,$emails["email"] );
 
 	}
+	$mailUser = $_POST["mail"];
 	if(isset($_POST["send"])){
 		foreach ($arrayMail as $m) {
 			if ($m==$_POST["mail"]) {
@@ -39,10 +40,10 @@
 		echo "Correo introducido no valido";
 	}
 	
-	function enviarcorreo(){
-		$consultaem = ("SELECT uid FROM users WHERE email = $_POST["mail"];");
+	function enviarcorreo($mailUser){
+		$consultaem = ("SELECT uid FROM users WHERE email = '$mailUser';");
 		$resultatem = mysqli_query($conn, $consulta);
-		$correo = $_POST["mail"];
+		$correo = $mailUser;
 		$titulo = "Recuperacion de contraseña";
 		$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php?userID=".$resultatem;
 		mail($correo, $titulo,$mensaje);
