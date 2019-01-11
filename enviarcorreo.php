@@ -6,7 +6,7 @@
 <body>
 	<?php 
 	function enviarcorreo(){
-	$correo = "marcosarteaga@iesesteveterradas.cat";
+	$correo = $_SESSION["correo"];
 	$titulo = "Recuperacion de contraseña";
 	$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php ";
 	mail($correo, $titulo,$mensaje);
