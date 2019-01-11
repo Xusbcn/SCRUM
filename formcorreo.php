@@ -28,7 +28,7 @@
 	if(isset($_POST["send"])){
 		foreach ($arrayMail as $m) {
 			if ($m==$_POST["mail"]) {
-				enviarcorreo();
+				enviarcorreo($mailUser);
 				
 			}else{
 				$error=1;
