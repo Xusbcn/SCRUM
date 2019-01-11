@@ -220,39 +220,81 @@ function crearSprint(){
 	document.getElementById("formulario_izquierda").appendChild(label_final);
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 
-	//label descripcion
+	//label Horas totales
 	var label_horas = document.createElement("label");
 	var texto_horas = document.createTextNode("Horas totales");
 	label_horas.appendChild(texto_horas);
 	document.getElementById("formulario_izquierda").appendChild(label_horas);
 
-	//text descripcion
-	var numero_horas = document.createElement("input");
-	numero_horas.setAttribute("id", "horasTotales");
-	numero_horas.setAttribute("type","number");
-	numero_horas.setAttribute("name", "horasTotales");
-	document.getElementById("formulario_izquierda").appendChild(numero_horas);
+	//text Horas totales
+	var label_horas = document.createElement("input");
+	label_horas.setAttribute("id", "horasTotales");
+	label_horas.setAttribute("type","number");
+	label_horas.setAttribute("name", "horasTotales");
+	document.getElementById("formulario_izquierda").appendChild(label_horas);
 
 	//boton crear
-	var crear_boton = document.createElement("input");
-	crear_boton.setAttribute("onclick", "comprobacionesFormulario();");
-	crear_boton.setAttribute("type","button");
-	crear_boton.setAttribute("name","crear");
-	crear_boton.setAttribute("value","Crear");
-	crear_boton.setAttribute("id","boton_crear_dentro");
-	document.getElementById("formulario").appendChild(crear_boton);
+	var crear_sprint_dentro = document.createElement("input");
+	crear_sprint_dentro.setAttribute("onclick", "comprobarSprintNuevo();");
+	crear_sprint_dentro.setAttribute("type","button");
+	crear_sprint_dentro.setAttribute("name","crearSprint");
+	crear_sprint_dentro.setAttribute("value","Crear Sprint");
+	crear_sprint_dentro.setAttribute("id","boton_crear_sprint_nuevo");
+	document.getElementById("formulario").appendChild(crear_sprint_dentro);
 
-	document.getElementById('botonCrearProyecto').style.display="none";
-	document.getElementById('botonCrearProyecto').classList.add("deshabilitar");
-
-	var reload_boton=document.createElement("input");
-	reload_boton.setAttribute("type","button");
-	reload_boton.setAttribute("onclick", "location.reload();");
-	reload_boton.setAttribute("value","Try Again");
-	reload_boton.setAttribute("id","boton_reload");
-	document.getElementById("formulario").appendChild(reload_boton);
+	document.getElementById('botonCrearSprint').style.display="none";
+	document.getElementById('botonCrearSprint').classList.add("deshabilitar");
 }
 
+function fechaInicioRellenado(){
+	label_inicio = document.getElementById("label_inicio");
+	if (document.getElementById("label_inicio").value == "") {
+		contenidoFechaInicio = false;
+	}
+	else{
+		contenidoFechaInicio = true;
+	}
+}
+
+function fechaFinalRellenado(){
+	label_final = document.getElementById("label_final");
+	if (document.getElementById("label_final").value == "") {
+		contenidoFechaFinal = false;
+		console.log("hola, da error.");
+	}
+	else{
+		contenidoFechaFinal = true;
+	}
+}
+
+function horasTotalesRellenado(){
+	numero_horas = document.getElementById("numero_horas");
+	if (document.getElementById("numero_horas").value == "") {
+		contenidoHorasTotales = false;
+	}
+	else{
+		contenidoHorasTotales = true;
+	}
+}
+
+function respuestaSprintNuevo(){
+	if (contenidoFechaInicio == false) {
+		erroresFormulario();
+	}
+	if (contenidoFechaFinal == false) {
+		erroresFormulario();
+	}
+	if (contenidoHorasTotales == false) {
+		erroresFormulario();
+	}
+}
+
+function comprobarSprintNuevo(){
+	//fechaInicioRellenado();
+	//fechaFinalRellenado();
+	//horasTotalesRellenado();
+	//respuestaSprintNuevo();
+}
 
 function comprobacionesFormulario(){
 	comprobarNombreFormularioRelleno();
