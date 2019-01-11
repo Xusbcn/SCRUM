@@ -27,9 +27,7 @@
 	if(isset($_POST["send"])){
 		foreach ($arrayMail as $m) {
 			if ($m==$_POST["mail"]) {
-				session_start();
-				$_SESSION["correo"] =$_POST["mail"];
-				header("Location:enviarcorreo.php");
+				enviarcorreo();
 				
 			}else{
 				$error=1;
@@ -41,7 +39,13 @@
 		echo "Correo introducido no valido";
 	}
 	
-
+	function enviarcorreo(){
+		$correo = $_POST["mail"];
+		$titulo = "Recuperacion de contraseña";
+		$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php ";
+		mail($correo, $titulo,$mensaje);
+		header("Location:index.php");
+	}
 
 	
 
