@@ -112,7 +112,7 @@ $userRol=$userDetails->rol;
 					$pdo=getDB();
 					$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 					foreach ($pdo->query($sql) as $row) {
-					echo "<div onclick='cambiarColor(this)' id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
+					echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
 			        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 			        echo $row['description'] . "\t";
 			        echo "<b style='float:right'>";
@@ -152,4 +152,8 @@ $userRol=$userDetails->rol;
 
 			});
 		}
+
+
+
+		
 	</script>

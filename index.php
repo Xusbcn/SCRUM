@@ -8,6 +8,8 @@ $userClass = new userClass();
 $errorMsgReg=false;
 $errorMsgLoginUsername='';
 $errorMsgLoginPass='';
+$uservalidate='';
+$passvalidate='';
 
 
 
@@ -19,26 +21,57 @@ if (!empty($_POST['loginSubmit']))
 
 	//echo $usernameEmail;
 	
-	
 	if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
 	{
 		$uid=$userClass->userLogin($usernameEmail,$password);
 		if($uid)
 		{
 		$url=BASE_URL.'home.php';
-		header("Location: $url"); // Page redirecting to home.php 
+		header("Location: $url"); // Page redirecting to home.php 	
 		}
 		else
 		{
-		 $errorMsg='true';	
-		 echo $errorMsgLoginUsername="El usurio o mail introducidos no se encuentra en nuestar bases de datos.";
+			?>
+			<script type="text/javascript">
+				var error = "usuario o contraseña no es correcta";
+				var Condicion = 1;
+			</script>
+		<?php
 
-		 echo $errorMsgLoginPass="La contraseña introducida no se encuentra en la bases de datos.";
-		 
+
 		}
 	}
-	
+	else if (strlen(trim($usernameEmail))>1 && strlen(trim($password))<1 )
+	{
+		?>
+			<script type="text/javascript">
+				var error = "Introduce una contraseña";
+				var Condicion = 1;
+			</script>
+		<?php
+	}
+
+	else if (strlen(trim($usernameEmail))<1 && strlen(trim($password))>1 )
+	{
+		?>
+			<script type="text/javascript">
+				var error = "Introduce una usuarioç o mail";
+				var Condicion = 1;
+			</script>
+		<?php
+	}
+
+	else if (strlen(trim($usernameEmail))<1 && strlen(trim($password))<1 )
+	{
+		?>
+			<script type="text/javascript">
+				var error = "Introduce un usuario y contraseña";
+				var Condicion = 1;
+			</script>
+		<?php
+	}
 }
+
 
 
 /* Signup Form */
@@ -93,75 +126,44 @@ $errorMsgReg="Username or Email already exists.";
  
 <div id="login">
 <h3>Login</h3>
-<form method="post" action="" onsubmit="return validate()" name="login">
+<form method="post" action=""name="login">
 <label>Username or Email</label>
 <input type="text" id="nickUser" name="usernameEmail" autocomplete="off" />
 <label>Password</label>
 <input type="password" id="nickPass" name="password" autocomplete="off"/>
 <div class="botones">
 <input type="submit" class="button" name="loginSubmit" value="Login"/>
+
 <input type="submit" class="button" name="reload" value="Try Again" onClick="location.reload();"/>
 </div>
 </form>
 </div>
 
-
-
-<div id="signup">
-<h3>Registration</h3>
-<form method="post" action="" name="signup">
-<label>Name</label>
-<input type="text" name="nameReg" autocomplete="off" />
-<label>Email</label>
-<input type="text" name="emailReg" autocomplete="off" />
-<label>Username</label>
-<input type="text" name="usernameReg" autocomplete="off" />
-<label>Password</label>
-<input type="password" name="passwordReg" autocomplete="off"/>
-<div class="errorMsg"><?php echo $errorMsgReg; ?></div>
-<input type="submit" class="button" name="signupSubmit" value="Signup">
-</form>
-</div>
-
-
 </body>
+
+
 <script type="text/javascript">
 
 
-//document.getElementById("errorMsgs").style.display="none";	
+document.getElementById("errorMsgs").style.display="none";	
 
-function validate()
+function validate(error)
 {
-//cambiar();
- var error="";
- var error1="";
- var nameInput = document.getElementById('nickUser').value;
- var passInput = document.getElementById('nickPass').value;
- 
- var namePhp = '<?php echo $errorMsg;?>';
- var passPhp = '<?php echo $errorMsg;?>';
-
- var divErrorUser=document.createElement('div');//contendra errores de usuario.
- var divErrorPass=document.createElement('div');//contendrá errores de password.
-
- var divImageErrorUser=document.createElement('div');//contendrá el icono de error.
- 
- var divImageErrorPass=document.createElement('div');//contendrá el icono de error.
- var divParrafoUser=document.createElement('div');//contendrá el parrafo de error usuario.
- var divParrafoPass=document.createElement('div');//contendrá el parrafo de error password
- var divImageParrafoUser=document.createElement('div');
- var divImageParrafoPass=document.createElement('div');
-
-//uso genérico
- var imageErrorUser=document.createElement('IMG');
- imageErrorUser.setAttribute("src", "css/images/cancelar.png");
- imageErrorUser.setAttribute("width", "20px");
- var imageErrorPass=document.createElement('IMG');
- imageErrorPass.setAttribute("src", "css/images/cancelar.png");
- imageErrorPass.setAttribute("width", "20px");
  
 
-//error en al introducir usuario o mail.
+	 var divErrorUser=document.createElement('div');//contendra errores de usuario.
+	 
+	 var divImageErrorUser=document.createElement('div');//contendrá el icono de error.
+	 
+	 
+	 var divParrafoUser=document.createElement('div');//contendrá el parrafo de error usuario.
+	 
+	 var divImageParrafoUser=document.createElement('div');
+	 
+	 var imageErrorUser=document.createElement('IMG');
+	 imageErrorUser.setAttribute("src", "css/images/cancelar.png");
+	 imageErrorUser.setAttribute("width", "20px");
+	 
 	var parrafoUser=document.createElement('p');
 	divParrafoUser.appendChild(parrafoUser);
 	
@@ -172,60 +174,24 @@ function validate()
 	divImageParrafoUser.appendChild(divImageErrorUser);
 	divImageParrafoUser.appendChild(divParrafoUser);
 	divImageParrafoUser.classList.add("contenedor");
-
-
-//error en al introducir la contraseña..
-	var parrafoPass=document.createElement('p');
-	divParrafoPass.appendChild(parrafoPass);
-	divParrafoPass.classList.add("text");
-	divImageErrorPass.appendChild(imageErrorPass);
-	divImageErrorPass.classList.add("parpadea");
- 	divImageErrorPass.classList.add("icono");
-	divImageParrafoPass.appendChild(divImageErrorPass);
-	divImageParrafoPass.appendChild(divParrafoPass);
-	divImageParrafoPass.classList.add("contenedor");
-	
- 
-
- if( nameInput== "" )
- {
-  errorUser = document.createTextNode("Introduce un usuario o email.");
-  parrafoUser.appendChild(errorUser);
- // divErrorUser.appendChild(divImageParrafoUser);
-  document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
-  document.getElementById("errorMsgs").style.display="block";
- //return false;
- }
- if( passInput== "" )
- {
-  errorPass = document.createTextNode("Introduce una contraseña");
-  parrafoPass.appendChild(errorPass);
-  //divErrorPass.appendChild(divImageParrafoPass);
-  document.getElementById( "errorMsgs" ).appendChild(divImageParrafoPass);
-  document.getElementById("errorMsgs").style.display="block";
- // return false;
- }
- if(namePhp== "true" )
- {
- 	console.log("hola");
- 	errorUser = document.createTextNode("'<?php echo $errorMsgLoginUsername;?>'");
+	if(Condicion==1)
+	{
+ 	errorUser = document.createTextNode(error);
   	parrafoUser.appendChild(errorUser);
- // divErrorUser.appendChild(divImageParrafoUser);
   	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
   	document.getElementById("errorMsgs").style.display="block";
- }
- if(passPhp== "true" )
- {
+	}
 
-  errorPass = document.createTextNode("'<?php echo $errorMsgLoginPass;?>'");
-  parrafoPass.appendChild(errorPass);
-  //divErrorPass.appendChild(divImageParrafoPass);
-  document.getElementById( "errorMsgs" ).appendChild(divImageParrafoPass);
-  document.getElementById("errorMsgs").style.display="block";
- // return false;
-  	//return false;
- }
+	if(Condicion==2)
+	{
+ 	errorUser = document.createTextNode(error);
+  	parrafoUser.appendChild(errorUser);
+  	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
+  	document.getElementById("errorMsgs").style.display="block";
+	}
+
 }
+validate(error);
 
 </script>
 

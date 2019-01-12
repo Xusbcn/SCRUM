@@ -17,15 +17,17 @@
 #login{float:left;
 background: rgba(0,0,0, .6);}
 #signup{float:right;display: none;}
+
+
 #errorMsgs{
 	float:none;
 	background:#f6faec63;
 	width: 300px;
-    margin-left: 35%;
-    margin-bottom: %;
-    margin-top: 5%;
-    padding: 0px 15px 15px 15px;
-   display: none;
+  margin-left: 35%;
+  margin-bottom: %;
+  margin-top: 5%;
+  padding: 0px 15px 15px 15px;
+  display: none;
 
 }
 
@@ -306,6 +308,7 @@ color: #262123;
   color: black; 
   border: 2px solid #4CAF50;
   width: 20%;
+  margin-bottom: 10%;
 
 }
 
@@ -390,3 +393,11 @@ color: #262123;
       content: '\2796';
     }
 
+  #mover_div{
+    pointer-events: none;
+  }
+
+
+  #boton_crear_dentro{
+    width: 20%
+  }

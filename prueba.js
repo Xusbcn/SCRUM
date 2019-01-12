@@ -3,14 +3,14 @@ var checkboxMarcado = false;
 var nombreFormularioRelleno = false;
 var comboProductOwner = false;
 var comboScrumMaster = false;
-
+var comboEquipos=false;
+var errorform="";
 
 
 
 
 function crearFormulario(){
 
-	
 
 
 	//marco habilitado
@@ -61,10 +61,11 @@ function crearFormulario(){
 	var label_descripcion = document.createElement("textarea");
 	label_descripcion.setAttribute("name", "descripcion");
 	label_descripcion.setAttribute("cols", "30");
+	label_descripcion.setAttribute("required", "true");
 	document.getElementById("formulario_izquierda").appendChild(label_descripcion);
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
-
+/*
 	//label descripcion
 	var label_number = document.createElement("label");
 	var texto_number = document.createTextNode("Codigo de proyecto");
@@ -78,59 +79,8 @@ function crearFormulario(){
 	numero_number.setAttribute("id", "codigo_proyecto");
 	numero_number.setAttribute("type","number");
 	numero_number.setAttribute("name", "numero_proyecto");
+	numero_number.setAttribute("required", "true");
 	document.getElementById("formulario_izquierda").appendChild(numero_number);
-
-	//combobox scrum
-	/*
-	var select_combobox_scrum = document.createElement("select");
-	var opcion1_combobox_scrum = document.createElement("option");
-	var opcion2_combobox_scrum = document.createElement("option");
-	var texto_opcion1 = document.createTextNode("Scrum");
-	var texto_opcion2 = document.createTextNode("opcion2");
-	opcion1_combobox_scrum.appendChild(texto_opcion1);
-	opcion2_combobox_scrum.appendChild(texto_opcion2);
-	select_combobox_scrum.appendChild(opcion1_combobox_scrum);
-	select_combobox_scrum.appendChild(opcion2_combobox_scrum);
-	document.getElementById("formulario_derecha").appendChild(select_combobox_scrum);
-	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-	*/
-
-	//combobox product_owner
-	/*
-	var select_combobox_product = document.createElement("select");
-	var opcion1_combobox_product = document.createElement("option");
-	var opcion2_combobox_product = document.createElement("option");
-	var texto_opcion1 = document.createTextNode("product");
-	var texto_opcion2 = document.createTextNode("opcion2");
-	opcion1_combobox_product.appendChild(texto_opcion1);
-	opcion2_combobox_product.appendChild(texto_opcion2);
-	select_combobox_product.appendChild(opcion1_combobox_product);
-	select_combobox_product.appendChild(opcion2_combobox_product);
-	document.getElementById("formulario_derecha").appendChild(select_combobox_product);
-	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-	*/
-/*
-	//radio button 1
-	var radio_button1 = document.createElement("input");
-	radio_button1.setAttribute("type","radio");
-	radio_button1.setAttribute("name","developer");
-	document.getElementById("formulario_derecha").appendChild(radio_button1);
-	var radio_label1 = document.createElement("label");
-	var texto_label = document.createTextNode("developer1")
-	radio_label1.appendChild(texto_label);
-	document.getElementById("formulario_derecha").appendChild(radio_label1);
-	document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-
-	//radio button 2
-	var radio_button2 = document.createElement("input");
-	radio_button2.setAttribute("type","radio");
-	radio_button2.setAttribute("name","developer");
-	document.getElementById("formulario_derecha").appendChild(radio_button2);
-	var radio_label2 = document.createElement("label");
-	var texto_label = document.createTextNode("developer2")
-	radio_label2.appendChild(texto_label);
-	document.getElementById("formulario_derecha").appendChild(radio_label2);
 */
 	//boton crear
 	var crear_boton = document.createElement("input");
@@ -164,10 +114,7 @@ function comprobacionesFormulario(){
 	comprobarComboboxSeleccionadoOwner();
 	comprobarCheck();
 	respuestaFormulario();
-	//document.getElementById('botonCrearProyecto').disabled=false;
-	//document.getElementById('botonCrearProyecto').classList.remove("deshabilitar");
-
-}
+}	
 function comprobarCheck() {
 	for (i = 0; i < document.getElementsByClassName("checkboxes").length; i++) {
 		if( document.getElementsByClassName("checkboxes")[i].checked ) {
@@ -204,22 +151,43 @@ function comprobarComboboxSeleccionadoOwner(){
     	comboProductOwner = false;
     }
 }
+
+function comprobarEquipos(){
+	var lista_Equipos = document.getElementById("campo_dev");
+    if(lista_Equipos.selectedIndex !=0 )
+    	comboEquipos = true;
+    else{
+    	comboEquipos = false;
+    }
+}
+
 function respuestaFormulario(){
 	if (nombreFormularioRelleno == false) {
-		erroresFormulario();
+		errorform="ha de introducir un nombre";
+
+		validate(errorform);
+	
 		document.getElementById('boton_crear_dentro').style.display="none";
 		document.getElementById('boton_reload').style.display="block";
+		document.getElementById("nombre_proyecto").style.border="2px solid red";
 	}
-	else if (comboScrumMaster == false) {
-		erroresFormulario();
+	
+	if (comboScrumMaster == false) {
+		errorform="ha de elegir un Scrum Master";
+		validate(errorform);
+		document.getElementById("campo_scrum_master").style.border="2px solid red";
 	}
-	else if (comboProductOwner == false) {
-		erroresFormulario();
+	if (comboProductOwner == false) {
+		errorform="ha de elegir un Product Owner";
+		validate(errorform);
+		document.getElementById("campo_product_owner").style.border="2px solid red";
 	}
-	else if (checkboxMarcado == false) {
-		erroresFormulario();
+	if (comboEquipos == false) {
+		errorform="ha de elegir un Grupo";
+		validate(errorform);
+		document.getElementById("campo_dev").style.border="2px solid red";
 	}
-	else if (checkboxMarcado == true && nombreFormularioRelleno == true 
+	else if (comboEquipos == true && nombreFormularioRelleno == true 
 	&& comboScrumMaster == true && comboProductOwner == true) {
 		document.getElementById("formulario").submit();
 	}
@@ -249,3 +217,42 @@ function erroresFormulario(){
 }
 
 
+
+
+function validate(errorform)
+{
+ 
+
+	 var divErrorUser=document.createElement('div');//contendra errores de usuario.
+	 var divImageErrorUser=document.createElement('div');//contendrá el icono de error.
+	 var divParrafoUser=document.createElement('div');//contendrá el parrafo de error usuario.
+	 var divImageParrafoUser=document.createElement('div');
+	 var brUser=document.createElement("br");
+
+	 var imageErrorUser=document.createElement('IMG');
+	 imageErrorUser.setAttribute("src", "css/images/cancelar.png");
+	 imageErrorUser.setAttribute("width", "20px");
+	var parrafoUser=document.createElement('p');
+	divParrafoUser.appendChild(parrafoUser);
+	divParrafoUser.classList.add("text");
+	divImageErrorUser.appendChild(imageErrorUser);
+ 	divImageErrorUser.classList.add("parpadea");
+ 	divImageErrorUser.classList.add("icono");
+
+	divImageParrafoUser.appendChild(divImageErrorUser);
+	divImageParrafoUser.appendChild(divParrafoUser);
+
+	divImageParrafoUser.classList.add("contenedor");
+	document.getElementById("error_proyecto").appendChild(brUser);
+	
+ 	errorUser = document.createTextNode(errorform);
+  	parrafoUser.appendChild(errorUser);
+
+  	document.getElementById("error_proyecto").appendChild(divImageParrafoUser);
+  	//divErrorUser.insertBefore(brUser,divImageParrafoUser);
+  	
+  	document.getElementById("error_proyecto").style.display="block";
+	
+
+
+}
