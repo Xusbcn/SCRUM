@@ -401,3 +401,8 @@ color: #262123;
   #boton_crear_dentro{
     width: 20%
   }
+
+
+  div.panel.show {
+    display: block !important;
+}
