@@ -58,75 +58,109 @@ $userRol=$userDetails->rol;
 					?>
 				</div>
 			</div>
-
 			
-			<div class="col m12">
-				<div class="card-panel blue-grey lighten-4">
-					<?php 
-					$contar=0;
-					$pdo=getDB();
-					$sql="SELECT * from sprints WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
-					foreach ($pdo->query($sql) as $row) {
-				    
-					echo "<button class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</button>";
-					echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
-					echo	"<p style='font: 16px Lato, sans-serif;'>";
-					echo "<b>",$row['name_sprint'] . "\t</b><br>";
-					echo "Fecha: ",$row['date_start'] . "\t - ";
-					echo $row['date_finish'] . "\t";
-					echo "<b style='float:right'>";
-					echo "Horas totales: ",$row['total_hours'] . "\t <br>";
-					echo "Horas restantes: ",$row['hours_left'] . "\t";
-					echo "</b>";
-					echo '<br><br>';
-					echo "</p>";
-					$contar=$contar+1;
+			<div id="contenedor_sprints_backlog">
+				<div id="divSprint" class=" col s7 right">
+					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
+					<div   class="card-panel blue-grey lighten-4">
 
-					$sql1="SELECT * from specifications WHERE number_sprint=".$contar." AND cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
-					foreach ($pdo->query($sql1) as $row1) {
-			        echo "<b><font size='4'>",$row1['name_specification'] . "\t</font></b><br>";
-			        echo $row1['description'] . "\t";
-			        echo "<b style='float:right'>";
-			        echo $row1['hours'] . " hours\t <br>";
-			        echo $row1['date'] . "\t ";
-			        echo "</b>";
-			        echo '<br><br>';
-			   		 }	
-			   		 echo"</div>";			
-					}
-					?>
-					
+						<?php 
+						$contar=0;
+						$pdo=getDB();
+						$sql="SELECT * from sprints WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
+						
+						$arrayFechasPHP=array();
+						$totalSprints=0;
+						foreach ($pdo->query($sql) as $row) {
+					    
+						echo "<button class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</button>";
+						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
+						echo	"<p style='font: 16px Lato, sans-serif;'>";
+						echo "<b>",$row['name_sprint'] . "\t</b><br>";
+						echo "Fecha: ",$row['date_start'] . "\t - ";
+						echo $row['date_finish'] . "\t";
+						echo "<b style='float:right'>";
+						echo "Horas totales: ",$row['total_hours'] . "\t <br>";
+						echo "Horas restantes: ",$row['hours_left'] . "\t";
+						echo "</b>";
+						echo '<br><br>';
+						echo "</p>";
+
+						$fechaInicio=strtotime($row['date_start']);
+						$fechaFin=strtotime($row['date_finish']);
+						$fechaHoy=strtotime(date('Y-m-d'));
+						
+						array_push($arrayFechasPHP, $fechaInicio);
+						array_push($arrayFechasPHP, $fechaFin);
+						array_push($arrayFechasPHP, $fechaHoy);
+						$totalSprints+=1;
+						$contar=$contar+1;
+						
+						$sql1="SELECT * from specifications WHERE number_sprint=".$contar." AND cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
+						foreach ($pdo->query($sql1) as $row1) {
+				        echo "<b><font size='4'>",$row1['name_specification'] . "\t</font></b><br>";
+				        echo $row1['description'] . "\t";
+				        echo "<b style='float:right'>";
+				        echo $row1['hours'] . " hours\t <br>";
+				        echo $row1['date'] . "\t ";
+				        echo "</b>";
+				        echo '<br><br>';
+				   		 }	
+				   		 echo"</div>";			
+						}
+						$js_array = json_encode($arrayFechasPHP);
+						echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
+
+						?>
+						
+						<button id="boton_sprint"></button> 
+						<div id="contenedor-formulario">
+						<div id="div_formulario" hidden>
+							<form id="formulario" method="post" action="prueba2.php">
+							<div id="formulario_izquierda" class="col s6">
+							</div>
+							<div id="formulario_derecha" class="col s6">
+							</div>
+							</form>
+						</div>
 						</div>
 
+
+
+
+
+						</div>
+
+					</div>
+
 				</div>
 
+
+				<div id="ultimoDiv" class=" col s4 left">
+					<div class="card-panel blue-grey lighten-4">BACKLOG</div>
+					<div id="divEspe" class="card-panel blue-grey lighten-4">
+						<?php 
+						$pdo=getDB();
+						$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
+						foreach ($pdo->query($sql) as $row) {
+						echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
+				        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
+				        echo $row['description'] . "\t";
+				        echo "<b style='float:right'>";
+				        echo $row['hours'] . " hours\t <br>";
+				        echo $row['date'] . "\t ";
+				        echo "</b>";
+				        echo '<br><br>';
+				       	echo '</div>';
+				    	}
+
+						?>
+				
+					</div>
+				</div>
 			</div>
 
 
-			
-
-			<div id="ultimoDiv" class="col m12">
-				<div id="divEspe" class="card-panel blue-grey lighten-4">
-					
-					<?php 
-					$pdo=getDB();
-					$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
-					foreach ($pdo->query($sql) as $row) {
-					echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
-			        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
-			        echo $row['description'] . "\t";
-			        echo "<b style='float:right'>";
-			        echo $row['hours'] . " hours\t <br>";
-			        echo $row['date'] . "\t ";
-			        echo "</b>";
-			        echo '<br><br>';
-			       	echo '</div>';
-			    	}
-
-					?>
-			
-				</div>
-			</div>
 		</div>
 	</div>
 
@@ -134,28 +168,11 @@ $userRol=$userDetails->rol;
 
 </body>
 </html>
+
+
 <script type="text/javascript">var typeUser = '<?php echo $userRol ?>' </script>
 <script type="text/javascript">
-		/*
-		var acc= document.getElementsByClassName('acordeon');
-		var i;
-
-		for(i=0; i< acc.length; i++){
-			acc[i].addEventListener("click",function(){
-				this.classList.toggle("active");
-
-				var panel =this.nextElementSibling;
-				if (panel.style.display==="block"){
-					panel.style.display="none";
-				}else{
-					panel.style.display="block";
-				}
-
-
-			});
-		}
 		
-		*/
 	var acc = document.getElementsByClassName("acordeon");
 	var panel = document.getElementsByClassName('panel');
 
@@ -178,3 +195,31 @@ $userRol=$userDetails->rol;
 	    }
 	}
 	</script>
+	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
+<script type="text/javascript">
+	
+		console.log(acc.length);
+		x=0;
+		for(var i=-1; acc.length; i++){
+			if(arrayFechas[x+2]>arrayFechas[x] && arrayFechas[x+2]>arrayFechas[x+1]){
+				acc[i].style.backgroundColor='grey';
+			}else if(arrayFechas[x+2]>arrayFechas[x] && arrayFechas[x+2]<arrayFechas[x+1]){
+				acc[i].style.backgroundColor='green';
+			}else if(arrayFechas[x+2]<arrayFechas[x] && arrayFechas[x+2]<arrayFechas[x+1]){
+				acc[i].style.backgroundColor='black';
+			}
+			x+=3;
+		}
+		var jsvarbutton=document.getElementById('roles').innerHTML;
+			console.log(jsvarbutton);
+			function mostrarBoton(){
+				if (jsvarbutton!="ScrumMaster"){
+					document.getElementById('id_boton').style.display="none";
+				}
+				else{
+					document.getElementById('id_boton').style.display="bock";
+				}
+			}
+			mostrarBoton();
+	
+</script>
