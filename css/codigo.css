@@ -447,3 +447,7 @@ color: #262123;
   margin-bottom: 10%;
 
 }
+.boton_eliminar{
+  display: none;
+  float: right;
+}

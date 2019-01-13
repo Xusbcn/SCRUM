@@ -61,9 +61,9 @@ $userRol=$userDetails->rol;
 			
 			<div id="contenedor_sprints_backlog">
 				<div id="divSprint" class=" col s7 right">
-					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
-					<div   class="card-panel blue-grey lighten-4">
-
+					<div class="row card-panel blue-grey lighten-4">SPRINTS</div>
+					<div   id ="contenedor_sprints" class="row card-panel blue-grey lighten-4">
+					
 						<?php 
 						$contar=0;
 						$pdo=getDB();
@@ -72,10 +72,10 @@ $userRol=$userDetails->rol;
 						$arrayFechasPHP=array();
 						$totalSprints=0;
 						foreach ($pdo->query($sql) as $row) {
-					    
+						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
 						echo "<button class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</button>";
 						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
-						echo	"<p style='font: 16px Lato, sans-serif;'>";
+						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
 						echo "Fecha: ",$row['date_start'] . "\t - ";
 						echo $row['date_finish'] . "\t";
@@ -85,6 +85,7 @@ $userRol=$userDetails->rol;
 						echo "</b>";
 						echo '<br><br>';
 						echo "</p>";
+						
 
 						$fechaInicio=strtotime($row['date_start']);
 						$fechaFin=strtotime($row['date_finish']);
@@ -106,6 +107,7 @@ $userRol=$userDetails->rol;
 				        echo "</b>";
 				        echo '<br><br>';
 				   		 }	
+
 				   		 echo"</div>";			
 						}
 						$js_array = json_encode($arrayFechasPHP);
@@ -132,7 +134,7 @@ $userRol=$userDetails->rol;
 						</div>
 
 					</div>
-
+					
 				</div>
 
 
@@ -194,11 +196,15 @@ $userRol=$userDetails->rol;
 	        els[i].classList[fnName](className);
 	    }
 	}
+
 	</script>
+
+
+
 	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
 <script type="text/javascript">
-	
-		console.log(acc.length);
+		
+		var numero;
 		x=0;
 		for(var i=-1; acc.length; i++){
 			if(arrayFechas[x+2]>arrayFechas[x] && arrayFechas[x+2]>arrayFechas[x+1]){
@@ -207,19 +213,24 @@ $userRol=$userDetails->rol;
 				acc[i].style.backgroundColor='green';
 			}else if(arrayFechas[x+2]<arrayFechas[x] && arrayFechas[x+2]<arrayFechas[x+1]){
 				acc[i].style.backgroundColor='black';
+				document.getElementsByClassName("boton_eliminar")[i].style.display="block";
+				numero=i;
 			}
 			x+=3;
+
 		}
-		var jsvarbutton=document.getElementById('roles').innerHTML;
-			console.log(jsvarbutton);
-			function mostrarBoton(){
-				if (jsvarbutton!="ScrumMaster"){
-					document.getElementById('id_boton').style.display="none";
-				}
-				else{
-					document.getElementById('id_boton').style.display="bock";
-				}
-			}
-			mostrarBoton();
-	
+			
+
+	function eliminarSprint(){
+		
+	var sprintNegro= document.getElementById("contenedor_sprints");
+	console.log(sprintNegro.length);
+	for(var i=0; acc.length; i++) {
+		if (acc[i].style.backgroundColor=="black") {
+			var hijoNegro=acc[i];
+			sprintNegro.removeChild(hijoNegro);
+			document.getElementsByClassName("boton_eliminar")[i].style.display="none";
+		}
+	}
+}
 </script>
