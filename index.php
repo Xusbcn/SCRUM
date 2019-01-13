@@ -137,6 +137,7 @@ $errorMsgReg="Username or Email already exists.";
 <input type="submit" class="button" name="reload" value="Try Again" onClick="location.reload();"/>
 </div>
 </form>
+<a class="linkmail"  href="formcorreo.php">Recuperar contraseña</a>
 </div>
 
 </body>
@@ -159,14 +160,13 @@ function validate(error)
 	 var divParrafoUser=document.createElement('div');//contendrá el parrafo de error usuario.
 	 
 	 var divImageParrafoUser=document.createElement('div');
+	 var brUser=document.createElement("br");
 	 
 	 var imageErrorUser=document.createElement('IMG');
 	 imageErrorUser.setAttribute("src", "css/images/cancelar.png");
 	 imageErrorUser.setAttribute("width", "20px");
-	 
 	var parrafoUser=document.createElement('p');
 	divParrafoUser.appendChild(parrafoUser);
-	
 	divParrafoUser.classList.add("text");
 	divImageErrorUser.appendChild(imageErrorUser);
  	divImageErrorUser.classList.add("parpadea");
@@ -174,6 +174,7 @@ function validate(error)
 	divImageParrafoUser.appendChild(divImageErrorUser);
 	divImageParrafoUser.appendChild(divParrafoUser);
 	divImageParrafoUser.classList.add("contenedor");
+	document.getElementById("error_proyecto").appendChild(brUser);
 	if(Condicion==1)
 	{
  	errorUser = document.createTextNode(error);
@@ -182,13 +183,6 @@ function validate(error)
   	document.getElementById("errorMsgs").style.display="block";
 	}
 
-	if(Condicion==2)
-	{
- 	errorUser = document.createTextNode(error);
-  	parrafoUser.appendChild(errorUser);
-  	document.getElementById("errorMsgs").appendChild(divImageParrafoUser);
-  	document.getElementById("errorMsgs").style.display="block";
-	}
 
 }
 validate(error);

@@ -200,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-
 function erroresFormulario(){
 	var imageErrorfortmulario=document.createElement('IMG');
  	imageErrorfortmulario.setAttribute("src", "css/images/cancelar.png");
@@ -252,7 +251,6 @@ function validate(errorform)
 
 
 }
-
 
 function formatDate(date) {
     var d = new Date(date),

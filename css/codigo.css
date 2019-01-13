@@ -67,8 +67,9 @@ color: #ffffff;
 }
 
 body{
-	background-image: url("images/project1.jpg");
+  /*background-image: url("images/project1.jpg");*/
   background-size: cover;
+  background-color: #81bf81;
 }
 
 .contenedor{
@@ -422,4 +423,9 @@ color: #262123;
 
   div.panel.show {
     display: block !important;
+}
+
+.boton_eliminar{
+  display: none;
+  float: right;
 }
