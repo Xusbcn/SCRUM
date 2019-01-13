@@ -99,7 +99,7 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 					document.getElementById('id_boton').style.display="none";
 				}
 				else{
-					document.getElementById('id_boton').style.display="bock";
+					document.getElementById('id_boton').style.display="block";
 				}
 			}
 			mostrarBoton();
@@ -189,4 +189,6 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
+
+			
 		</script>

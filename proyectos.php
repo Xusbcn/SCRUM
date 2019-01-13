@@ -6,7 +6,6 @@ $projectDeveloper=$userClass->projectDeveloper($session_uid);
 $nombre_usuario_proyecto=$userDetails->name;
 $userRol=$userDetails->rol;
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +111,7 @@ $userRol=$userDetails->rol;
 					$js_array = json_encode($arrayFechasPHP);
 					echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
 					?>
-					
+
 					<br><br>
 
 					<div id="boton_sprint"></div>
@@ -126,7 +125,7 @@ $userRol=$userDetails->rol;
 							</form>
 						</div>
 					</div>
-
+					
 						</div>
 
 				</div>
@@ -143,7 +142,7 @@ $userRol=$userDetails->rol;
 					$pdo=getDB();
 					$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 					foreach ($pdo->query($sql) as $row) {
-					echo "<div onclick='cambiarColor(this)' id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
+					echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
 			        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 			        echo $row['description'] . "\t";
 			        echo "<b style='float:right'>";
@@ -167,7 +166,9 @@ $userRol=$userDetails->rol;
 </html>
 <script type="text/javascript">var typeUser = '<?php echo $userRol ?>' </script>
 <script type="text/javascript">
+		/*
 		var acc= document.getElementsByClassName('acordeon');
+		var i;
 
 		for(i=0; i< acc.length; i++){
 			acc[i].addEventListener("click",function(){
@@ -179,18 +180,39 @@ $userRol=$userDetails->rol;
 				}else{
 					panel.style.display="block";
 				}
+
+
 			});
-
 		}
+		
+		*/
+	var acc = document.getElementsByClassName("acordeon");
+	var panel = document.getElementsByClassName('panel');
 
-</script>
+	for (var i = 0; i < acc.length; i++) {
+	    acc[i].onclick = function() {
+	        var setClasses = !this.classList.contains('active');
+	        setClass(acc, 'active', 'remove');
+	        setClass(panel, 'show', 'remove');
 
-<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
-<script type="text/javascript">
-	
-		console.log(acc.length);
+	        if (setClasses) {
+	            this.classList.toggle("active");
+	            this.nextElementSibling.classList.toggle("show");
+	        }
+	    }
+	}
 
-		x=0;
+	function setClass(els, className, fnName) {
+	    for (var i = 0; i < els.length; i++) {
+	        els[i].classList[fnName](className);
+	    }
+	}
+
+	</script>
+	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
+	<script type="text/javascript">
+
+	x=0;
 		for(var i=-1; acc.length; i++){
 			if(arrayFechas[x+2]>arrayFechas[x] && arrayFechas[x+2]>arrayFechas[x+1]){
 				acc[i].style.backgroundColor='grey';
@@ -201,7 +223,6 @@ $userRol=$userDetails->rol;
 			}
 			x+=3;
 		}
-
 		var jsvarbutton=document.getElementById('roles').innerHTML;
 			console.log(jsvarbutton);
 			function mostrarBoton(){
@@ -213,5 +234,4 @@ $userRol=$userDetails->rol;
 				}
 			}
 			mostrarBoton();
-	
-</script>
+	</script>

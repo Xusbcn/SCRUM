@@ -99,14 +99,14 @@ $stmt = $db->prepare( $sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 $stmt->bindParam("uid", $uid,PDO::PARAM_INT);
 $stmt->execute();
 while ($fila = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
-      //$datos = $fila;
-      $nombre_proyectos[]=$fila;
+      $datos = $fila;
+      $nombre_proyectos[]=$datos;
       
       //print_r($datos);
       //print_r($nombre_proyectos);
     }
     
-    print_r($fila);
+    //print_r($nombre_proyectos);
       
     $stmt = null;
 }
