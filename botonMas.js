@@ -9,9 +9,6 @@ function inputsNombreProyecto(){
 	var elementopadre = document.getElementById("ultimoDiv");
 	var inputNombre = document.createElement("input");
 	var inputBoton	= document.createElement("input");
-	var inputEliminar = document.createElement("input");
-	var inputBajar = document.createElement("input");
-	var inputSubir = document.createElement("input");
 	
 
 	inputBoton.setAttribute("type", "image");
@@ -20,50 +17,35 @@ function inputsNombreProyecto(){
 	inputBoton.setAttribute("height", "25");
 
 
-	inputEliminar.setAttribute("type", "image");
-	inputEliminar.setAttribute("src", "img/eliminar.png");
-	inputEliminar.setAttribute("width", "25");
-	inputEliminar.setAttribute("height", "25");
-
-
-	inputBajar.setAttribute("type", "image");
-	inputBajar.setAttribute("src", "img/bajar.png");
-	inputBajar.setAttribute("width", "25");
-	inputBajar.setAttribute("height", "25");
-
-	inputSubir.setAttribute("type", "image");
-	inputSubir.setAttribute("src", "img/arriba.png");
-	inputSubir.setAttribute("width", "25");
-	inputSubir.setAttribute("height", "25");
-
-
-
-
-	
 	inputBoton.addEventListener("click",añadirEspecificacion);
-	inputEliminar.addEventListener("click",elminarDiv);
-	inputSubir.addEventListener("click",subirElemento);
-	inputBajar.addEventListener("click",bajarElemento);
-	inputNombre.setAttribute("name","nombreProyecto");
+	inputNombre.setAttribute("name","nombreEspe");
 
 	insertarDespuesde(elementopadre,inputNombre);
-	insertarDespuesde(inputNombre,inputSubir);
-	insertarDespuesde(inputNombre,inputBajar);
-	insertarDespuesde(inputNombre,inputEliminar);
 	insertarDespuesde(inputNombre,inputBoton);
 		
 }
 
-
-
 function añadirEspecificacion(){
 	var elementopadre = document.getElementById("divEspe");
 	var creardivnuevo = document.createElement('div');
-	creardivnuevo.addEventListener("click",cambiarColor);
-	var inputnombreproyecto = document.getElementsByTagName("input")[0].value;
+
+	creardivnuevo.setAttribute("style", "margin-bottom: 10px;border: solid yellowgreen");
+	var inputnombreproyecto = document.getElementsByName("nombreEspe")[0].value;
 	var añadirtextoespecificacion = document.createTextNode(inputnombreproyecto);
 	creardivnuevo.appendChild(añadirtextoespecificacion);
+	creardivnuevo.appendChild(botonSubir());
+	creardivnuevo.appendChild(botonBajar());
+	creardivnuevo.appendChild(botonEliminar());
 	elementopadre.appendChild(creardivnuevo);
+
+}
+
+
+
+function añadirBotones(element){
+	element.appendChild(botonSubir());
+	element.appendChild(botonBajar());
+	element.appendChild(botonEliminar());
 
 
 }
@@ -78,62 +60,62 @@ function insertarDespuesde(e,i){
 	}
 }
 
-function cambiarColor(element){
-	var arrayDivs = document.getElementsByTagName("div");
-	for (var i = 0; i < arrayDivs.length; i++) {
-		arrayDivs[i].style.color="black";
-	}
-	this.style.color = "red";
+
+
+
+
+function botonSubir(){
+	var imgsubir = document.createElement('img');
+	imgsubir.setAttribute("src", "img/arriba.png");
+	imgsubir.setAttribute("style","float:right");
+	imgsubir.setAttribute("width", "25");
+	imgsubir.setAttribute("height", "25");
+	imgsubir.setAttribute('onclick', 'subir(this)');
+	return imgsubir;
+}
+function botonBajar(){
+	var imgbajar = document.createElement('img');
+	imgbajar.setAttribute("src", "img/bajar.png");
+	imgbajar.setAttribute("style","float:right");
+	imgbajar.setAttribute("width", "25");
+	imgbajar.setAttribute("height", "25");
+	imgbajar.setAttribute('onclick', 'bajar(this)');
+	return imgbajar;
+}
+function botonEliminar(){
+	var imgeliminar = document.createElement('img');
+	imgeliminar.setAttribute("src", "img/eliminar.png");
+	imgeliminar.setAttribute("style","float:right");
+	imgeliminar.setAttribute("width", "25");
+	imgeliminar.setAttribute("height", "25");
+	imgeliminar.setAttribute('onclick', 'eliminar(this)');
+	return imgeliminar;
 }
 
+function subir(element){
+	var elementAnterior = element.parentNode.previousSibling;
 
-function elminarDiv(){
-	var elementopadre = document.getElementById("divEspe");
-	var arrayDivs = document.getElementsByTagName("div");
-	for (var i = 0; i < arrayDivs.length; i++) {
-		if (arrayDivs[i].style.color=="red") {
-			elementopadre.removeChild(arrayDivs[i]);
-		}
-	}
+	var clonado = element.parentNode.cloneNode(true);
+	var elementRaiz= element.parentNode.parentNode;
+
+	
+	var elementoPadre = element.parentNode;
+	elementoPadre.parentNode.removeChild(elementoPadre);
+	elementRaiz.insertBefore(clonado, elementAnterior);
 }
+function bajar(element){
+	var elementSiguiente = element.parentNode.nextSibling.nextSibling;
+	//Clonamos el elemento
+	var clonado = element.parentNode.cloneNode(true);
+	//Accedemos al elemento <ul> 
+	var elementRaiz = element.parentNode.parentNode;
 
-
-
-
-
-
-function bajarElemento(){
-	var arrayDivs = document.getElementsByTagName("div");
-	var elementoPadre = document.getElementById("divEspe");
-	for (var i = 0; i < arrayDivs.length; i++) {
-		if (arrayDivs[i].style.color=="red") {
-			var elementoHermano = arrayDivs[i].nextSibling;
-			var clonarHermano = elementoHermano.cloneNode(true);
-			clonarHermano.addEventListener("click",cambiarColor);
-			elementoPadre.removeChild(elementoHermano);
-			elementoPadre.insertBefore(clonarHermano,arrayDivs[i]);
-
-			
-		}
-	}
-
+	var elementoPadre = element.parentNode;
+	
+	elementoPadre.parentNode.removeChild(elementoPadre);	
+	elementRaiz.insertBefore(clonado, elementSiguiente);
 }
-
-
-
-function subirElemento(){
-	var arrayDivs = document.getElementsByTagName("div");
-	var elementoPadre = document.getElementById("divEspe");
-	for (var i = 0; i < arrayDivs.length; i++) {
-		if (arrayDivs[i].style.color=="red") {
-			var elementoHermano = arrayDivs[i].previousSibling;
-			var clonarHermano = elementoHermano.cloneNode(true);
-			clonarHermano.addEventListener("click",cambiarColor);
-			elementoPadre.removeChild(elementoHermano);
-			elementoPadre.insertBefore(clonarHermano,arrayDivs[i]);
-
-			
-		}
-	}
-
+function eliminar(element){
+	var elementoPadre = element.parentNode;
+	elementoPadre.parentNode.removeChild(elementoPadre);
 }
