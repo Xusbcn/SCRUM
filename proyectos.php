@@ -12,6 +12,7 @@ $userRol=$userDetails->rol;
 	<!--<link  href="http://fonts.googleapis.com/css? family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">-->
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
 	<script type="text/javascript" defer src="botonMas.js"></script>
+	<script type="text/javascript" src="prueba.js"></script>
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<meta charset="utf-8">
 	<title></title>
@@ -115,28 +116,18 @@ $userRol=$userDetails->rol;
 
 						?>
 						
-						<button id="boton_sprint"></button> 
-						<div id="contenedor-formulario">
-						<div id="div_formulario" hidden>
-							<form id="formulario" method="post" action="prueba2.php">
-							<div id="formulario_izquierda" class="col s6">
+							<div id="boton_sprint"></div>
+							<div id="contenedor-formulario">
+								<div id="div_formulario" hidden>
+									<form id="formulario" method="post" action="prueba2.php">
+									<div id="formulario_izquierda" class="col s6"></div>
+									<div id="formulario_derecha" class="col s6"></div>
+									</form>
+								</div>
 							</div>
-							<div id="formulario_derecha" class="col s6">
-							</div>
-							</form>
 						</div>
-						</div>
-
-
-
-
-
-						</div>
-
-					</div>
-					
+					</div>				
 				</div>
-
 
 				<div id="ultimoDiv" class=" col s4 left">
 					<div class="card-panel blue-grey lighten-4">BACKLOG</div>
@@ -161,11 +152,8 @@ $userRol=$userDetails->rol;
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
-
 </div>
 
 </body>
@@ -198,12 +186,8 @@ $userRol=$userDetails->rol;
 	}
 
 	</script>
-
-
-
 	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
-<script type="text/javascript">
-		
+	<script type="text/javascript">
 		var numero;
 		x=0;
 		for(var i=-1; acc.length; i++){
@@ -214,11 +198,21 @@ $userRol=$userDetails->rol;
 			}else if(arrayFechas[x+2]<arrayFechas[x] && arrayFechas[x+2]<arrayFechas[x+1]){
 				acc[i].style.backgroundColor='black';
 				document.getElementsByClassName("boton_eliminar")[i].style.display="block";
-				numero=i;
 			}
 			x+=3;
-
 		}
+
+		var jsvarbutton=document.getElementById('roles').innerHTML;
+			console.log(jsvarbutton);
+			function mostrarBoton(){
+				if (jsvarbutton!="ScrumMaster"){
+					document.getElementById('id_boton').style.display="none";
+				}
+				else{
+					document.getElementById('id_boton').style.display="bock";
+				}
+			}
+			mostrarBoton();
 			
 
 	function eliminarSprint(){
