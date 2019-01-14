@@ -203,7 +203,7 @@ $userRol=$userDetails->rol;
 		}
 
 		function mostrarBoton(){
-			if (typeUser!="ScrumMaster"){
+			if (typeUser="ScrumMaster"){
 				document.getElementById('boton_sprint').style.display="none";
 			}
 			else{
