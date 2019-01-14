@@ -3,6 +3,8 @@
 
 if(typeUser=="ProductOwner") {
 	inputsNombreProyecto();
+}else if(typeUser=="ScrumMaster"){
+	candado();
 }
 
 function inputsNombreProyecto(){
@@ -61,9 +63,6 @@ function insertarDespuesde(e,i){
 }
 
 
-
-
-
 function botonSubir(){
 	var imgsubir = document.createElement('img');
 	imgsubir.setAttribute("src", "img/arriba.png");
@@ -118,4 +117,18 @@ function bajar(element){
 function eliminar(element){
 	var elementoPadre = element.parentNode;
 	elementoPadre.parentNode.removeChild(elementoPadre);
+}
+
+
+
+
+function candado(){
+	var divPadre = document.getElementById("divTitu");
+	var candadoCerrado = document.createElement('img');
+	candadoCerrado.setAttribute("src", "img/cerrado.png");
+	candadoCerrado.setAttribute("width", "25");
+	candadoCerrado.setAttribute("height", "25");
+	divPadre.appendChild(candadoCerrado);
+
+
 }

@@ -62,7 +62,7 @@ $userRol=$userDetails->rol;
 			<div id="contenedor_sprints_backlog">
 				<div id="divSprint" class=" col s7 right">
 					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
-					<div   class="card-panel blue-grey lighten-4">
+					<div  id="divTitu" class="card-panel blue-grey lighten-4">
 
 						<?php 
 						$contar=0;
@@ -143,7 +143,7 @@ $userRol=$userDetails->rol;
 						$pdo=getDB();
 						$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 						foreach ($pdo->query($sql) as $row) {
-						echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;'>";
+						echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;' >";
 				        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 				        echo $row['description'] . "\t";
 				        echo "<b style='float:right'>";
