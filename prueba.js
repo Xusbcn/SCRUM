@@ -5,6 +5,7 @@ var comboProductOwner = false;
 var comboScrumMaster = false;
 var comboEquipos=false;
 var errorform="";
+var errorSprint="";
 
 
 
@@ -346,8 +347,8 @@ function crearSprint(){
 }
 
 function fechaInicioRellenado(){
-	label_inicio = document.getElementById("label_inicio");
-	if (document.getElementById("label_inicio").value == "") {
+	label_inicio = document.getElementById("FechaInicio");
+	if (document.getElementById("FechaFinal").value == "") {
 		contenidoFechaInicio = false;
 	}
 	else{
@@ -356,8 +357,8 @@ function fechaInicioRellenado(){
 }
 
 function fechaFinalRellenado(){
-	label_final = document.getElementById("label_final");
-	if (document.getElementById("label_final").value == "") {
+	label_final = document.getElementById("FechaFinal");
+	if (document.getElementById("FechaFinal").value == "") {
 		contenidoFechaFinal = false;
 		console.log("hola, da error.");
 	}
@@ -367,8 +368,8 @@ function fechaFinalRellenado(){
 }
 
 function horasTotalesRellenado(){
-	numero_horas = document.getElementById("numero_horas");
-	if (document.getElementById("numero_horas").value == "") {
+	numero_horas = document.getElementById("horasTotales");
+	if (document.getElementById("horasTotales").value == "") {
 		contenidoHorasTotales = false;
 	}
 	else{
@@ -378,21 +379,24 @@ function horasTotalesRellenado(){
 
 function respuestaSprintNuevo(){
 	if (contenidoFechaInicio == false) {
-		erroresFormulario();
+		errorSprint="Es necesario rellenar el campo 'Fecha de Inicio'.";
+		validate(errorSprint);
 	}
 	if (contenidoFechaFinal == false) {
-		erroresFormulario();
+		errorSprint="Es necesario rellenar el campo 'Fecha de Finalización'.";
+		validate(errorSprint);
 	}
 	if (contenidoHorasTotales == false) {
-		erroresFormulario();
+		errorSprint="Es necesario rellenar el campo 'Horas totales'.";
+		validate(errorSprint);
 	}
 }
 
 function comprobarSprintNuevo(){
-	//fechaInicioRellenado();
-	//fechaFinalRellenado();
-	//horasTotalesRellenado();
-	//respuestaSprintNuevo();
+	fechaInicioRellenado();
+	fechaFinalRellenado();
+	horasTotalesRellenado();
+	respuestaSprintNuevo();
 }
 
 document.addEventListener('DOMContentLoaded', function(){
