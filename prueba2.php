@@ -6,13 +6,21 @@
 <body>
 	<?php 
 
+		$pdo=getDB();
+		$sql="SELECT MAX(cod_project) FROM proj_users";
+		foreach ($pdo->query($sql) as $row) {
+			$numero_proyecto = $row['MAX(cod_project)'];
+		}
+
+		$numero_proyecto+=10;
+
 		if (isset($_POST["nombre"])){ 
 
 			$nombre_proyecto = $_POST["nombre"];
 			$campo_scrum_master = $_POST["campo_scrum_master"];
 			$campo_product_owner = $_POST["campo_product_owner"];
-			$numero_proyecto = $_POST["numero_proyecto"];
 			$descripcion_proj = $_POST["descripcion_proj"];
+			$group = $_POST["campo_group"];
 
 			echo $nombre_proyecto;
 			echo "<br>";
@@ -22,12 +30,11 @@
 			echo "<br>";
 			echo $numero_proyecto;
 			echo "<br>";
+			echo $descripcion_proj;
+			echo "<br>";
+			echo $group;
+			echo "<br>";
 
-			$radio = $_POST["checkbox"];
-	                foreach ($radio as $key => $value) {
-	                    echo "<br>$value";
-	                }
-	                
 		 ?>
 
 		<?php
@@ -45,13 +52,14 @@
 				$id_incremental = "LAST_INSERT_ID()";
 				$sentencia->execute();
 
-				$sentencia = $pdo->prepare("INSERT INTO project VALUES (:id_project, :cod_project, :name_project, :description, :product_owner, :scrum_master, :date_start, :date_finish, :comments, :budget)");
+				$sentencia = $pdo->prepare("INSERT INTO project (id_project, cod_project, name_project, description, product_owner, scrum_master, group_name, date_start, date_finish, comments, budget) VALUES (:id_project, :cod_project, :name_project, :description, :product_owner, :scrum_master, :group_name, :date_start, :date_finish, :comments, :budget)");
 				$sentencia->bindParam(':id_project', $id_incremental);
 				$sentencia->bindParam(':cod_project',$numero_proyecto);
 				$sentencia->bindParam(':name_project',$nombre_proyecto);
 				$sentencia->bindParam(':description', $descripcion_proj);
 				$sentencia->bindParam(':product_owner', $campo_product_owner);
 				$sentencia->bindParam(':scrum_master', $campo_scrum_master);
+				$sentencia->bindParam(':group_name', $group);
 				$sentencia->bindParam(':date_start', $vacio);
 				$sentencia->bindParam(':date_finish', $vacio);
 				$sentencia->bindParam(':comments', $vacio);
@@ -66,7 +74,7 @@
 			}
 		}
 		else{
-			echo "no has introducido datos";
+			echo "No has introducido datos";
 		}
 		header("Location:home.php");
 	?>
