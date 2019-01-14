@@ -12,6 +12,7 @@ $userRol=$userDetails->rol;
 	<!--<link  href="http://fonts.googleapis.com/css? family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">-->
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
 	<script type="text/javascript" defer src="botonMas.js"></script>
+	<script type="text/javascript" src="prueba.js"></script>
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<meta charset="utf-8">
 	<title></title>
@@ -61,9 +62,15 @@ $userRol=$userDetails->rol;
 			
 			<div id="contenedor_sprints_backlog">
 				<div id="divSprint" class=" col s7 right">
+<<<<<<< HEAD
 					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
 					<div  id="divTitu" class="card-panel blue-grey lighten-4">
 
+=======
+					<div class="row card-panel blue-grey lighten-4">SPRINTS</div>
+					<div   id ="contenedor_sprints" class="row card-panel blue-grey lighten-4">
+					
+>>>>>>> 6166332dbb5c2e6786f40bb4c00c9ae336e273be
 						<?php 
 						$contar=0;
 						$pdo=getDB();
@@ -72,10 +79,10 @@ $userRol=$userDetails->rol;
 						$arrayFechasPHP=array();
 						$totalSprints=0;
 						foreach ($pdo->query($sql) as $row) {
-					    
+						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
 						echo "<button class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</button>";
 						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
-						echo	"<p style='font: 16px Lato, sans-serif;'>";
+						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
 						echo "Fecha: ",$row['date_start'] . "\t - ";
 						echo $row['date_finish'] . "\t";
@@ -85,6 +92,7 @@ $userRol=$userDetails->rol;
 						echo "</b>";
 						echo '<br><br>';
 						echo "</p>";
+						
 
 						$fechaInicio=strtotime($row['date_start']);
 						$fechaFin=strtotime($row['date_finish']);
@@ -106,6 +114,7 @@ $userRol=$userDetails->rol;
 				        echo "</b>";
 				        echo '<br><br>';
 				   		 }	
+
 				   		 echo"</div>";			
 						}
 						$js_array = json_encode($arrayFechasPHP);
@@ -113,28 +122,18 @@ $userRol=$userDetails->rol;
 
 						?>
 						
-						<button id="boton_sprint"></button> 
-						<div id="contenedor-formulario">
-						<div id="div_formulario" hidden>
-							<form id="formulario" method="post" action="prueba2.php">
-							<div id="formulario_izquierda" class="col s6">
+							<div id="boton_sprint"></div>
+							<div id="contenedor-formulario">
+								<div id="div_formulario" hidden>
+									<form id="formulario" method="post" action="prueba2.php">
+									<div id="formulario_izquierda" class="col s6"></div>
+									<div id="formulario_derecha" class="col s6"></div>
+									</form>
+								</div>
 							</div>
-							<div id="formulario_derecha" class="col s6">
-							</div>
-							</form>
 						</div>
-						</div>
-
-
-
-
-
-						</div>
-
-					</div>
-
+					</div>				
 				</div>
-
 
 				<div id="ultimoDiv" class=" col s4 left">
 					<div class="card-panel blue-grey lighten-4">BACKLOG</div>
@@ -159,11 +158,8 @@ $userRol=$userDetails->rol;
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
-
 </div>
 
 </body>
@@ -194,11 +190,11 @@ $userRol=$userDetails->rol;
 	        els[i].classList[fnName](className);
 	    }
 	}
+
 	</script>
 	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
-<script type="text/javascript">
-	
-		console.log(acc.length);
+	<script type="text/javascript">
+		var numero;
 		x=0;
 		for(var i=-1; acc.length; i++){
 			if(arrayFechas[x+2]>arrayFechas[x] && arrayFechas[x+2]>arrayFechas[x+1]){
@@ -207,9 +203,11 @@ $userRol=$userDetails->rol;
 				acc[i].style.backgroundColor='green';
 			}else if(arrayFechas[x+2]<arrayFechas[x] && arrayFechas[x+2]<arrayFechas[x+1]){
 				acc[i].style.backgroundColor='black';
+				document.getElementsByClassName("boton_eliminar")[i].style.display="block";
 			}
 			x+=3;
 		}
+
 		var jsvarbutton=document.getElementById('roles').innerHTML;
 			console.log(jsvarbutton);
 			function mostrarBoton(){
@@ -221,5 +219,18 @@ $userRol=$userDetails->rol;
 				}
 			}
 			mostrarBoton();
-	
+			
+
+	function eliminarSprint(){
+		
+	var sprintNegro= document.getElementById("contenedor_sprints");
+	console.log(sprintNegro.length);
+	for(var i=0; acc.length; i++) {
+		if (acc[i].style.backgroundColor=="black") {
+			var hijoNegro=acc[i];
+			sprintNegro.removeChild(hijoNegro);
+			document.getElementsByClassName("boton_eliminar")[i].style.display="none";
+		}
+	}
+}
 </script>

@@ -104,154 +104,6 @@ function crearFormulario(){
 	document.getElementById("formulario").appendChild(reload_boton);
 }
 
-function formatDate(date) {
-    var d = new Date(date),
-        day = '' + d.getDate(),
-        month = '' + (d.getMonth()+1),
-        year = d.getFullYear();
-
-    if (day.length < 2) day = '0' + day;
-    if (month.length < 2) month = '0' + month;
-
-    return [year, day, month].join('-');
-}
-
-//alert(formatDate('03/01/2019'));
-
-function crearSprint(){
-
-	//marco habilitado
-	var elementDiv = document.getElementById("div_formulario");
-    elementDiv.hidden = false;
-    var numSprint=document.getElementById('numero_sprint').innerHTML;
-	//h1 formulario
-	//crea el h1
-	var titulo_sprint = document.createElement("h1");
-	//pone los atributos del h1
-	titulo_sprint.setAttribute("id", "titulo");
-	//es el texto del h1
-	Numero_Sprint=parseInt(numSprint);
-	Numero_Sprint+=1;
-	var texto_sprint = document.createTextNode("Sprint "+Numero_Sprint);
-	//inserta el texto en el h1
-	titulo_sprint.appendChild(texto_sprint);
-	//hace un insert al principio del todo
-	document.getElementById("div_formulario").insertBefore(titulo_sprint, document.getElementById("div_formulario").firstChild);
-
-	//label Fecha Inicio
-	var label_inicio = document.createElement("label");
-	label_inicio.setAttribute("for", "FechaInicio");
-	var texto_inicio = document.createTextNode("Fecha de Inicio");
-	label_inicio.appendChild(texto_inicio);
-	document.getElementById("formulario_izquierda").appendChild(label_inicio);
-
-	//text Fecha Inicio
-	var label_inicio = document.createElement("input");
-	label_inicio.setAttribute("id", "FechaInicio");
-	label_inicio.setAttribute("type", "date");
-	label_inicio.setAttribute("name", "FechaInicio");
-	label_inicio.setAttribute("required", "true");
-	document.getElementById("formulario_izquierda").appendChild(label_inicio);
-	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
-
-	//label Fecha Final
-	var label_final = document.createElement("label");
-	label_final.setAttribute("for", "FechaFinal");
-	label_final.setAttribute("name", "FechaFinal");
-	var texto_final = document.createTextNode("Fecha de Finalización");
-	label_final.appendChild(texto_final);
-	document.getElementById("formulario_izquierda").appendChild(label_final);
-
-	//text Fecha Final
-	var label_final = document.createElement("input");
-	label_final.setAttribute("id", "FechaFinal");
-	label_final.setAttribute("type", "date");
-	label_final.setAttribute("name", "FechaFinal");
-	label_final.setAttribute("required", "true");
-	document.getElementById("formulario_izquierda").appendChild(label_final);
-	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
-
-	//label Horas totales
-	var label_horas = document.createElement("label");
-	var texto_horas = document.createTextNode("Horas totales");
-	label_horas.appendChild(texto_horas);
-	document.getElementById("formulario_izquierda").appendChild(label_horas);
-
-	//text Horas totales
-	var label_horas = document.createElement("input");
-	label_horas.setAttribute("id", "horasTotales");
-	label_horas.setAttribute("type","number");
-	label_horas.setAttribute("name", "horasTotales");
-	document.getElementById("formulario_izquierda").appendChild(label_horas);
-
-	//boton crear
-	var crear_sprint_dentro = document.createElement("input");
-	crear_sprint_dentro.setAttribute("onclick", "comprobarSprintNuevo();");
-	crear_sprint_dentro.setAttribute("type","button");
-	crear_sprint_dentro.setAttribute("name","crearSprint");
-	crear_sprint_dentro.setAttribute("value","Crear Sprint");
-	crear_sprint_dentro.setAttribute("id","boton_crear_sprint_nuevo");
-	document.getElementById("formulario").appendChild(crear_sprint_dentro);
-
-	document.getElementById('botonCrearSprint').style.display="none";
-	document.getElementById('botonCrearSprint').classList.add("deshabilitar");
-
-	
-}
-
-function fechaInicioRellenado(){
-	label_inicio = document.getElementById("label_inicio");
-	if (document.getElementById("label_inicio").value == "") {
-		contenidoFechaInicio = false;
-	}
-	else{
-		contenidoFechaInicio = true;
-	}
-}
-
-function fechaFinalRellenado(){
-	label_final = document.getElementById("label_final");
-	if (document.getElementById("label_final").value == "") {
-		contenidoFechaFinal = false;
-		console.log("hola, da error.");
-	}
-	else{
-		contenidoFechaFinal = true;
-	}
-}
-
-function horasTotalesRellenado(){
-	numero_horas = document.getElementById("numero_horas");
-	if (document.getElementById("numero_horas").value == "") {
-		contenidoHorasTotales = false;
-	}
-	else{
-		contenidoHorasTotales = true;
-	}
-}
-
-function respuestaSprintNuevo(){
-	if (contenidoFechaInicio == false) {
-		erroresFormulario();
-	}
-	if (contenidoFechaFinal == false) {
-		erroresFormulario();
-	}
-	if (contenidoHorasTotales == false) {
-		erroresFormulario();
-	}
-}
-
-function comprobarSprintNuevo(){
-	//fechaInicioRellenado();
-	//fechaFinalRellenado();
-	//horasTotalesRellenado();
-	//respuestaSprintNuevo();
-}
-
-
-
-
 function comprobacionesFormulario(){
 	comprobarNombreFormularioRelleno();
 	comprobarComboboxSeleccionadoMaster();
@@ -348,17 +200,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-
-document.addEventListener('DOMContentLoaded', function(){
-	var boton_crear_sprint = document.createElement("input");
-	boton_crear_sprint.setAttribute("onclick", "crearSprint()");
-	boton_crear_sprint.setAttribute("type","button");
-	boton_crear_sprint.setAttribute("name","crearSprint");
-	boton_crear_sprint.setAttribute("value","Crear nuevo Sprint");
-	boton_crear_sprint.setAttribute("id","botonCrearSprint");
-	document.getElementById("boton_sprint").appendChild(boton_crear_sprint);
-});
-
 function erroresFormulario(){
 	var imageErrorfortmulario=document.createElement('IMG');
  	imageErrorfortmulario.setAttribute("src", "css/images/cancelar.png");
@@ -410,3 +251,156 @@ function validate(errorform)
 
 
 }
+
+function formatDate(date) {
+    var d = new Date(date),
+        day = '' + d.getDate(),
+        month = '' + (d.getMonth()+1),
+        year = d.getFullYear();
+
+    if (day.length < 2) day = '0' + day;
+    if (month.length < 2) month = '0' + month;
+
+    return [year, day, month].join('-');
+}
+
+//alert(formatDate('03/01/2019'));
+
+function crearSprint(){
+
+	//marco habilitado
+	var elementDiv = document.getElementById("div_formulario");
+    elementDiv.hidden = false;
+    var numSprint=document.getElementById('numero_sprint').innerHTML;
+	//h1 formulario
+	//crea el h1
+	var titulo_sprint = document.createElement("h1");
+	//pone los atributos del h1
+	titulo_sprint.setAttribute("id", "titulo");
+	//es el texto del h1
+	Numero_Sprint=parseInt(numSprint);
+	Numero_Sprint+=1;
+	var texto_sprint = document.createTextNode("Sprint "+Numero_Sprint);
+	//inserta el texto en el h1
+	titulo_sprint.appendChild(texto_sprint);
+	//hace un insert al principio del todo
+	document.getElementById("div_formulario").insertBefore(titulo_sprint, document.getElementById("div_formulario").firstChild);
+
+	//label Fecha Inicio
+	var label_inicio = document.createElement("label");
+	label_inicio.setAttribute("for", "FechaInicio");
+	var texto_inicio = document.createTextNode("Fecha de Inicio");
+	label_inicio.appendChild(texto_inicio);
+	document.getElementById("formulario_izquierda").appendChild(label_inicio);
+
+	//text Fecha Inicio
+	var label_inicio = document.createElement("input");
+	label_inicio.setAttribute("id", "FechaInicio");
+	label_inicio.setAttribute("type", "date");
+	label_inicio.setAttribute("name", "FechaInicio");
+	label_inicio.setAttribute("required", "true");
+	document.getElementById("formulario_izquierda").appendChild(label_inicio);
+	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
+
+	//label Fecha Final
+	var label_final = document.createElement("label");
+	label_final.setAttribute("for", "FechaFinal");
+	label_final.setAttribute("name", "FechaFinal");
+	var texto_final = document.createTextNode("Fecha de Finalización");
+	label_final.appendChild(texto_final);
+	document.getElementById("formulario_izquierda").appendChild(label_final);
+
+	//text Fecha Final
+	var label_final = document.createElement("input");
+	label_final.setAttribute("id", "FechaFinal");
+	label_final.setAttribute("type", "date");
+	label_final.setAttribute("name", "FechaFinal");
+	label_final.setAttribute("required", "true");
+	document.getElementById("formulario_izquierda").appendChild(label_final);
+	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
+
+	//label Horas totales
+	var label_horas = document.createElement("label");
+	var texto_horas = document.createTextNode("Horas totales");
+	label_horas.appendChild(texto_horas);
+	document.getElementById("formulario_izquierda").appendChild(label_horas);
+
+	//text Horas totales
+	var label_horas = document.createElement("input");
+	label_horas.setAttribute("id", "horasTotales");
+	label_horas.setAttribute("type","number");
+	label_horas.setAttribute("name", "horasTotales");
+	document.getElementById("formulario_izquierda").appendChild(label_horas);
+
+	//boton crear
+	var crear_sprint_dentro = document.createElement("input");
+	crear_sprint_dentro.setAttribute("onclick", "comprobarSprintNuevo();");
+	crear_sprint_dentro.setAttribute("type","button");
+	crear_sprint_dentro.setAttribute("name","crearSprint");
+	crear_sprint_dentro.setAttribute("value","Crear Sprint");
+	crear_sprint_dentro.setAttribute("id","boton_crear_sprint_nuevo");
+	document.getElementById("formulario").appendChild(crear_sprint_dentro);
+
+	document.getElementById('botonCrearSprint').style.display="none";
+	document.getElementById('botonCrearSprint').classList.add("deshabilitar");
+}
+
+function fechaInicioRellenado(){
+	label_inicio = document.getElementById("label_inicio");
+	if (document.getElementById("label_inicio").value == "") {
+		contenidoFechaInicio = false;
+	}
+	else{
+		contenidoFechaInicio = true;
+	}
+}
+
+function fechaFinalRellenado(){
+	label_final = document.getElementById("label_final");
+	if (document.getElementById("label_final").value == "") {
+		contenidoFechaFinal = false;
+		console.log("hola, da error.");
+	}
+	else{
+		contenidoFechaFinal = true;
+	}
+}
+
+function horasTotalesRellenado(){
+	numero_horas = document.getElementById("numero_horas");
+	if (document.getElementById("numero_horas").value == "") {
+		contenidoHorasTotales = false;
+	}
+	else{
+		contenidoHorasTotales = true;
+	}
+}
+
+function respuestaSprintNuevo(){
+	if (contenidoFechaInicio == false) {
+		erroresFormulario();
+	}
+	if (contenidoFechaFinal == false) {
+		erroresFormulario();
+	}
+	if (contenidoHorasTotales == false) {
+		erroresFormulario();
+	}
+}
+
+function comprobarSprintNuevo(){
+	//fechaInicioRellenado();
+	//fechaFinalRellenado();
+	//horasTotalesRellenado();
+	//respuestaSprintNuevo();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+	var boton_crear_sprint = document.createElement("input");
+	boton_crear_sprint.setAttribute("onclick", "crearSprint()");
+	boton_crear_sprint.setAttribute("type","button");
+	boton_crear_sprint.setAttribute("name","crearSprint");
+	boton_crear_sprint.setAttribute("value","Crear nuevo Sprint");
+	boton_crear_sprint.setAttribute("id","botonCrearSprint");
+	document.getElementById("boton_sprint").appendChild(boton_crear_sprint);
+});
