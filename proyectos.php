@@ -62,15 +62,9 @@ $userRol=$userDetails->rol;
 			
 			<div id="contenedor_sprints_backlog">
 				<div id="divSprint" class=" col s7 right">
-<<<<<<< HEAD
 					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
-					<div  id="divTitu" class="card-panel blue-grey lighten-4">
+					<div  id="contenedor_sprints" class="card-panel blue-grey lighten-4">
 
-=======
-					<div class="row card-panel blue-grey lighten-4">SPRINTS</div>
-					<div   id ="contenedor_sprints" class="row card-panel blue-grey lighten-4">
-					
->>>>>>> 6166332dbb5c2e6786f40bb4c00c9ae336e273be
 						<?php 
 						$contar=0;
 						$pdo=getDB();
