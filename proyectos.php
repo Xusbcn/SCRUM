@@ -61,15 +61,11 @@ $userRol=$userDetails->rol;
 			</div>
 			
 			<div id="contenedor_sprints_backlog">
-<<<<<<< HEAD
-				<div id="divSprint" class=" col s7 right">
+
+				<div id="divSprint" class=" col s6 right">
 					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
 					<div  id="contenedor_sprints" class="card-panel blue-grey lighten-4">
-=======
-				<div id="divSprint" class=" col s6 right">
-					<div class="row card-panel blue-grey lighten-4">SPRINTS</div>
-					<div   id ="contenedor_sprints" class="row card-panel blue-grey lighten-4">
->>>>>>> 4fb7ec5e3dc71cdd55c02943e945987b3a0fff9d
+
 
 						<?php 
 						$contar=0;
@@ -78,9 +74,10 @@ $userRol=$userDetails->rol;
 						
 						$arrayFechasPHP=array();
 						$totalSprints=0;
+						$num=0;
 						foreach ($pdo->query($sql) as $row) {
 						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
-						echo "<div class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</div>";
+						echo "<div id='sprintDiv$num' class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</div>";
 						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
 						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
@@ -115,7 +112,9 @@ $userRol=$userDetails->rol;
 				        echo '<br><br>';
 				   		 }	
 
-				   		 echo"</div>";			
+				   		 echo"</div>";
+				   		 $num=$num+1;
+
 						}
 						$js_array = json_encode($arrayFechasPHP);
 						echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
@@ -231,4 +230,9 @@ $userRol=$userDetails->rol;
 		}
 	}
 }
+
+
+
+
+
 </script>
