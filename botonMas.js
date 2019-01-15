@@ -125,11 +125,17 @@ function eliminar(element){
 function candado(){
 	var divPadre = document.getElementById("sprintDiv0");
 	var candadoCerrado = document.createElement('img');
+	candadoCerrado.addEventListener("mouseover",candadoAbierto);
 	candadoCerrado.setAttribute("style","float:right");
 	candadoCerrado.setAttribute("src", "img/cerrado.png");
 	candadoCerrado.setAttribute("width", "35");
 	candadoCerrado.setAttribute("height", "35");
 	divPadre.appendChild(candadoCerrado);
 
+
+}
+
+function candadoAbierto(element){
+	element.style.backgrounImg = "url(img/abierto.png)";
 
 }
