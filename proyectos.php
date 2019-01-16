@@ -75,7 +75,12 @@ $userRol=$userDetails->rol;
 						foreach ($pdo->query($sql) as $row) {
 						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
 						echo "<div class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</div>";
-						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
+						
+						echo "<div class='panel' ondrop='drop(event)' ondragover='allowDrop(event)' style=padding: 0.18px;background-color: white;display: block;overflow: hidden;'>";
+
+						echo "hola";
+						echo "<div id='div2' ondrop='drop(event)' ondragover='allowDrop(event)' style=padding: 0.18px;background-color: white;display: block;overflow: hidden;'>";
+						/*
 						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
 						echo "Fecha: ",$row['date_start'] . "\t - ";
@@ -86,7 +91,7 @@ $userRol=$userDetails->rol;
 						echo "</b>";
 						echo '<br><br>';
 						echo "</p>";
-						
+						*/
 
 						$fechaInicio=strtotime($row['date_start']);
 						$fechaFin=strtotime($row['date_finish']);
@@ -97,7 +102,7 @@ $userRol=$userDetails->rol;
 						array_push($arrayFechasPHP, $fechaHoy);
 						$totalSprints+=1;
 						$contar=$contar+1;
-						
+						/*
 						$sql1="SELECT * from specifications WHERE number_sprint=".$contar." AND cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 						foreach ($pdo->query($sql1) as $row1) {
 				        echo "<b><font size='4'>",$row1['name_specification'] . "\t</font></b><br>";
@@ -108,9 +113,12 @@ $userRol=$userDetails->rol;
 				        echo "</b>";
 				        echo '<br><br>';
 				   		 }	
-
-				   		 echo"</div>";			
+						*/	
+				   		 echo "</div>";
+				   		 echo"</div>";	
+				   		 
 						}
+
 						$js_array = json_encode($arrayFechasPHP);
 						echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
 
@@ -136,7 +144,10 @@ $userRol=$userDetails->rol;
 						$pdo=getDB();
 						$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 						foreach ($pdo->query($sql) as $row) {
-						echo "<div id='mover_div' style='margin-bottom: 10px;border: solid yellowgreen;' >";
+						echo "<div id='div3' ondrop='drop(event)'' ondragover='allowDrop(event)''>";
+						echo "<img src='css/images/cancelar.png' draggable='true' ondragstart='drag(event)'' id='drag1' width='88' height='31'>";
+	
+						echo "<div id='mover_div' draggable='true' ondragstart='drag(event)' style='margin-bottom: 10px;border: solid yellowgreen;' >";
 				        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 				        echo $row['description'] . "\t";
 				        echo "<b style='float:right'>";
@@ -145,6 +156,10 @@ $userRol=$userDetails->rol;
 				        echo "</b>";
 				        echo '<br><br>';
 				       	echo '</div>';
+				       	echo '</div>';
+				       	
+  						
+
 				    	}
 
 						?>
@@ -155,6 +170,14 @@ $userRol=$userDetails->rol;
 		</div>
 	</div>
 </div>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img src="css/images/cancelar.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+  
+</div>
+
+<div  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+
 
 </body>
 </html>
@@ -224,5 +247,21 @@ $userRol=$userDetails->rol;
 			document.getElementsByClassName("boton_eliminar")[i].style.display="none";
 		}
 	}
+}
+
+</script>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
 }
 </script>

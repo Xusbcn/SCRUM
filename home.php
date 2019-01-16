@@ -185,6 +185,8 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			    $respuesta3 = $consulta3->fetch();
 			}
 			?>
+
+			
 			document.getElementById("formulario_derecha").appendChild(select_combobox_dev);
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
