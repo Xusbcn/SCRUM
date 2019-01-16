@@ -120,7 +120,7 @@ $userRol=$userDetails->rol;
 						echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
 
 						?>
-						
+							<input type="date" id="Hoy" name="Hoy" value="<?php echo date("Y-m-d");?>" hidden>
 							<div id="boton_sprint"></div>
 							<div id="contenedor-formulario">
 								<div id="div_formulario" hidden>
@@ -230,9 +230,5 @@ $userRol=$userDetails->rol;
 		}
 	}
 }
-
-
-
-
 
 </script>

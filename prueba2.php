@@ -6,7 +6,23 @@
 <body>
 	<?php 
 
-		if (isset($_POST["nombre"])){ 
+		if (isset($_POST["nombre"])){
+			$conn = mysqli_connect('localhost','xus','xus123');
+			mysqli_select_db($conn, 'scrum2');
+			$consultaCod = ("SELECT MAX(cod_project)+10 as codigo FROM proj_users;");
+			$resultatCod = mysqli_query($conn2, $consultaCod);
+			while( $cod = mysqli_fetch_assoc($resultatCod)){
+				$codProject=$cod["codigo"];
+			};
+
+			echo $cod;
+		}
+			/*
+			$correo = $mailUser;
+			$titulo = "Recuperacion de contraseña";
+			$mensaje = "http://ec2-54-158-157-91.compute-1.amazonaws.com/SCRUM/restablecerpss.php?userID=".$uidNumber;
+			mail($correo, $titulo,$mensaje);
+			header("Location:index.php");
 
 			$nombre_proyecto = $_POST["nombre"];
 			$campo_scrum_master = $_POST["campo_scrum_master"];
@@ -69,6 +85,7 @@
 			echo "no has introducido datos";
 		}
 		header("Location:home.php");
+		*/
 	?>
 
 </body>
