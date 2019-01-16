@@ -162,32 +162,33 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 			
 			//checkbox developers
-			var select_combobox_group = document.createElement("select");
-			select_combobox_group.setAttribute("id", "campo_group");
-			select_combobox_group.setAttribute("name", "campo_group");
-			select_combobox_group.setAttribute("class", "browser-default");
-			select_combobox_group.setAttribute("required", "true");
+			var select_combobox_dev = document.createElement("select");
+			select_combobox_dev.setAttribute("id", "campo_dev");
+			select_combobox_dev.setAttribute("name", "campo_dev");
+			select_combobox_dev.setAttribute("class", "browser-default");
+			select_combobox_dev.setAttribute("required", "true");
 			//opciones del combobox
-			var opcion_por_defecto_group = document.createElement("option");
-			opcion_por_defecto_group.setAttribute("value",'');
+			var opcion_por_defecto_product = document.createElement("option");
+			opcion_por_defecto_product.setAttribute("value",'');
 			var texto_opcion = document.createTextNode('Grupos de Desarrollo');
-			opcion_por_defecto_group.appendChild(texto_opcion);
-			select_combobox_group.appendChild(opcion_por_defecto_group);
+			opcion_por_defecto_product.appendChild(texto_opcion);
+			select_combobox_dev.appendChild(opcion_por_defecto_product);
 			<?php 
 			while ($respuesta3) {
 				?>
-				var opcion_combobox_group = document.createElement("option");
-				opcion_combobox_group.setAttribute("value",'<?php echo "$respuesta3[group_name]" ?>');
+				var opcion_combobox_dev = document.createElement("option");
+				opcion_combobox_dev.setAttribute("value",'<?php echo "$respuesta3[group_name]" ?>');
 				var texto_opcion = document.createTextNode('<?php echo "$respuesta3[group_name]" ?>');
-				opcion_combobox_group.appendChild(texto_opcion);
-				select_combobox_group.appendChild(opcion_combobox_group);
+				opcion_combobox_dev.appendChild(texto_opcion);
+				select_combobox_dev.appendChild(opcion_combobox_dev);
 				<?php
 			    $respuesta3 = $consulta3->fetch();
 			}
 			?>
-			document.getElementById("formulario_derecha").appendChild(select_combobox_group);
+			document.getElementById("formulario_derecha").appendChild(select_combobox_dev);
 			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
-			
+			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
+			document.getElementById("formulario_derecha").appendChild(document.createElement("br"));
 
 			
 		</script>

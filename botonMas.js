@@ -3,9 +3,10 @@
 
 if(typeUser=="ProductOwner") {
 	inputsNombreProyecto();
-}else if(typeUser=="ScrumMaster"){
-	candado();
+}else if (typeUser=="ScrumMaster") {
+	hoverCandado();
 }
+
 
 function inputsNombreProyecto(){
 	var elementopadre = document.getElementById("ultimoDiv");
@@ -122,13 +123,28 @@ function eliminar(element){
 
 
 
-function candado(){
-	var divPadre = document.getElementById("divTitu");
-	var candadoCerrado = document.createElement('img');
-	candadoCerrado.setAttribute("src", "img/cerrado.png");
-	candadoCerrado.setAttribute("width", "25");
-	candadoCerrado.setAttribute("height", "25");
-	divPadre.appendChild(candadoCerrado);
+function hoverCandado(){
+	var arraySpri = document.getElementsByClassName("acordeon");
+	for (var i = 0; i < arraySpri.length; i++) {
+		if (arraySpri[i].style.backgroundColor=="black") {
+			candado = arraySpri[i].lastChild.previousElementSibling;
+			candadoAbierto(candado);		
+		}
 
+		
+	}
+
+
+}
+
+function candadoCerrado(element){
+	element.setAttribute("src","img/cerrado.png");
+
+}
+
+
+
+function candadoAbierto(element){
+	element.setAttribute("src","img/abierto.png");	
 
 }
