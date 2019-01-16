@@ -431,9 +431,6 @@ color: #262123;
 }
 
 
-
-
-
 #div1,#div3 {
   float: left;
   width: 100px;
@@ -443,7 +440,11 @@ color: #262123;
   border: 1px solid black;
 }
 
-.panel{
-  display: none;
-
+.candado{
+  width: 10%;
+  height: 10%;
 }
+
+
+
+

@@ -61,9 +61,11 @@ $userRol=$userDetails->rol;
 			</div>
 			
 			<div id="contenedor_sprints_backlog">
+
 				<div id="divSprint" class=" col s6 right">
-					<div class="row card-panel blue-grey lighten-4">SPRINTS</div>
-					<div   id ="contenedor_sprints" class="row card-panel blue-grey lighten-4">
+					<div class="card-panel blue-grey lighten-4">SPRINTS</div>
+					<div  id="contenedor_sprints" class="card-panel blue-grey lighten-4">
+
 
 						<?php 
 						$contar=0;
@@ -72,8 +74,10 @@ $userRol=$userDetails->rol;
 						
 						$arrayFechasPHP=array();
 						$totalSprints=0;
+						$num=0;
 						foreach ($pdo->query($sql) as $row) {
 						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
+
 						echo "<div class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</div>";
 						
 						echo "<div class='panel' ondrop='drop(event)' ondragover='allowDrop(event)' style=padding: 0.18px;background-color: white;display: block;overflow: hidden;'>";
@@ -81,6 +85,10 @@ $userRol=$userDetails->rol;
 						echo "hola";
 						echo "<div id='div2' ondrop='drop(event)' ondragover='allowDrop(event)' style=padding: 0.18px;background-color: white;display: block;overflow: hidden;'>";
 						/*
+
+						echo "<div id='sprintDiv$num' class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."<img onmouseover='hoverCandado()'  onmouseout='candadoCerrado(this)' class='candado' src='img/cerrado.png'> </div>";
+						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
+
 						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
 						echo "Fecha: ",$row['date_start'] . "\t - ";
@@ -113,17 +121,24 @@ $userRol=$userDetails->rol;
 				        echo "</b>";
 				        echo '<br><br>';
 				   		 }	
+
 						*/	
 				   		 echo "</div>";
 				   		 echo"</div>";	
 				   		 
+
+
+				   		 echo"</div>";
+				   		 $num=$num+1;
+
+
 						}
 
 						$js_array = json_encode($arrayFechasPHP);
 						echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
 
 						?>
-						
+							<input type="date" id="Hoy" name="Hoy" value="<?php echo date("Y-m-d");?>" hidden>
 							<div id="boton_sprint"></div>
 							<div id="contenedor-formulario">
 								<div id="div_formulario" hidden>
@@ -249,6 +264,7 @@ $userRol=$userDetails->rol;
 	}
 }
 
+
 </script>
 <script>
 function allowDrop(ev) {
@@ -264,4 +280,6 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
 }
+
+
 </script>

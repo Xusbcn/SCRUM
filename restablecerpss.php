@@ -21,7 +21,7 @@
 			$pass=$_POST["pass1"];
 			$conn = mysqli_connect('localhost','xus','xus123');
 			mysqli_select_db($conn, 'scrum2');
-			$update=("UPDATE users SET password = SHA2('$pass',512) WHERE uid='$userID';");
+			$update=("UPDATE users SET password = SHA2('$pass',256) WHERE uid='$userID';");
 			$resultatem = mysqli_query($conn, $update);
 		}
 	}

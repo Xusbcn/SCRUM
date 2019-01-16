@@ -109,20 +109,10 @@ function comprobacionesFormulario(){
 	comprobarNombreFormularioRelleno();
 	comprobarComboboxSeleccionadoMaster();
 	comprobarComboboxSeleccionadoOwner();
-	comprobarCheck();
+	comprobarEquipos();
 	respuestaFormulario();
 }	
-function comprobarCheck() {
-	for (i = 0; i < document.getElementsByClassName("checkboxes").length; i++) {
-		if( document.getElementsByClassName("checkboxes")[i].checked ) {
-		 	checkboxMarcado = true;
-		 	return true;
-		}
-		else{
-			checkboxMarcado = false;
-		}
-	}
-}
+
 function comprobarNombreFormularioRelleno(){
 	nombre_proyecto = document.getElementById("nombre_proyecto");
 	if (document.getElementById("nombre_proyecto").value == "") {
@@ -377,18 +367,68 @@ function horasTotalesRellenado(){
 	}
 }
 
+function fechaInicioMayorQueHoy(){
+	inicioSprint = document.getElementById("FechaInicio");
+	fechaHoy = document.getElementById("Hoy");
+	if (inicioSprint.value < fechaHoy.value) {
+		inicioMayorHoy = false;
+	}
+	else{
+		inicioMayorHoy = true;
+	}
+}
+
+function fechaInicioMenorQueFinal(){
+	label_inicio = document.getElementById("FechaInicio");
+	label_final = document.getElementById("FechaFinal");
+	if (label_inicio.value > label_final.value) {
+		inicioMenorFinal = false;
+	}
+	else{
+		inicioMenorFinal = true;
+	}
+}
+
+function horasTotalesPositivas(){
+	numero_horas = document.getElementById("horasTotales");
+	if (numero_horas.value <= 0) {
+		contenidoHorasPositivo = false;
+	}
+	else{
+		contenidoHorasPositivo = true;
+	}
+}
+
 function respuestaSprintNuevo(){
 	if (contenidoFechaInicio == false) {
 		errorSprint="Es necesario rellenar el campo 'Fecha de Inicio'.";
 		validate(errorSprint);
 	}
+	if (contenidoFechaInicio == true) {
+		if (inicioMayorHoy == false) {
+			errorSprint="La fecha de inicio tiene que ser posterior a la fecha de hoy'.";
+			validate(errorSprint);
+		}
+	}
 	if (contenidoFechaFinal == false) {
 		errorSprint="Es necesario rellenar el campo 'Fecha de Finalización'.";
 		validate(errorSprint);
 	}
+	if (contenidoFechaInicio == true && contenidoFechaFinal == true) {
+		if (inicioMenorFinal == false) {
+			errorSprint="La fecha de inicio tiene que ser anterior a la fecha de finalización'.";
+			validate(errorSprint);
+		}
+	}
 	if (contenidoHorasTotales == false) {
 		errorSprint="Es necesario rellenar el campo 'Horas totales'.";
 		validate(errorSprint);
+	}
+	if (contenidoHorasTotales == true) {
+		if (contenidoHorasPositivo == false) {
+			errorSprint="La horas totales del Sprint siempre tienen que ser positivas'.";
+			validate(errorSprint);
+		}
 	}
 }
 
@@ -396,6 +436,9 @@ function comprobarSprintNuevo(){
 	fechaInicioRellenado();
 	fechaFinalRellenado();
 	horasTotalesRellenado();
+	fechaInicioMayorQueHoy();
+	fechaInicioMenorQueFinal();
+	horasTotalesPositivas();
 	respuestaSprintNuevo();
 }
 
@@ -408,3 +451,17 @@ document.addEventListener('DOMContentLoaded', function(){
 	boton_crear_sprint.setAttribute("id","botonCrearSprint");
 	document.getElementById("boton_sprint").appendChild(boton_crear_sprint);
 });
+
+/*window.onload = function(){
+	var fecha = new Date(); //Fecha actual
+	var mes = fecha.getMonth()+1; //obteniendo mes
+	var dia = fecha.getDate(); //obteniendo dia
+	var ano = fecha.getFullYear(); //obteniendo año
+	if(dia<10){
+		dia='0'+dia; //agrega cero si el menor de 10
+	}
+	if(mes<10){
+		mes='0'+mes //agrega cero si el menor de 10
+	}
+	var fechaHoy=dia+"/"+mes+"/"+ano;
+}*/
