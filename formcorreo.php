@@ -1,18 +1,38 @@
+
+<?php
+error_reporting(0);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		body{
+			background-color: #81bf81;
+		}
+		#form_correo{
+		margin-left: 30%;
+	    margin-top: 10%;
+	    border-style: solid;
+	    border-width: 5px;
+	    margin-right: 40%;
+		}
+	</style>
 </head>
 <body>
 
 	<?php
 	include("config.php");
 	include('userClass.php');
-	echo "<form action='formcorreo.php' method='POST' >";
+	echo "<div id=form_correo>";
+	echo "<form action='formcorreo.php' method='POST' style='
+    margin-left: 10%;''>";
 	echo "<p>Introduce tu correo electronico: </p>";
 	echo "<input type='text' name='mail'><br><br>";
 	echo "<input type='submit'value='Enviar' name='send'>";
 	echo "</form>";
+	echo"<div>";
 	$error=0;
 	$conn = mysqli_connect('localhost','xus','xus123');
 	mysqli_select_db($conn, 'scrum2');

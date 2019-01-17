@@ -72,6 +72,10 @@ body{
   background-color: #81bf81;
 }
 
+#texto{
+  font-family: cursive;
+
+}
 .contenedor{
 	display: inline-flex;
 	margin-bottom: 7px;

@@ -123,6 +123,8 @@ $errorMsgReg="Username or Email already exists.";
 <body>
 
 <div id="errorMsgs"></div>
+
+<MARQUEE BEHAVIOR=ALTERNATE id="texto"style="FONT-SIZE: -webkit-xxx-large;">SCRUM PROJECT</MARQUEE>
  
 <div id="login">
 <h3>Login</h3>
@@ -148,6 +150,8 @@ $errorMsgReg="Username or Email already exists.";
 
 document.getElementById("errorMsgs").style.display="none";	
 
+
+//funcion que construye el div y mensajes de errores.
 function validate(error)
 {
  
