@@ -122,10 +122,9 @@ $errorMsgReg="Username or Email already exists.";
 </head>
 <body>
 
-<div id="errorMsgs"></div>
 
-<MARQUEE BEHAVIOR=ALTERNATE id="texto"style="FONT-SIZE: -webkit-xxx-large;">SCRUM PROJECT</MARQUEE>
- 
+
+ <div id="errorMsgs"></div>
 <div id="login">
 <h3>Login</h3>
 <form method="post" action=""name="login">
@@ -152,10 +151,12 @@ document.getElementById("errorMsgs").style.display="none";
 
 
 //funcion que construye el div y mensajes de errores.
+
+
 function validate(error)
 {
  
-
+console.log("hola");
 	 var divErrorUser=document.createElement('div');//contendra errores de usuario.
 	 
 	 var divImageErrorUser=document.createElement('div');//contendrá el icono de error.
@@ -164,7 +165,7 @@ function validate(error)
 	 var divParrafoUser=document.createElement('div');//contendrá el parrafo de error usuario.
 	 
 	 var divImageParrafoUser=document.createElement('div');
-	 var brUser=document.createElement("br");
+	 //var brUser=document.createElement("br");
 	 
 	 var imageErrorUser=document.createElement('IMG');
 	 imageErrorUser.setAttribute("src", "css/images/cancelar.png");
@@ -178,7 +179,7 @@ function validate(error)
 	divImageParrafoUser.appendChild(divImageErrorUser);
 	divImageParrafoUser.appendChild(divParrafoUser);
 	divImageParrafoUser.classList.add("contenedor");
-	document.getElementById("error_proyecto").appendChild(brUser);
+	//document.getElementById("error_proyecto").appendChild(document.createElement("br"));
 	if(Condicion==1)
 	{
  	errorUser = document.createTextNode(error);
