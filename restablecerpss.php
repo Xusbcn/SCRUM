@@ -23,9 +23,10 @@
 			mysqli_select_db($conn, 'scrum2');
 			$update=("UPDATE users SET password = SHA2('$pass',256) WHERE uid='$userID';");
 			$resultatem = mysqli_query($conn, $update);
+			header("Location:index.php");
 		}else{
 			echo "La constraseña indroducida no son iguales";
-			header("Location:index.php");
+			
 		}
 	}
 ?>
