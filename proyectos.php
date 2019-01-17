@@ -12,7 +12,7 @@ $userRol=$userDetails->rol;
 	<!--<link  href="http://fonts.googleapis.com/css? family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">-->
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
 	<script type="text/javascript" defer src="botonMas.js"></script>
-	<script type="text/javascript" src="prueba.js"></script>
+	<script type="text/javascript" src="scumFunctions.js"></script>
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<meta charset="utf-8">
 	<title></title>
@@ -44,8 +44,7 @@ $userRol=$userDetails->rol;
 					$pdo=getDB();
 					$sql="SELECT * from project WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
 					foreach ($pdo->query($sql) as $row) {
-			        //echo $row['id_project'] . "\t";
-			        //echo $row['cod_project'] . "\t";
+			        
 					$codProject=$row['cod_project'];
 			        echo "<b>Nombre de Proyecto: </b>",$row['name_project'] . "\t<br>";
 			        $nombreProyecto = $row['name_project'];
@@ -55,7 +54,7 @@ $userRol=$userDetails->rol;
 			        echo "<b>Grupo de desarrollo: </b>",$row['group_name'] . "\t<br>";
 			        echo "<b>Fecha de inicio: </b>",$row['date_start'] . "\t<br>";
 			        echo "<b>Fecha de finalización: </b>",$row['date_finish'] . "\t<br>";
-			        //echo $row['comments'] . "\t";
+			        
 			    	}
 					?>
 				</div>
@@ -166,19 +165,19 @@ $userRol=$userDetails->rol;
 </div>
 
 
-<section>
-	
-
-
-
-</section>
 
 </body>
 </html>
 
 
+
+
 <script type="text/javascript">var typeUser = '<?php echo $userRol ?>' </script>
+
+
 <script type="text/javascript">
+
+	//Accion para crear el evento de acordeon.
 		
 	var acc = document.getElementsByClassName("acordeon");
 	var panel = document.getElementsByClassName('panel');
@@ -200,8 +199,12 @@ $userRol=$userDetails->rol;
 	}
 
 	</script>
+		
+
 	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
 	<script type="text/javascript">
+
+		// cambiamos el color de los divs según las fechas.
 		var numero;
 		x=0;
 		for(var i=-1; acc.length; i++){
@@ -215,6 +218,9 @@ $userRol=$userDetails->rol;
 			}
 			x+=3;
 		}
+
+
+		//funcion que muestra el botón de crear proyectos.
 		function mostrarBoton(){
 			if (typeUser="ScrumMaster"){
 				document.getElementById('boton_sprint').style.display="none";
@@ -223,8 +229,10 @@ $userRol=$userDetails->rol;
 				document.getElementById('boton_sprint').style.display="bock";
 			}
 		}
-		mostrarBoton();
-			
+		mostrarBoton();//llamada de la función.
+	
+
+	//funcion que elimina los sprints y su contenido.
 	function eliminarSprint(){
 		
 		var sprintNegro= document.getElementById("contenedor_sprints");
@@ -234,16 +242,16 @@ $userRol=$userDetails->rol;
 				var hijoNegro=acc[i];
 				var hermanoNegro = hijoNegro.nextSibling;
 				var hijoHermanonegro= hermanoNegro.childNodes;
-				console.log(hijoHermanonegro);
+				
 				var j=0;
 
 				while(hijoHermanonegro.length>j){
-					console.log("hola");
+					
 					var divClonado=hermanoNegro.firstChild.cloneNode(true);
-					console.log(divClonado);
+					
 					var divBacklog=document.getElementById('divEspe');
 					divBacklog.appendChild(divClonado);
-					hermanoNegro.removeChild(hermanoNegro.firstChild);
+					hermanoNegro.removeChild(hermanoNegro.firstChild);	
 
 				}
 
@@ -265,6 +273,8 @@ $userRol=$userDetails->rol;
 
 
 <script type="text/javascript">
+
+	//codigo para ejecutar el drag and drop.
 	contador = 0; // Variable global para tener poder poner un id unico a cada elemento cuando se clona.
         function start(e) {
             e.dataTransfer.effecAllowed = 'move'; // Define el efecto como mover (Es el por defecto)
@@ -339,32 +349,5 @@ $userRol=$userDetails->rol;
             document.getElementById(elementoArrastrado).style.top = y + "px";
         }
 
-        /**
-        * 
-        * Elimina el elemento que se mueve
-        *
-        **/
-        function eliminar(e){
-            var elementoArrastrado = document.getElementById(e.dataTransfer.getData("Data")); // Elemento arrastrado
-            elementoArrastrado.parentNode.removeChild(elementoArrastrado); // Elimina el elemento
-            e.target.style.border = '';   // Quita el borde
-        }
-
-        /**
-        * 
-        * Clona el elemento que se mueve
-        *
-        **/
-        function clonar(e){
-            var elementoArrastrado = document.getElementById(e.dataTransfer.getData("Data")); // Elemento arrastrado
-
-            elementoArrastrado.style.opacity = ''; // Dejamos la opacidad a su estado anterior para copiar el elemento igual que era antes
-
-            var elementoClonado = elementoArrastrado.cloneNode(true); // Se clona el elemento
-            elementoClonado.id = "ElemClonado" + contador; // Se cambia el id porque tiene que ser unico
-            contador += 1;  
-            elementoClonado.style.position = "static";  // Se posiciona de forma "normal" (Sino habria que cambiar las coordenadas de la posición)  
-            e.target.appendChild(elementoClonado); // Se añade el elemento clonado
-            e.target.style.border = '';   // Quita el borde del "cuadro clonador"
-        }
+        
 </script>

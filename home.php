@@ -17,7 +17,7 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 	<link rel="stylesheet" type="text/css" href="css/codigo.css">
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<meta charset="utf-8">
-	<script type="text/javascript" src="prueba.js"></script>
+	<script type="text/javascript" src="scumFunctions.js"></script>
 	<title></title>
 
 
@@ -92,6 +92,8 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 </html>
 
 <script type="text/javascript">
+
+	// Mostramos el boton según el rol
 			var jsvarbutton=document.getElementById('roles').innerHTML;
 			console.log(jsvarbutton);
 			function mostrarBoton(){
@@ -104,6 +106,15 @@ echo "<p style='display:none' id='roles'>" . $rol. "</p>";
 			}
 			mostrarBoton();
 			
+		/*
+		******
+		Creación del formulario.
+
+		*/
+
+
+
+
 			//combobox scrum_master
 			var select_combobox_scrum = document.createElement("select");
 			select_combobox_scrum.setAttribute("id", "campo_scrum_master");

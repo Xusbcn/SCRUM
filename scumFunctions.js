@@ -1,4 +1,6 @@
 //funciones
+
+//declaramos variables globales.
 var checkboxMarcado = false;
 var nombreFormularioRelleno = false;
 var comboProductOwner = false;
@@ -9,6 +11,7 @@ var errorSprint="";
 
 
 
+//funcion para crear el formulario.
 
 function crearFormulario(){
 
@@ -66,23 +69,7 @@ function crearFormulario(){
 	document.getElementById("formulario_izquierda").appendChild(label_descripcion);
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
-/*
-	//label descripcion
-	var label_number = document.createElement("label");
-	var texto_number = document.createTextNode("Codigo de proyecto");
-	label_number.appendChild(texto_number);
-	document.getElementById("formulario_izquierda").appendChild(label_number);
-	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
-	
 
-	//text descripcion
-	var numero_number = document.createElement("input");
-	numero_number.setAttribute("id", "codigo_proyecto");
-	numero_number.setAttribute("type","number");
-	numero_number.setAttribute("name", "numero_proyecto");
-	numero_number.setAttribute("required", "true");
-	document.getElementById("formulario_izquierda").appendChild(numero_number);
-*/
 	//boton crear
 	var crear_boton = document.createElement("input");
 	crear_boton.setAttribute("onclick", "comprobacionesFormulario();");
@@ -105,6 +92,13 @@ function crearFormulario(){
 	document.getElementById("formulario").appendChild(reload_boton);
 }
 
+
+/*
+*********
+*/
+
+
+ //funcion que llama a pequeñas que comprueban si los campos estan vacios.
 function comprobacionesFormulario(){
 	comprobarNombreFormularioRelleno();
 	comprobarComboboxSeleccionadoMaster();
@@ -112,6 +106,12 @@ function comprobacionesFormulario(){
 	comprobarEquipos();
 	respuestaFormulario();
 }	
+/*
+*******
+funciones que comprueban que cada campo del formulario esté cumplimentado.
+*/
+
+
 
 function comprobarNombreFormularioRelleno(){
 	nombre_proyecto = document.getElementById("nombre_proyecto");
@@ -122,6 +122,7 @@ function comprobarNombreFormularioRelleno(){
 		nombreFormularioRelleno = true;
 	}
 }
+
 function comprobarComboboxSeleccionadoMaster(){
 	var lista_scrum_master = document.getElementById("campo_scrum_master");
     if(lista_scrum_master.selectedIndex !=0 )
@@ -148,11 +149,16 @@ function comprobarEquipos(){
     }
 }
 
+
+/*
+*******+*/
+
+// función que devolverá los errores en el formulario.
 function respuestaFormulario(){
 	if (nombreFormularioRelleno == false) {
-		errorform="ha de introducir un nombre";
+		errorform="ha de introducir un nombre"; //indicación.
 
-		validate(errorform);
+		validate(errorform);//llamada del constructor que muestra errores.
 	
 		document.getElementById('boton_crear_dentro').style.display="none";
 		document.getElementById('boton_reload').style.display="block";
@@ -180,6 +186,9 @@ function respuestaFormulario(){
 	}
 }
 
+
+
+
 document.addEventListener('DOMContentLoaded', function(){
 	var crear_boton_creacion = document.createElement("input");
 	crear_boton_creacion.setAttribute("onclick", "crearFormulario()");
@@ -191,19 +200,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-function erroresFormulario(){
-	var imageErrorfortmulario=document.createElement('IMG');
- 	imageErrorfortmulario.setAttribute("src", "css/images/cancelar.png");
- 	imageErrorfortmulario.setAttribute("width", "20px");
-	var parrafoerror=document.createElement('p');
-	var textoerror=document.createTextNode("No pueden existir campos vacios");
-	parrafoerror.appendChild(textoerror);
-	document.getElementById("error_proyecto").appendChild(parrafoerror);
-  	document.getElementById("error_proyecto").style.display="block";
-}
 
-
-
+//funcion que construye el div y mensajes de errores.
 
 function validate(errorform)
 {
@@ -235,7 +233,7 @@ function validate(errorform)
   	parrafoUser.appendChild(errorUser);
 
   	document.getElementById("error_proyecto").appendChild(divImageParrafoUser);
-  	//divErrorUser.insertBefore(brUser,divImageParrafoUser);
+  	
   	
   	document.getElementById("error_proyecto").style.display="block";
 	
@@ -255,8 +253,9 @@ function formatDate(date) {
     return [year, day, month].join('-');
 }
 
-//alert(formatDate('03/01/2019'));
 
+
+//función que crea el formulario que crea el sprint.
 function crearSprint(){
 
 	//marco habilitado
@@ -356,6 +355,9 @@ function crearSprint(){
 	document.getElementById('botonCrearSprint').classList.add("deshabilitar");
 }
 
+
+
+
 function fechaInicioRellenado(){
 	label_inicio = document.getElementById("FechaInicio");
 	if (document.getElementById("FechaFinal").value == "") {
@@ -419,6 +421,11 @@ function horasTotalesPositivas(){
 	}
 }
 
+
+
+
+//comprueba y muestra los erroes en la cumplimentación del formulario.
+
 function respuestaSprintNuevo(){
 	if (contenidoFechaInicio == false) {
 		errorSprint="Es necesario rellenar el campo 'Fecha de Inicio'.";
@@ -471,17 +478,3 @@ document.addEventListener('DOMContentLoaded', function(){
 	boton_crear_sprint.setAttribute("id","botonCrearSprint");
 	document.getElementById("boton_sprint").appendChild(boton_crear_sprint);
 });
-
-/*window.onload = function(){
-	var fecha = new Date(); //Fecha actual
-	var mes = fecha.getMonth()+1; //obteniendo mes
-	var dia = fecha.getDate(); //obteniendo dia
-	var ano = fecha.getFullYear(); //obteniendo año
-	if(dia<10){
-		dia='0'+dia; //agrega cero si el menor de 10
-	}
-	if(mes<10){
-		mes='0'+mes //agrega cero si el menor de 10
-	}
-	var fechaHoy=dia+"/"+mes+"/"+ano;
-}*/
