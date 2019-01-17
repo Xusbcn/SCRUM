@@ -77,18 +77,10 @@ $userRol=$userDetails->rol;
 						$num=0;
 						foreach ($pdo->query($sql) as $row) {
 						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
-
-						echo "<div class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."</div>";
-						
-						echo "<div class='panel' ondrop='drop(event)' ondragover='allowDrop(event)' style=padding: 0.18px;background-color: white;display: block;overflow: hidden;'>";
-
-						echo "hola";
-						echo "<div id='div2' ondrop='drop(event)' ondragover='allowDrop(event)' style=padding: 0.18px;background-color: white;display: block;overflow: hidden;'>";
-						/*
-
 						echo "<div id='sprintDiv$num' class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."<img onmouseover='hoverCandado()'  onmouseout='candadoCerrado(this)' class='candado' src='img/cerrado.png'> </div>";
-						echo "<div class='panel' style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
-
+						echo "<div id='cuadro2' class='panel' ondragenter='return enter(event)' ondragover='return over(event)' ondragleave='return leave(event)' ondrop='return drop(event)'style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
+						echo "hola";
+						/*
 						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
 						echo "Fecha: ",$row['date_start'] . "\t - ";
@@ -100,7 +92,6 @@ $userRol=$userDetails->rol;
 						echo '<br><br>';
 						echo "</p>";
 						*/
-
 						$fechaInicio=strtotime($row['date_start']);
 						$fechaFin=strtotime($row['date_finish']);
 						$fechaHoy=strtotime(date('Y-m-d'));
@@ -120,23 +111,14 @@ $userRol=$userDetails->rol;
 				        echo $row1['date'] . "\t ";
 				        echo "</b>";
 				        echo '<br><br>';
+
 				   		 }	
-
-						*/	
-				   		 echo "</div>";
-				   		 echo"</div>";	
-				   		 
-
-
+				   		 */
 				   		 echo"</div>";
 				   		 $num=$num+1;
-
-
 						}
-
 						$js_array = json_encode($arrayFechasPHP);
 						echo "<p style='display:none' id='numero_sprint'>",$totalSprints . "\t</p>";
-
 						?>
 							<input type="date" id="Hoy" name="Hoy" value="<?php echo date("Y-m-d");?>" hidden>
 							<div id="boton_sprint"></div>
@@ -154,15 +136,13 @@ $userRol=$userDetails->rol;
 
 				<div id="ultimoDiv" class=" col s6 left">
 					<div class="card-panel blue-grey lighten-4">BACKLOG</div>
-					<div id="divEspe" class="card-panel blue-grey lighten-4">
+					<div id="divEspe" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)" class="card-panel blue-grey lighten-4">
 						<?php 
 						$pdo=getDB();
 						$sql="SELECT * from specifications WHERE cod_project IN (SELECT cod_project FROM proj_users WHERE name_proj='".$v1."' AND username IN (SELECT username FROM users WHERE name='".$nombre_usuario_proyecto."'))";
+						$dragnumber=0;
 						foreach ($pdo->query($sql) as $row) {
-						echo "<div id='div3' ondrop='drop(event)'' ondragover='allowDrop(event)''>";
-						echo "<img src='css/images/cancelar.png' draggable='true' ondragstart='drag(event)'' id='drag1' width='88' height='31'>";
-	
-						echo "<div id='mover_div' draggable='true' ondragstart='drag(event)' style='margin-bottom: 10px;border: solid yellowgreen;' >";
+						echo "<div class='cuadradito'id='mover_div$dragnumber' draggable='true' ondragstart='start(event)'' ondragend='end(event)style='margin-bottom: 10px;border: solid yellowgreen;' >";
 				        echo "<b><font size='4'>",$row['name_specification'] . "\t</font></b><br>";
 				        echo $row['description'] . "\t";
 				        echo "<b style='float:right'>";
@@ -171,12 +151,8 @@ $userRol=$userDetails->rol;
 				        echo "</b>";
 				        echo '<br><br>';
 				       	echo '</div>';
-				       	echo '</div>';
-				       	
-  						
-
+				       	$dragnumber=$dragnumber+1;
 				    	}
-
 						?>
 				
 					</div>
@@ -185,14 +161,14 @@ $userRol=$userDetails->rol;
 		</div>
 	</div>
 </div>
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <img src="css/images/cancelar.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-  
-</div>
-
-<div  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
 
+<section>
+	
+
+
+
+</section>
 
 </body>
 </html>
@@ -203,26 +179,22 @@ $userRol=$userDetails->rol;
 		
 	var acc = document.getElementsByClassName("acordeon");
 	var panel = document.getElementsByClassName('panel');
-
 	for (var i = 0; i < acc.length; i++) {
 	    acc[i].onclick = function() {
 	        var setClasses = !this.classList.contains('active');
 	        setClass(acc, 'active', 'remove');
 	        setClass(panel, 'show', 'remove');
-
 	        if (setClasses) {
 	            this.classList.toggle("active");
 	            this.nextElementSibling.classList.toggle("show");
 	        }
 	    }
 	}
-
 	function setClass(els, className, fnName) {
 	    for (var i = 0; i < els.length; i++) {
 	        els[i].classList[fnName](className);
 	    }
 	}
-
 	</script>
 	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
 	<script type="text/javascript">
@@ -239,7 +211,6 @@ $userRol=$userDetails->rol;
 			}
 			x+=3;
 		}
-
 		function mostrarBoton(){
 			if (typeUser="ScrumMaster"){
 				document.getElementById('boton_sprint').style.display="none";
@@ -250,7 +221,6 @@ $userRol=$userDetails->rol;
 		}
 		mostrarBoton();
 			
-
 	function eliminarSprint(){
 		
 	var sprintNegro= document.getElementById("contenedor_sprints");
@@ -263,23 +233,109 @@ $userRol=$userDetails->rol;
 		}
 	}
 }
-
-
 </script>
-<script>
-function allowDrop(ev) {
-  ev.preventDefault();
-}
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+<script type="text/javascript">
+	contador = 0; // Variable global para tener poder poner un id unico a cada elemento cuando se clona.
+        function start(e) {
+            e.dataTransfer.effecAllowed = 'move'; // Define el efecto como mover (Es el por defecto)
+            e.dataTransfer.setData("Data", e.target.id); // Coje el elemento que se va a mover
+            e.dataTransfer.setDragImage(e.target, 0, 0); // Define la imagen que se vera al ser arrastrado el elemento y por donde se coje el elemento que se va a mover (el raton aparece en la esquina sup_izq con 0,0)
+            e.target.style.opacity = '0.4'; 
+        }
 
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
+        function end(e){
+            e.target.style.opacity = ''; // Pone la opacidad del elemento a 1           
+            e.dataTransfer.clearData("Data");
+        }
 
+        function enter(e) {
+            e.target.style.border = '3px dotted #555'; 
+        }
 
+        function leave(e) {
+            e.target.style.border = ''; 
+        }
+
+        function over(e) {
+            var elemArrastrable = e.dataTransfer.getData("Data"); // Elemento arrastrado
+            var id = e.target.id; // Elemento sobre el que se arrastra
+            
+            // return false para que se pueda soltar
+            if (id == 'divEspe'){
+                return false; // Cualquier elemento se puede soltar sobre el div destino 1
+            }
+
+            if ((id == 'cuadro2')){
+                return false; // En el cuadro2 se puede soltar cualquier elemento menos el elemento con id=arrastrable3
+            }   
+
+        }
+
+    
+        /**
+        * 
+        * Mueve el elemento
+        *
+        **/
+        function drop(e){
+
+            var elementoArrastrado = e.dataTransfer.getData("Data"); // Elemento arrastrado
+            e.target.appendChild(document.getElementById(elementoArrastrado));
+            e.target.style.border = '';  // Quita el borde
+            tamContX = $('#'+e.target.id).width();
+            tamContY = $('#'+e.target.id).height();
+
+            tamElemX = $('#'+elementoArrastrado).width();
+            tamElemY = $('#'+elementoArrastrado).height();
+    
+            posXCont = $('#'+e.target.id).position().left;
+            posYCont = $('#'+e.target.id).position().top;
+
+            // Posicion absoluta del raton
+            x = e.layerX;
+            y = e.layerY;
+
+            // Si parte del elemento que se quiere mover se queda fuera se cambia las coordenadas para que no sea asi
+            if (posXCont + tamContX <= x + tamElemX){
+                x = posXCont + tamContX - tamElemX;
+            }
+
+            if (posYCont + tamContY <= y + tamElemY){
+                y = posYCont + tamContY - tamElemY;
+            }
+
+            document.getElementById(elementoArrastrado).style.position = "absolute";
+            document.getElementById(elementoArrastrado).style.left = x + "px";
+            document.getElementById(elementoArrastrado).style.top = y + "px";
+        }
+
+        /**
+        * 
+        * Elimina el elemento que se mueve
+        *
+        **/
+        function eliminar(e){
+            var elementoArrastrado = document.getElementById(e.dataTransfer.getData("Data")); // Elemento arrastrado
+            elementoArrastrado.parentNode.removeChild(elementoArrastrado); // Elimina el elemento
+            e.target.style.border = '';   // Quita el borde
+        }
+
+        /**
+        * 
+        * Clona el elemento que se mueve
+        *
+        **/
+        function clonar(e){
+            var elementoArrastrado = document.getElementById(e.dataTransfer.getData("Data")); // Elemento arrastrado
+
+            elementoArrastrado.style.opacity = ''; // Dejamos la opacidad a su estado anterior para copiar el elemento igual que era antes
+
+            var elementoClonado = elementoArrastrado.cloneNode(true); // Se clona el elemento
+            elementoClonado.id = "ElemClonado" + contador; // Se cambia el id porque tiene que ser unico
+            contador += 1;  
+            elementoClonado.style.position = "static";  // Se posiciona de forma "normal" (Sino habria que cambiar las coordenadas de la posición)  
+            e.target.appendChild(elementoClonado); // Se añade el elemento clonado
+            e.target.style.border = '';   // Quita el borde del "cuadro clonador"
+        }
 </script>
