@@ -55,7 +55,7 @@ if (!empty($_POST['loginSubmit']))
 	{
 		?>
 			<script type="text/javascript">
-				var error = "Introduce una usuarioç o mail";
+				var error = "Introduce una usuario o mail";
 				var Condicion = 1;
 			</script>
 		<?php
@@ -122,9 +122,10 @@ $errorMsgReg="Username or Email already exists.";
 </head>
 <body>
 
+<div id="errorMsgs"></div>
 
 
- <div id="errorMsgs"></div>
+ 
 <div id="login">
 <h3>Login</h3>
 <form method="post" action=""name="login">
@@ -151,12 +152,10 @@ document.getElementById("errorMsgs").style.display="none";
 
 
 //funcion que construye el div y mensajes de errores.
-
-
 function validate(error)
 {
  
-console.log("hola");
+
 	 var divErrorUser=document.createElement('div');//contendra errores de usuario.
 	 
 	 var divImageErrorUser=document.createElement('div');//contendrá el icono de error.
@@ -179,7 +178,7 @@ console.log("hola");
 	divImageParrafoUser.appendChild(divImageErrorUser);
 	divImageParrafoUser.appendChild(divParrafoUser);
 	divImageParrafoUser.classList.add("contenedor");
-	//document.getElementById("error_proyecto").appendChild(document.createElement("br"));
+	//document.getElementById("error_proyecto").appendChild(brUser);
 	if(Condicion==1)
 	{
  	errorUser = document.createTextNode(error);
