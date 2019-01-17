@@ -284,8 +284,8 @@ function crearSprint(){
 	num_sprint.setAttribute("name", "numeroSprint");
 	num_sprint.setAttribute("required", "true");
 	num_sprint.setAttribute("value", Numero_Sprint);
+	num_sprint.setAttribute("hidden", true);
 	document.getElementById("formulario_izquierda").appendChild(num_sprint);
-	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 
 	//text Nombre Sprint
 	var nombre_sprint = document.createElement("input");
@@ -294,8 +294,8 @@ function crearSprint(){
 	nombre_sprint.setAttribute("name", "nombreSprint");
 	nombre_sprint.setAttribute("required", "true");
 	nombre_sprint.setAttribute("value", "Sprint "+Numero_Sprint);
+	nombre_sprint.setAttribute("hidden", true);
 	document.getElementById("formulario_izquierda").appendChild(nombre_sprint);
-	document.getElementById("formulario_izquierda").appendChild(document.createElement("br"));
 
 	//label Fecha Inicio
 	var label_inicio = document.createElement("label");
@@ -449,9 +449,7 @@ function respuestaSprintNuevo(){
 			errorSprint="La horas totales del Sprint siempre tienen que ser positivas'.";
 			validate(errorSprint);
 		}
-	}else{
-		document.getElementById("formulario").submit();
-	}
+	}document.getElementById("formulario").submit();
 }
 
 function comprobarSprintNuevo(){

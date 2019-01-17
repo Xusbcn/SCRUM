@@ -60,24 +60,6 @@
 			header("Location:home.php");
 		}
 	?>
-	
-	<?php
-		if (isset($_POST["FechaInicio"])){
-
-
-			$numeroSprint = $_POST["numeroSprint"];
-			$nombreSprint = $_POST["nombreSprint"];
-			$fechaInicio = $_POST["FechaInicio"];
-			$fechaFinal = $_POST["FechaFinal"];
-			$horasTotales = $_POST["horasTotales"];
-
-			$conn4 = mysqli_connect('localhost','xus','xus123');
-				mysqli_select_db($conn4, 'scrum2');
-
-				$insertSprint = ("INSERT INTO `sprints`(`id_sprint`, `cod_project`, `number_sprint`, `name_sprint`, `date_start`, `date_finish`, `total_hours`, `hours_left`) VALUES LAST_INSERT_ID(), 60, '".$numeroSprint."', '".$nombreSprint."', '".$fechaInicio."', '".$fechaFinal."', '".$horasTotales."', '".$horasTotales."')");
-				mysqli_query($conn4, $insertSprint);
-
-	?>
 
 </body>
 </html>
