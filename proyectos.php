@@ -48,6 +48,7 @@ $userRol=$userDetails->rol;
 			        //echo $row['cod_project'] . "\t";
 					$codProject=$row['cod_project'];
 			        echo "<b>Nombre de Proyecto: </b>",$row['name_project'] . "\t<br>";
+			        $nombreProyecto = $row['name_project'];
 			        echo "<b>Descripción: </b>",$row['description'] . "\t<br>";
 			        echo "<b>Product Owner: </b>",$row['product_owner'] . "\t<br>";
 			        echo "<b>Scrum Master: </b>",$row['scrum_master'] . "\t<br>";
@@ -124,8 +125,10 @@ $userRol=$userDetails->rol;
 							<div id="boton_sprint"></div>
 							<div id="contenedor-formulario">
 								<div id="div_formulario" hidden>
-									<form id="formulario" method="post" action="prueba2.php">
-									<div id="formulario_izquierda" class="col s6"></div>
+									<form id="formulario" method="post" action="sprint_inserts.php">
+									<div id="formulario_izquierda" class="col s6">
+										<input type="text" name="nombreProyecto" value="<?php echo $nombreProyecto;?>" hidden>
+									</div>
 									<div id="formulario_derecha" class="col s6"></div>
 									</form>
 								</div>
