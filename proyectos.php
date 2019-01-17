@@ -198,6 +198,7 @@ $userRol=$userDetails->rol;
 	        els[i].classList[fnName](className);
 	    }
 	}
+
 	</script>
 	<script type="text/javascript">var arrayFechas = '<?php echo $js_array ?>'; </script>
 	<script type="text/javascript">
@@ -226,17 +227,42 @@ $userRol=$userDetails->rol;
 			
 	function eliminarSprint(){
 		
-	var sprintNegro= document.getElementById("contenedor_sprints");
-	console.log(sprintNegro.length);
-	for(var i=0; acc.length; i++) {
-		if (acc[i].style.backgroundColor=="black") {
-			var hijoNegro=acc[i];
-			sprintNegro.removeChild(hijoNegro);
-			document.getElementsByClassName("boton_eliminar")[i].style.display="none";
+		var sprintNegro= document.getElementById("contenedor_sprints");
+		
+		for(var i=0; acc.length; i++) {
+			if (acc[i].style.backgroundColor=="black") {
+				var hijoNegro=acc[i];
+				var hermanoNegro = hijoNegro.nextSibling;
+				var hijoHermanonegro= hermanoNegro.childNodes;
+				console.log(hijoHermanonegro);
+				var j=0;
+
+				while(hijoHermanonegro.length>j){
+					console.log("hola");
+					var divClonado=hermanoNegro.firstChild.cloneNode(true);
+					console.log(divClonado);
+					var divBacklog=document.getElementById('divEspe');
+					divBacklog.appendChild(divClonado);
+					hermanoNegro.removeChild(hermanoNegro.firstChild);
+
+				}
+
+				sprintNegro.removeChild(hijoNegro);
+				sprintNegro.removeChild(hermanoNegro);
+
+				document.getElementsByClassName("boton_eliminar")[i].style.display="none";
+
+
+			}
 		}
 	}
-}
+
+	
+
 </script>
+
+
+
 
 <script type="text/javascript">
 	contador = 0; // Variable global para tener poder poner un id unico a cada elemento cuando se clona.
