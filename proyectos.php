@@ -77,9 +77,9 @@ $userRol=$userDetails->rol;
 						$num=0;
 						foreach ($pdo->query($sql) as $row) {
 						echo "<button class=' boton_eliminar col s2 right' onclick='eliminarSprint()'>".'eliminar'."</button>";
-						echo "<div id='sprintDiv$num' class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."<img onmouseover='hoverCandado()'  onmouseout='candadoCerrado(this)' class='candado' src='img/cerrado.png'> </div>";
-						echo "<div id='cuadro2' class='panel' ondragenter='return enter(event)' ondragover='return over(event)' ondragleave='return leave(event)' ondrop='return drop(event)'style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
-						echo "hola";
+						echo "<div id='sprintDiv$num' class='acordeon' style='background-color:#4f986c;color: #fff; cursor: pointer;  padding: 18px; width:100%; text-align: left; border: 1px solid white; transition: 0.4s;font: 20px Lato, sans-serif;'>".$row['name_sprint']."<img onmouseover='hoverCandado(this)'  onmouseout='candadoCerrado(this)' class='candado' src='img/cerrado.png'> </div>";
+						echo "<div  class='panel' ondragenter='return enter(event)' ondragover='return over(event)' ondragleave='return leave(event)' ondrop='return drop(event)'style='padding: 0.18px;background-color: white;display: none;overflow: hidden;'>";
+						echo ".";
 						/*
 						echo "<p style='font: 16px Lato, sans-serif;'>";
 						echo "<b>",$row['name_sprint'] . "\t</b><br>";
